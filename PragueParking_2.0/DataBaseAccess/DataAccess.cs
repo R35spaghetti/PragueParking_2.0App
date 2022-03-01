@@ -15,10 +15,14 @@ namespace PragueParking_2._0.DataBaseAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=GhostSheriffsDb;Integrated Security=True;");
-            }
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+            var config = configuration.Build();
+
+            optionsBuilder.UseSqlServer(config.GetConnectionString("Default"));
+
+
 
         }
     }
