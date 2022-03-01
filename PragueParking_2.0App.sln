@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PragueParking_2.0", "PragueParking_2.0\PragueParking_2.0.csproj", "{B620F49B-C218-4E41-A949-D4C8BAC79664}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B620F49B-C218-4E41-A949-D4C8BAC79664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B620F49B-C218-4E41-A949-D4C8BAC79664}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B620F49B-C218-4E41-A949-D4C8BAC79664}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B620F49B-C218-4E41-A949-D4C8BAC79664}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {05368E8E-7B90-4FB3-81B4-2C9232DC30A0}
+	EndGlobalSection
+EndGlobal
