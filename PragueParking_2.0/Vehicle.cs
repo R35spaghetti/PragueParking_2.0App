@@ -7,7 +7,8 @@ namespace GhostSheriffsDatabaseAccess
 {
     public class Vehicle
     {
-        //Size skulle kanske kunna läggas in..
+        //int ID nyckel?
+        //
         [Key]
         [Column("Id_NumberPlate")]
         public string? Id_NumberPlate { get; set; }

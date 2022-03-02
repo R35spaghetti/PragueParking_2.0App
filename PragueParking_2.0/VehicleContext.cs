@@ -17,6 +17,8 @@ namespace GhostSheriffsDatabaseAccess
         { }
 
 
+       
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -26,12 +28,23 @@ namespace GhostSheriffsDatabaseAccess
                 string connectionString =
                 builder.Build().GetConnectionString("DefaultConnection");
                 optionsBuilder.UseSqlServer(connectionString);
+                
 
             }
-
         }
 
+        public static string ReadCarParkSettings()
+        {
+            var builder = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            var ParkingSpot = builder.Build().GetSection("AmountOfParkingSpots").GetSection("ParkinSpotLimit").Value;
+
+            return $"Parking spots allowed in the parking lot: {ParkingSpot}";
+        }
+ 
     }
+  
 
     //Connect to command line app, not needed with ASP
     public class VehicleContextFactory : IDesignTimeDbContextFactory<VehicleContext>
