@@ -9,8 +9,8 @@ namespace GhostSheriffsDatabaseAccess
     {
         //Size skulle kanske kunna läggas in..
         [Key]
-        [Column("Id")]
-        public int Id { get; set; }
+        [Column("Id_NumberPlate")]
+        public string? Id_NumberPlate { get; set; }
 
         [Column("CheckInTimeStamp")]
         public DateTime? CheckInTimeStamp { get; set; }
