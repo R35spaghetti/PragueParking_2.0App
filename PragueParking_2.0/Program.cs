@@ -1,12 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using GhostSheriffsDatabaseAccess;
 using Microsoft.Extensions.Configuration;
-
-
+using System.Text.Json;
 
 Console.WriteLine(VehicleContext.ReadCarParkSettings()); //prints selected value from JSON
 
-
+VehicleContext.ConsumptionPattern();
 
 //VehicleContext context = new();
 //context.Database.EnsureCreated();

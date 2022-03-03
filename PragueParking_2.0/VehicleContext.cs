@@ -7,7 +7,7 @@ namespace GhostSheriffsDatabaseAccess
     public class VehicleContext : DbContext
     {
 
-        public DbSet<Vehicle> Vehicles { get; set; } = null!;
+        public DbSet<Vehicles> Vehicles { get; set; } = null!;
 
         public VehicleContext(DbContextOptions<VehicleContext> options) : base(options)
         { }
@@ -31,6 +31,16 @@ namespace GhostSheriffsDatabaseAccess
                 
 
             }
+        }
+        //Test
+        public static void ConsumptionPattern()
+        {
+            IConfiguration config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables()
+                .Build();
+            Vehicles vehicles = config.GetRequiredSection("Car").Get<Vehicles>();
+          
         }
 
         public static string ReadCarParkSettings()

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GhostSheriffsDatabaseAccess
 {
-    public class Vehicle
+    public class Vehicles
     {
         //int ID nyckel?
         //
