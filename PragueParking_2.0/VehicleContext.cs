@@ -32,25 +32,28 @@ namespace GhostSheriffsDatabaseAccess
 
             }
         }
-        //Test
-        public static void ConsumptionPattern()
+        //TODO: redo
+        public static string ConsumptionPattern()
         {
             IConfiguration config = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables()
                 .Build();
-            Vehicles vehicles = config.GetRequiredSection("Car").Get<Vehicles>();
-          
+            var AmountOfCars = config.GetSection("AmountInParkingSpot").Value;
+
+            return AmountOfCars;
         }
 
-        public static string ReadCarParkSettings()
+        public static string ReadParkGaragePrices()
         {
             var builder = new ConfigurationBuilder()
                  .SetBasePath(Directory.GetCurrentDirectory())
                  .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            var ParkingSpot = builder.Build().GetSection("AmountOfParkingSpots").GetSection("ParkinSpotLimit").Value;
+            var PriceForCar = builder.Build().GetSection("PriceList").GetSection("Per hour for Car").Value;
+            var PriceForMC = builder.Build().GetSection("PriceList").GetSection("Per hour for MC").Value;
 
-            return $"Parking spots allowed in the parking lot: {ParkingSpot}";
+            return $"Current price per hour for Car: {PriceForCar}\n" +
+                $"Current price per hour for MC: {PriceForMC}";
         }
  
     }

@@ -15,6 +15,7 @@ namespace PragueParking_2._0.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    NumberPlate = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CheckInTimeStamp = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ParkingSpot = table.Column<int>(type: "int", nullable: false),
                     VehicleType = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -23,6 +24,13 @@ namespace PragueParking_2._0.Migrations
                 {
                     table.PrimaryKey("PK_Vehicles", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vehicles_NumberPlate",
+                table: "Vehicles",
+                column: "NumberPlate",
+                unique: true,
+                filter: "[NumberPlate] IS NOT NULL");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -1,17 +1,20 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace GhostSheriffsDatabaseAccess
 {
+    [Index(nameof(NumberPlate), IsUnique = true)]
     public class Vehicles
     {
-        //int ID nyckel?
-        //
+      
         [Key]
-        [Column("Id_NumberPlate")]
-        public string? Id_NumberPlate { get; set; }
+        public int Id { get; set; }
+
+        [Column("NumberPlate")]
+        public string? NumberPlate { get; set; }
 
         [Column("CheckInTimeStamp")]
         public DateTime? CheckInTimeStamp { get; set; }
@@ -19,7 +22,6 @@ namespace GhostSheriffsDatabaseAccess
         [Column("ParkingSpot")]
         public int ParkingSpot { get; set; }
 
-        //enum till klasserna
         [Column("VehicleType")]
         public string? VehicleType { get; set; }
 

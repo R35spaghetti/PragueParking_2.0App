@@ -3,13 +3,12 @@ using GhostSheriffsDatabaseAccess;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 
-Console.WriteLine(VehicleContext.ReadCarParkSettings()); //prints selected value from JSON
+Console.WriteLine(VehicleContext.ReadParkGaragePrices()); //prints the price from appsettings.JSON
 
-VehicleContext.ConsumptionPattern();
 
-//VehicleContext context = new();
-//context.Database.EnsureCreated();
-//Console.WriteLine("Database is created");
+VehicleContext context = new();
+context.Database.EnsureCreated();
+Console.WriteLine("Database is created"); //ändra
 
 //TODO antingen txt eller json
 /* Det skall finnas en prislista i form av en textfil. Filen läses in vid programstart och kan vid 

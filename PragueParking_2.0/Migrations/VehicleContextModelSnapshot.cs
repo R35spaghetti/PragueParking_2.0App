@@ -22,18 +22,21 @@ namespace PragueParking_2._0.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("GhostSheriffsDatabaseAccess.Vehicle", b =>
+            modelBuilder.Entity("GhostSheriffsDatabaseAccess.Vehicles", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CheckInTimeStamp")
                         .HasColumnType("datetime2")
                         .HasColumnName("CheckInTimeStamp");
+
+                    b.Property<string>("NumberPlate")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("NumberPlate");
 
                     b.Property<int>("ParkingSpot")
                         .HasColumnType("int")
@@ -44,6 +47,10 @@ namespace PragueParking_2._0.Migrations
                         .HasColumnName("VehicleType");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NumberPlate")
+                        .IsUnique()
+                        .HasFilter("[NumberPlate] IS NOT NULL");
 
                     b.ToTable("Vehicles");
                 });
