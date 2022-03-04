@@ -68,6 +68,10 @@ namespace GhostSheriffsDatabaseAccess
             return (carPrice, mcPrice, parkingSpace, parkedCarsTogether, parkedMCsTogether);
         }
 
+        public static void EditTheJson()
+        {
+        }
+
         //Replace Price list?
         public static async Task ChangeParkGaragePricesAsync()
         {

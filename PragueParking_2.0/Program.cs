@@ -8,17 +8,34 @@ using System.IO;
 using System.Text.Json.Serialization;
 using System;
 using System.Linq;
+using System.Xml;
+
 
 
 
 //Tuple to get all the json limitation values
 (int, int, int, int, int) rentalPricesAndLimitations = (0,0,0,0,0);
+string rentPriceAndLimits = "";
 rentalPricesAndLimitations = VehicleContext.GiveParkGarageValuesFromJsonFile(rentalPricesAndLimitations);
 Console.WriteLine($"Rental price per hour for car is: {rentalPricesAndLimitations.Item1}\n" +
     $"Rental price per hour for mc is {rentalPricesAndLimitations.Item2} \n" +
     $"Parkingspot limit: {rentalPricesAndLimitations.Item3}\n" +
     $"Amount of cars in the same parking space: {rentalPricesAndLimitations.Item4}\n" +
     $"Amount of MCs in the same parking space: {rentalPricesAndLimitations.Item5}");
+
+//Prints the whole XML-document
+XmlDocument doc = new XmlDocument();
+doc.Load("PragueParkingLimitationData.xml");
+
+XmlNodeList listItems = doc.GetElementsByTagName("record");
+for(int i = 0;i< listItems.Count; i++)
+{
+    rentPriceAndLimits = listItems[i].InnerXml;
+}
+Console.WriteLine(rentPriceAndLimits);
+
+
+
 
 
 
