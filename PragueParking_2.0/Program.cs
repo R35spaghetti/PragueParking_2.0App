@@ -12,16 +12,38 @@ using System.Xml;
 
 
 
-
+//ANVÄND DENNA
 //Tuple to get all the json limitation values
 (int, int, int, int, int) rentalPricesAndLimitations = (0,0,0,0,0);
 string rentPriceAndLimits = "";
 rentalPricesAndLimitations = VehicleContext.GiveParkGarageValuesFromJsonFile(rentalPricesAndLimitations);
+
 Console.WriteLine($"Rental price per hour for car is: {rentalPricesAndLimitations.Item1}\n" +
     $"Rental price per hour for mc is {rentalPricesAndLimitations.Item2} \n" +
     $"Parkingspot limit: {rentalPricesAndLimitations.Item3}\n" +
     $"Amount of cars in the same parking space: {rentalPricesAndLimitations.Item4}\n" +
     $"Amount of MCs in the same parking space: {rentalPricesAndLimitations.Item5}");
+
+
+
+VehicleContext context = new();
+context.Database.EnsureCreated();
+Console.WriteLine("Database is created");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Prints the whole XML-document
 XmlDocument doc = new XmlDocument();
@@ -66,11 +88,6 @@ Console.WriteLine(rentPriceAndLimits);
 //    Console.WriteLine($"Parking Spot: {testdata?.ParkingSpot}");
 //    Console.WriteLine($"Vehicle Type: {testdata?.VehicleType}");
 //}
-
-//Funkar
-//VehicleContext context = new();
-//context.Database.EnsureCreated();
-//Console.WriteLine("Database is created"); 
 
 
 

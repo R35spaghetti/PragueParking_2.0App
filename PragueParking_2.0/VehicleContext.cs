@@ -10,7 +10,7 @@ namespace GhostSheriffsDatabaseAccess
     public class VehicleContext : DbContext
     {
 
-        public DbSet<Vehicles> Vehicles { get; set; } = null!;
+        public DbSet<VehiclesDB> Vehicles { get; set; } = null!;
 
         public VehicleContext(DbContextOptions<VehicleContext> options) : base(options)
         { }
