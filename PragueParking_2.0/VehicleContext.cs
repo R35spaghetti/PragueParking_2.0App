@@ -36,34 +36,36 @@ namespace GhostSheriffsDatabaseAccess
             }
         }
 
-   
+  
 
-        //Prints price list values 
-        public static string ReadParkGaragePrices()
+        public static (int,int, int, int, int) GiveParkGarageValuesFromJsonFile((int,int, int, int, int) rentalPricesAndLimitations)
         {
+       
+
             var builder = new ConfigurationBuilder()
                  .SetBasePath(Directory.GetCurrentDirectory())
                  .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            var PriceForCar = builder.Build().GetSection("PriceList").GetSection("Per hour for Car").Value;
-            var PriceForMC = builder.Build().GetSection("PriceList").GetSection("Per hour for MC").Value;
+            var priceForCar = builder.Build().GetSection("PriceList").GetSection("Per hour for Car").Value;
+            var priceForMC = builder.Build().GetSection("PriceList").GetSection("Per hour for MC").Value;
+            var parkingSpotLimit = builder.Build().GetSection("AmountOfParkingSpots").GetSection("ParkinSpotLimit").Value;
+            var parkedCarsLimit = builder.Build().GetSection("CarsInParkingSpot").GetSection("AmountInSameParkingSpot").Value;
+            var parkedMCsLimit = builder.Build().GetSection("MCsInParkingSpot").GetSection("AmountInSameParkingSpot").Value;
 
-            return $"Current price per hour for Car: {PriceForCar}\n" +
-                $"Current price per hour for MC: {PriceForMC}";
+            rentalPricesAndLimitations = ApplyTupleValues(priceForCar, priceForMC, parkingSpotLimit, parkedCarsLimit, parkedMCsLimit);
+
+
+            return rentalPricesAndLimitations;
         }
 
-
-        public static (int,int) GiveParkGaragePrices((int,int) rentalPrices)
+        private static (int carPrice, int mcPrice, int parkingSpace, int parkedCarsTogether, int parkedMCsTogether) ApplyTupleValues(string priceForCar, string priceForMC, string parkingSpotLimit, string parkedCarsLimit, string parkedMCsLimit)
         {
-         
+            int carPrice = int.Parse(priceForCar);
+            int mcPrice = int.Parse(priceForMC);
+            int parkingSpace = int.Parse(parkingSpotLimit);
+            int parkedCarsTogether = int.Parse(parkedCarsLimit);
+            int parkedMCsTogether = int.Parse(parkedMCsLimit);
 
-            var builder = new ConfigurationBuilder()
-                 .SetBasePath(Directory.GetCurrentDirectory())
-                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            var PriceForCar = builder.Build().GetSection("PriceList").GetSection("Per hour for Car").Value;
-            var PriceForMC = builder.Build().GetSection("PriceList").GetSection("Per hour for MC").Value;
-         int carPrice = int.Parse(PriceForCar);
-         int mcPrice = int.Parse(PriceForMC);
-            return (carPrice,mcPrice);
+            return (carPrice, mcPrice, parkingSpace, parkedCarsTogether, parkedMCsTogether);
         }
 
         //Replace Price list?

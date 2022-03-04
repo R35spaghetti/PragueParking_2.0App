@@ -9,19 +9,18 @@ using System.Text.Json.Serialization;
 using System;
 using System.Linq;
 
-Console.WriteLine(VehicleContext.ReadParkGaragePrices()); //prints the price from appsettings.JSON
-//await VehicleContext.ChangeParkGaragePricesAsync();
-//Console.WriteLine(VehicleContext.ReadParkGaragePrices());
-
-//Tuple to get two values
-(int, int) rentalPrices = (0,0);
-rentalPrices = VehicleContext.GiveParkGaragePrices(rentalPrices);
-Console.WriteLine($"New rental price for car is: {rentalPrices.Item1}\n" +
-    $"New rental price for mc is {rentalPrices.Item2}");
 
 
-int getCarPrice = rentalPrices.Item1;
-Console.WriteLine(getCarPrice);
+//Tuple to get all the json limitation values
+(int, int, int, int, int) rentalPricesAndLimitations = (0,0,0,0,0);
+rentalPricesAndLimitations = VehicleContext.GiveParkGarageValuesFromJsonFile(rentalPricesAndLimitations);
+Console.WriteLine($"Rental price per hour for car is: {rentalPricesAndLimitations.Item1}\n" +
+    $"Rental price per hour for mc is {rentalPricesAndLimitations.Item2} \n" +
+    $"Parkingspot limit: {rentalPricesAndLimitations.Item3}\n" +
+    $"Amount of cars in the same parking space: {rentalPricesAndLimitations.Item4}\n" +
+    $"Amount of MCs in the same parking space: {rentalPricesAndLimitations.Item5}");
+
+
 
 //TODO: Fill DB with data from JSON TESTDATA-file (or other)
 //TODO: Able to edit json-file (add class)
