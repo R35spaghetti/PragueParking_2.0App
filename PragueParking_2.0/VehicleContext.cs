@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using PragueParking_2._0;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace GhostSheriffsDatabaseAccess
 {
@@ -51,6 +52,7 @@ namespace GhostSheriffsDatabaseAccess
             var parkedCarsLimit = builder.Build().GetSection("CarsInParkingSpot").GetSection("AmountInSameParkingSpot").Value;
             var parkedMCsLimit = builder.Build().GetSection("MCsInParkingSpot").GetSection("AmountInSameParkingSpot").Value;
 
+        
             rentalPricesAndLimitations = ApplyTupleValues(priceForCar, priceForMC, parkingSpotLimit, parkedCarsLimit, parkedMCsLimit);
 
 
@@ -68,28 +70,37 @@ namespace GhostSheriffsDatabaseAccess
             return (carPrice, mcPrice, parkingSpace, parkedCarsTogether, parkedMCsTogether);
         }
 
+        //TODO lägg in alla nödvändiga värden
+        //Måste (just nu) vara AppDomain.CurrentDomain.BaseDirectory så att den skapar en egen json-fil annars kraschar det vid connectionstring, denna mall har ingen connectionstring sträng
         public static void EditTheJson()
         {
-        }
+            //Gets the price list values
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory()) //AppDomain.CurrentDomain.BaseDirectory
+                .AddJsonFile("appsettings.json") //Directory.GetCurrentDirectory()
+                .Build()
+                .Get<PriceList>(); //hämtar klassen (som mall)
 
-        //Replace Price list?
-        public static async Task ChangeParkGaragePricesAsync()
-        {
-            var newHourlyPrice = new AppsettingsPriceListOptions
+            //sätter in värden
+            config.PerHourForMC = 365;
+            config.PerHourForCar = 185; 
+
+            var jsonWriteOptions = new JsonSerializerOptions()
             {
-                PerHourForCar = 40,
-                  PerHourForMC = 20,
+                WriteIndented = true //beskrivning beskriver sig själv
 
-              
             };
+            //tillåter int
+            jsonWriteOptions.Converters.Add(new JsonStringEnumConverter());
 
-            string fileName = "appsettings.json";
-            using FileStream createStream = File.Create(fileName);
-            await JsonSerializer.SerializeAsync(createStream, newHourlyPrice);
-            await createStream.DisposeAsync();
+            var addJson = JsonSerializer.Serialize(config, jsonWriteOptions); //skriv utifrån writeoptions och klassens värden
 
-            Console.WriteLine(File.ReadAllText(fileName));
+            var AppsettingsPath = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json"); //vart ska sakerna ligga
+            File.WriteAllTextAsync(AppsettingsPath, addJson); //skriv in
+                
         }
+
+
 
 
         //Connect to command line app, not needed with ASP

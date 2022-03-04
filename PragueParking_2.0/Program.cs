@@ -14,8 +14,7 @@ using System.Xml;
 
 //ANVÄND DENNA
 //Tuple to get all the json limitation values
-(int, int, int, int, int) rentalPricesAndLimitations = (0,0,0,0,0);
-string rentPriceAndLimits = "";
+(int, int, int, int, int) rentalPricesAndLimitations = (0, 0, 0, 0, 0);
 rentalPricesAndLimitations = VehicleContext.GiveParkGarageValuesFromJsonFile(rentalPricesAndLimitations);
 
 Console.WriteLine($"Rental price per hour for car is: {rentalPricesAndLimitations.Item1}\n" +
@@ -23,6 +22,12 @@ Console.WriteLine($"Rental price per hour for car is: {rentalPricesAndLimitation
     $"Parkingspot limit: {rentalPricesAndLimitations.Item3}\n" +
     $"Amount of cars in the same parking space: {rentalPricesAndLimitations.Item4}\n" +
     $"Amount of MCs in the same parking space: {rentalPricesAndLimitations.Item5}");
+
+
+//TEST
+//VehicleContext.EditTheJson();
+//Console.WriteLine("Price value was changed");
+
 
 
 
@@ -45,56 +50,5 @@ Console.WriteLine("Database is created");
 
 
 
-//Prints the whole XML-document
-XmlDocument doc = new XmlDocument();
-doc.Load("PragueParkingLimitationData.xml");
-
-XmlNodeList listItems = doc.GetElementsByTagName("record");
-for(int i = 0;i< listItems.Count; i++)
-{
-    rentPriceAndLimits = listItems[i].InnerXml;
-}
-Console.WriteLine(rentPriceAndLimits);
-
-
-
-
-
-
-//TODO: Fill DB with data from JSON TESTDATA-file (or other)
-//TODO: Able to edit json-file (add class)
-
-
-
-
-
-//Funkar ej
-//string[] lines = await File.ReadAllLinesAsync("TESTDATA.json");
-//foreach(var line in lines)
-//{
-//    Console.WriteLine(line);
-//}
-
-//await ReadJsonFile();
-
-// async Task ReadJsonFile()
-//{
-//    string fileName = "TESTDATA.json";
-//    using FileStream openStream = File.OpenRead(fileName);
-//    Testdata? testdata = 
-//        await JsonSerializer.DeserializeAsync<Testdata>(openStream);
-//    Console.WriteLine($"Number plate: {testdata?.NumberPlate}");
-//    Console.WriteLine($"Time stamp: {testdata?.TimeStamp}");
-//    Console.WriteLine($"Parking Spot: {testdata?.ParkingSpot}");
-//    Console.WriteLine($"Vehicle Type: {testdata?.VehicleType}");
-//}
-
-
-
-//Funkar för tysken
-//var fileContentTestData = await File.ReadAllTextAsync("TESTDATA.json");
-//var vehicles = JsonSerializer.Deserialize<Testdata>(fileContentTestData);
-
-//var vehicleswithdateAfter = vehicles.Where(car => car.TimeStamp == "2022");
 
 
