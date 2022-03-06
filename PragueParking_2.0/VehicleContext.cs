@@ -4,13 +4,14 @@ using Microsoft.Extensions.Configuration;
 using PragueParking_2._0;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace GhostSheriffsDatabaseAccess
 {
     public class VehicleContext : DbContext
     {
 
-        public DbSet<Vehicles> Vehicles { get; set; } = null!;
+        public DbSet<VehiclesDB> Vehicles { get; set; } = null!;
 
         public VehicleContext(DbContextOptions<VehicleContext> options) : base(options)
         { }
@@ -36,54 +37,70 @@ namespace GhostSheriffsDatabaseAccess
             }
         }
 
-   
+  
 
-        //Prints price list values 
-        public static string ReadParkGaragePrices()
+        public static (int,int, int, int, int) GiveParkGarageValuesFromJsonFile((int,int, int, int, int) rentalPricesAndLimitations)
         {
-            var builder = new ConfigurationBuilder()
-                 .SetBasePath(Directory.GetCurrentDirectory())
-                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            var PriceForCar = builder.Build().GetSection("PriceList").GetSection("Per hour for Car").Value;
-            var PriceForMC = builder.Build().GetSection("PriceList").GetSection("Per hour for MC").Value;
-
-            return $"Current price per hour for Car: {PriceForCar}\n" +
-                $"Current price per hour for MC: {PriceForMC}";
-        }
-
-
-        public static (int,int) GiveParkGaragePrices((int,int) rentalPrices)
-        {
-         
+       
 
             var builder = new ConfigurationBuilder()
                  .SetBasePath(Directory.GetCurrentDirectory())
                  .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            var PriceForCar = builder.Build().GetSection("PriceList").GetSection("Per hour for Car").Value;
-            var PriceForMC = builder.Build().GetSection("PriceList").GetSection("Per hour for MC").Value;
-         int carPrice = int.Parse(PriceForCar);
-         int mcPrice = int.Parse(PriceForMC);
-            return (carPrice,mcPrice);
+            var priceForCar = builder.Build().GetSection("PriceList").GetSection("Per hour for Car").Value;
+            var priceForMC = builder.Build().GetSection("PriceList").GetSection("Per hour for MC").Value;
+            var parkingSpotLimit = builder.Build().GetSection("AmountOfParkingSpots").GetSection("ParkinSpotLimit").Value;
+            var parkedCarsLimit = builder.Build().GetSection("CarsInParkingSpot").GetSection("AmountInSameParkingSpot").Value;
+            var parkedMCsLimit = builder.Build().GetSection("MCsInParkingSpot").GetSection("AmountInSameParkingSpot").Value;
+
+        
+            rentalPricesAndLimitations = ApplyTupleValues(priceForCar, priceForMC, parkingSpotLimit, parkedCarsLimit, parkedMCsLimit);
+
+
+            return rentalPricesAndLimitations;
         }
 
-        //Replace Price list?
-        public static async Task ChangeParkGaragePricesAsync()
+        private static (int carPrice, int mcPrice, int parkingSpace, int parkedCarsTogether, int parkedMCsTogether) ApplyTupleValues(string priceForCar, string priceForMC, string parkingSpotLimit, string parkedCarsLimit, string parkedMCsLimit)
         {
-            var newHourlyPrice = new AppsettingsPriceListOptions
+            int carPrice = int.Parse(priceForCar);
+            int mcPrice = int.Parse(priceForMC);
+            int parkingSpace = int.Parse(parkingSpotLimit);
+            int parkedCarsTogether = int.Parse(parkedCarsLimit);
+            int parkedMCsTogether = int.Parse(parkedMCsLimit);
+
+            return (carPrice, mcPrice, parkingSpace, parkedCarsTogether, parkedMCsTogether);
+        }
+
+        //TODO lägg in alla nödvändiga värden
+        //Måste (just nu) vara AppDomain.CurrentDomain.BaseDirectory så att den skapar en egen json-fil annars kraschar det vid connectionstring, denna mall har ingen connectionstring sträng
+        public static void EditTheJson()
+        {
+            //Gets the price list values
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory()) //AppDomain.CurrentDomain.BaseDirectory
+                .AddJsonFile("appsettings.json") //Directory.GetCurrentDirectory()
+                .Build()
+                .Get<PriceList>(); //hämtar klassen (som mall)
+
+            //sätter in värden
+            config.PerHourForMC = 365;
+            config.PerHourForCar = 185; 
+
+            var jsonWriteOptions = new JsonSerializerOptions()
             {
-                PerHourForCar = 40,
-                  PerHourForMC = 20,
+                WriteIndented = true //beskrivning beskriver sig själv
 
-              
             };
+            //tillåter int
+            jsonWriteOptions.Converters.Add(new JsonStringEnumConverter());
 
-            string fileName = "appsettings.json";
-            using FileStream createStream = File.Create(fileName);
-            await JsonSerializer.SerializeAsync(createStream, newHourlyPrice);
-            await createStream.DisposeAsync();
+            var addJson = JsonSerializer.Serialize(config, jsonWriteOptions); //skriv utifrån writeoptions och klassens värden
 
-            Console.WriteLine(File.ReadAllText(fileName));
+            var AppsettingsPath = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json"); //vart ska sakerna ligga
+            File.WriteAllTextAsync(AppsettingsPath, addJson); //skriv in
+                
         }
+
+
 
 
         //Connect to command line app, not needed with ASP

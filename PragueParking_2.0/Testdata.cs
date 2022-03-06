@@ -2,7 +2,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-//Add data from TESTDATA.Json to Database
+
+//TODO Gör om gör rätt
 namespace PragueParking_2._0
 {
 

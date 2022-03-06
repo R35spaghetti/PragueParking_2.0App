@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace GhostSheriffsDatabaseAccess
 {
     [Index(nameof(NumberPlate), IsUnique = true)]
-    public class Vehicles
+    public class VehiclesDB
     {
       
         [Key]
