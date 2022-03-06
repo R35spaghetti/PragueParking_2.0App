@@ -11,7 +11,7 @@ namespace PragueParking_2._0
 
 
         [JsonPropertyName("Id_NumberPlate")]
-        public string? NumberPlate { get; set; }
+        public string NumberPlate { get; set; }
 
         [JsonPropertyName("CheckInTimeStamp")]
         public DateTime TimeStamp { get; set; }
@@ -20,7 +20,7 @@ namespace PragueParking_2._0
         public int ParkingSpot { get; set; }
 
         [JsonPropertyName("VehicleType")]
-        public string? VehicleType { get; set; }
+        public string VehicleType { get; set; }
 
 
     }
