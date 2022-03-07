@@ -39,24 +39,24 @@ namespace GhostSheriffsDatabaseAccess
 
   
 
-        public static (int,int, int, int, int) GiveParkGarageValuesFromJsonFile((int,int, int, int, int) rentalPricesAndLimitations)
+        public static (int,int, int, int, int) GiveParkGarageValuesFromJsonFile((int,int, int, int, int) rentalPricesAndParkingLimitations)
         {
        
 
             var builder = new ConfigurationBuilder()
                  .SetBasePath(Directory.GetCurrentDirectory())
-                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            var priceForCar = builder.Build().GetSection("PriceList").GetSection("Per hour for Car").Value;
-            var priceForMC = builder.Build().GetSection("PriceList").GetSection("Per hour for MC").Value;
-            var parkingSpotLimit = builder.Build().GetSection("AmountOfParkingSpots").GetSection("ParkinSpotLimit").Value;
-            var parkedCarsLimit = builder.Build().GetSection("CarsInParkingSpot").GetSection("AmountInSameParkingSpot").Value;
-            var parkedMCsLimit = builder.Build().GetSection("MCsInParkingSpot").GetSection("AmountInSameParkingSpot").Value;
+                 .AddJsonFile("ParkingLotLimitationValues.json", optional: true, reloadOnChange: true);
+            var priceForCar = builder.Build().GetSection("Per hour for Car").Value;
+            var priceForMC = builder.Build().GetSection("Per hour for MC").Value;
+            var parkingSpotLimit = builder.Build().GetSection("Parking spots in the garage").Value;
+            var parkedCarsLimit = builder.Build().GetSection("Cars in the same parking spot").Value;
+            var parkedMCsLimit = builder.Build().GetSection("Motorcycles in the same parking spot").Value;
 
         
-            rentalPricesAndLimitations = ApplyTupleValues(priceForCar, priceForMC, parkingSpotLimit, parkedCarsLimit, parkedMCsLimit);
+            rentalPricesAndParkingLimitations = ApplyTupleValues(priceForCar, priceForMC, parkingSpotLimit, parkedCarsLimit, parkedMCsLimit);
 
 
-            return rentalPricesAndLimitations;
+            return rentalPricesAndParkingLimitations;
         }
 
         private static (int carPrice, int mcPrice, int parkingSpace, int parkedCarsTogether, int parkedMCsTogether) ApplyTupleValues(string priceForCar, string priceForMC, string parkingSpotLimit, string parkedCarsLimit, string parkedMCsLimit)
@@ -72,34 +72,43 @@ namespace GhostSheriffsDatabaseAccess
 
         //TODO lägg in alla nödvändiga värden
         //Måste (just nu) vara AppDomain.CurrentDomain.BaseDirectory så att den skapar en egen json-fil annars kraschar det vid connectionstring, denna mall har ingen connectionstring sträng
-        public static void EditTheJson()
+        public static void EditParkingLotLimitionValues(int parkingSpots, int rentalPriceCar, int rentalPriceMC, int carsPerSpace, int mcsPerSpace)
         {
-            //Gets the price list values
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory()) //AppDomain.CurrentDomain.BaseDirectory
-                .AddJsonFile("appsettings.json") //Directory.GetCurrentDirectory()
+           
+            //Gets the json-file values
+            var config = new ConfigurationBuilder() //Directory.GetCurrentDirectory()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("ParkingLotLimitationValues.json") 
                 .Build()
-                .Get<PriceList>(); //hämtar klassen (som mall)
+                .Get<ParkingGarageLimitationValues>(); //Gets the class to read the json-file
+
+
+
 
             //sätter in värden
-            config.PerHourForMC = 365;
-            config.PerHourForCar = 185; 
+            config.PerHourForCar = rentalPriceCar;
+              config.PerHourForMC= rentalPriceMC;
+            config.CarsInTheSameParkingSpot = carsPerSpace;
+            config.MotorcyclesInTheSameParkingSpot = mcsPerSpace;
+            config.ParkingSpotsInTheGarage = parkingSpots;
+
 
             var jsonWriteOptions = new JsonSerializerOptions()
             {
-                WriteIndented = true //beskrivning beskriver sig själv
+                WriteIndented = true, //beskrivning beskriver sig själv
+                
+        };
 
-            };
             //tillåter int
-            jsonWriteOptions.Converters.Add(new JsonStringEnumConverter());
-
+           jsonWriteOptions.Converters.Add(new JsonStringEnumConverter());
+          
             var addJson = JsonSerializer.Serialize(config, jsonWriteOptions); //skriv utifrån writeoptions och klassens värden
 
-            var AppsettingsPath = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json"); //vart ska sakerna ligga
+            var AppsettingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ParkingLotLimitationValues.json"); //vart ska sakerna ligga
             File.WriteAllTextAsync(AppsettingsPath, addJson); //skriv in
                 
         }
-
+   
 
 
 
