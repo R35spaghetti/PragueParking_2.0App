@@ -70,15 +70,14 @@ namespace GhostSheriffsDatabaseAccess
             return (carPrice, mcPrice, parkingSpace, parkedCarsTogether, parkedMCsTogether);
         }
 
-        //TODO lägg in alla nödvändiga värden
-        //Måste (just nu) vara AppDomain.CurrentDomain.BaseDirectory så att den skapar en egen json-fil annars kraschar det vid connectionstring, denna mall har ingen connectionstring sträng
-        public static void EditParkingLotLimitionValues(int parkingSpots, int rentalPriceCar, int rentalPriceMC, int carsPerSpace, int mcsPerSpace)
+
+        public static void EditParkingLotLimitionValues((int, int, int, int, int) editOneValueInJsonValueFile)
         {
-           
+
             //Gets the json-file values
-            var config = new ConfigurationBuilder() //Directory.GetCurrentDirectory()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("ParkingLotLimitationValues.json") 
+            var config = new ConfigurationBuilder() 
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory) //Directory.GetCurrentDirectory()
+                .AddJsonFile("ParkingLotLimitationValues.json")
                 .Build()
                 .Get<ParkingGarageLimitationValues>(); //Gets the class to read the json-file
 
@@ -86,29 +85,28 @@ namespace GhostSheriffsDatabaseAccess
 
 
             //sätter in värden
-            config.PerHourForCar = rentalPriceCar;
-              config.PerHourForMC= rentalPriceMC;
-            config.CarsInTheSameParkingSpot = carsPerSpace;
-            config.MotorcyclesInTheSameParkingSpot = mcsPerSpace;
-            config.ParkingSpotsInTheGarage = parkingSpots;
+            config.PerHourForCar = editOneValueInJsonValueFile.Item1;
+            config.PerHourForMC = editOneValueInJsonValueFile.Item2;
+            config.ParkingSpotsInTheGarage = editOneValueInJsonValueFile.Item3;
+            config.CarsInTheSameParkingSpot = editOneValueInJsonValueFile.Item4;
+            config.MotorcyclesInTheSameParkingSpot = editOneValueInJsonValueFile.Item5;
 
 
             var jsonWriteOptions = new JsonSerializerOptions()
             {
                 WriteIndented = true, //beskrivning beskriver sig själv
-                
-        };
+
+            };
 
             //tillåter int
-           jsonWriteOptions.Converters.Add(new JsonStringEnumConverter());
-          
+            jsonWriteOptions.Converters.Add(new JsonStringEnumConverter());
+
             var addJson = JsonSerializer.Serialize(config, jsonWriteOptions); //skriv utifrån writeoptions och klassens värden
 
             var AppsettingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ParkingLotLimitationValues.json"); //vart ska sakerna ligga
-            File.WriteAllTextAsync(AppsettingsPath, addJson); //skriv in
-                
+            File.WriteAllTextAsync(AppsettingsPath, addJson);
         }
-   
+
 
 
 
