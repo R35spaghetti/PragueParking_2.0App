@@ -16,7 +16,6 @@ namespace GhostSheriffsDatabaseAccess
         public VehicleContext(DbContextOptions<VehicleContext> options) : base(options)
         { }
 
-
         public VehicleContext()
         { }
 
@@ -70,13 +69,12 @@ namespace GhostSheriffsDatabaseAccess
             return (carPrice, mcPrice, parkingSpace, parkedCarsTogether, parkedMCsTogether);
         }
 
-
         public static void EditParkingLotLimitionValues((int, int, int, int, int) editOneValueInJsonValueFile)
         {
 
             //Gets the json-file values
-            var config = new ConfigurationBuilder() 
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory) //Directory.GetCurrentDirectory()
+            var config = new ConfigurationBuilder() //AppDomain.CurrentDomain.BaseDirectory
+                .SetBasePath(Directory.GetCurrentDirectory()) //Directory.GetCurrentDirectory()
                 .AddJsonFile("ParkingLotLimitationValues.json")
                 .Build()
                 .Get<ParkingGarageLimitationValues>(); //Gets the class to read the json-file
@@ -103,7 +101,7 @@ namespace GhostSheriffsDatabaseAccess
 
             var addJson = JsonSerializer.Serialize(config, jsonWriteOptions); //skriv utifrån writeoptions och klassens värden
 
-            var AppsettingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ParkingLotLimitationValues.json"); //vart ska sakerna ligga
+            var AppsettingsPath = Path.Combine(Directory.GetCurrentDirectory(), "ParkingLotLimitationValues.json"); //vart ska sakerna ligga
             File.WriteAllTextAsync(AppsettingsPath, addJson);
         }
 
