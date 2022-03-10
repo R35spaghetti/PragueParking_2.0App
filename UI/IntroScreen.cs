@@ -25,9 +25,11 @@ namespace UI
             PriceWindow.Text = parkingGarageLimitations.GetRentalPrices(prices);
         }
 
-        private void IntroScreen_Load(object sender, EventArgs e)
-        {
 
+        private void ParkingGarageLimitationValuesButton_Click(object sender, EventArgs e)
+        {
+            ChangeParkingSpacesScreen changeParkingSpacesScreen = new();
+            changeParkingSpacesScreen.Show(this);
         }
     }
 }

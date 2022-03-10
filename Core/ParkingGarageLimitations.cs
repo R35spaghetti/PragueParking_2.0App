@@ -98,7 +98,6 @@ namespace Core
 
                     default:
 
-                        Console.WriteLine("Enter a value");
 
                         break;
 
@@ -126,7 +125,6 @@ namespace Core
             if (input == null)
             {
 
-                Console.WriteLine("value is null");
 
             }
             else
@@ -139,20 +137,6 @@ namespace Core
             return convertedValue;
 
         }
-
-        /* 1. Hämta nuvarande värden
-        2. bestäm vilket värde som ska ändras och hämta ut ett int värde för switchen
-        3. int värdet bestämmer vilket värde i json-filen som ska ändras
-        4. allt skrivs om på nytt men endast ett värde ändras*/
-
-
-
-        ////UI
-        //       Console.WriteLine($"Rental price per hour for car is: {rentalPricesAndLimitations.Item1}\n" +
-        //    $"Rental price per hour for mc is {rentalPricesAndLimitations.Item2} \n" +
-        //    $"Parkingspot limit: {rentalPricesAndLimitations.Item3}\n" +
-        //    $"Amount of cars in the same parking space: {rentalPricesAndLimitations.Item4}\n" +
-        //    $"Amount of MCs in the same parking space: {rentalPricesAndLimitations.Item5}");
 
     }
 }

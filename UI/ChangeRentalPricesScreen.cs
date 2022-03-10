@@ -12,7 +12,7 @@ namespace UI
 {
     public partial class ChangeRentalPricesScreen : Form
     {
-        readonly Core.ParkingGarageLimitations parkingGarageLimitations = new(); //bör vara i static eller inte? DENNA
+        readonly Core.ParkingGarageLimitations parkingGarageLimitations = new();
 
         public ChangeRentalPricesScreen()
         {
