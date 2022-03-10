@@ -8,8 +8,6 @@ Console.InputEncoding = Encoding.Unicode;
 CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
 
 
-string prices = "";
-prices = ParkingGarageLimitations.GetRentalPrices(prices);
 
 ////TODO Snygga till koden
 //int configFileValue = 0;

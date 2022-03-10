@@ -7,7 +7,6 @@ namespace Core
     {
 
         //TODO Snygga till koden
-        int configFileValue = 0;
         int newConfigFileValue = 0;
 
         int parkingSpots = 0;
@@ -15,12 +14,12 @@ namespace Core
         int rentalPriceCar = 0;
         int carsPerSpace = 0;
         int mcsPerSpace = 0;
+        (int, int, int, int, int) rentalPricesAndLimitations = (0, 0, 0, 0, 0);
 
         //Gets current car and mc price into a string
-        public static string GetRentalPrices(string prices) 
+        public string GetRentalPrices(string prices)
         {
             //Get the current values from the ParkingLotLimitationValues-jsonfile
-            (int, int, int, int, int) rentalPricesAndLimitations = (0, 0, 0, 0, 0);
             rentalPricesAndLimitations = VehicleContext.GiveParkGarageValuesFromJsonFile(rentalPricesAndLimitations);
 
             
@@ -32,97 +31,94 @@ namespace Core
         }
 
 
-        //public void SwitchMenuValues()
+        public void SwitchMenuValues(string value, int switchValue)
 
-        //{
-        //    configFileValue = getNewIntValue(configFileValue);
-
-        //    Console.WriteLine("Enter new value");
-        //    newConfigFileValue = getNewIntValue(newConfigFileValue);
-
-
-        //    rentalPricesAndLimitations = ChangeOneValue(rentalPriceCar, rentalPriceMC, parkingSpots, carsPerSpace, mcsPerSpace);
-
-        //    (int, int, int, int, int) ChangeOneValue(int rentalPriceCar, int rentalPriceMC, int parkingSpots, int carsPerSpace, int mcsPerSpace)
-        //    {
-        //        switch (configFileValue)
-        //        {
-        //            case 1:
-
-        //                rentalPriceCar = newConfigFileValue;
-        //                rentalPriceMC = rentalPricesAndLimitations.Item2;
-        //                parkingSpots = rentalPricesAndLimitations.Item3;
-        //                carsPerSpace = rentalPricesAndLimitations.Item4;
-        //                mcsPerSpace = rentalPricesAndLimitations.Item5;
-
-        //                break;
-
-        //            case 2:
-
-        //                rentalPriceCar = rentalPricesAndLimitations.Item1;
-        //                rentalPriceMC = newConfigFileValue;
-        //                parkingSpots = rentalPricesAndLimitations.Item3;
-        //                carsPerSpace = rentalPricesAndLimitations.Item4;
-        //                mcsPerSpace = rentalPricesAndLimitations.Item5;
-
-        //                break;
-
-        //            case 3:
-
-        //                rentalPriceCar = rentalPricesAndLimitations.Item1;
-        //                rentalPriceMC = rentalPricesAndLimitations.Item2;
-        //                parkingSpots = newConfigFileValue;
-        //                carsPerSpace = rentalPricesAndLimitations.Item4;
-        //                mcsPerSpace = rentalPricesAndLimitations.Item5;
-
-        //                break;
-
-        //            case 4:
-
-        //                rentalPriceCar = rentalPricesAndLimitations.Item1;
-        //                rentalPriceMC = rentalPricesAndLimitations.Item2;
-        //                parkingSpots = rentalPricesAndLimitations.Item3;
-        //                carsPerSpace = newConfigFileValue;
-        //                mcsPerSpace = rentalPricesAndLimitations.Item5;
-
-        //                break;
-
-        //            case 5:
-
-        //                rentalPriceCar = rentalPricesAndLimitations.Item1;
-        //                rentalPriceMC = rentalPricesAndLimitations.Item2;
-        //                parkingSpots = rentalPricesAndLimitations.Item3;
-        //                carsPerSpace = rentalPricesAndLimitations.Item4;
-        //                mcsPerSpace = newConfigFileValue;
-
-        //                break;
-
-        //            default:
-
-        //                Console.WriteLine("Enter a value");
-
-        //                break;
-
-        //        }
-
-        //        return (rentalPriceCar, rentalPriceMC, parkingSpots, carsPerSpace, mcsPerSpace);
-
-        //    }
-        //}
-        int getNewIntValue(int configFileValue)
         {
-            string? input = Console.ReadLine();
+            
+           newConfigFileValue = GetNewIntValue(value);
 
+            //Get the current values from the ParkingLotLimitationValues-jsonfile
+            rentalPricesAndLimitations = VehicleContext.GiveParkGarageValuesFromJsonFile(rentalPricesAndLimitations);
+            rentalPricesAndLimitations = ChangeOneValue(rentalPriceCar, rentalPriceMC, parkingSpots, carsPerSpace, mcsPerSpace);
+            VehicleContext.EditParkingLotLimitionValues(rentalPricesAndLimitations);
 
+            (int, int, int, int, int) ChangeOneValue(int rentalPriceCar, int rentalPriceMC, int parkingSpots, int carsPerSpace, int mcsPerSpace)
+            {
+                switch (switchValue)
+                {
+                    case 1:
 
+                        rentalPriceCar = newConfigFileValue;
+                        rentalPriceMC = rentalPricesAndLimitations.Item2;
+                        parkingSpots = rentalPricesAndLimitations.Item3;
+                        carsPerSpace = rentalPricesAndLimitations.Item4;
+                        mcsPerSpace = rentalPricesAndLimitations.Item5;
 
-            configFileValue = parseIntValue(input);
+                        break;
+
+                    case 2:
+
+                        rentalPriceCar = rentalPricesAndLimitations.Item1;
+                        rentalPriceMC = newConfigFileValue;
+                        parkingSpots = rentalPricesAndLimitations.Item3;
+                        carsPerSpace = rentalPricesAndLimitations.Item4;
+                        mcsPerSpace = rentalPricesAndLimitations.Item5;
+
+                        break;
+
+                    case 3:
+
+                        rentalPriceCar = rentalPricesAndLimitations.Item1;
+                        rentalPriceMC = rentalPricesAndLimitations.Item2;
+                        parkingSpots = newConfigFileValue;
+                        carsPerSpace = rentalPricesAndLimitations.Item4;
+                        mcsPerSpace = rentalPricesAndLimitations.Item5;
+
+                        break;
+
+                    case 4:
+
+                        rentalPriceCar = rentalPricesAndLimitations.Item1;
+                        rentalPriceMC = rentalPricesAndLimitations.Item2;
+                        parkingSpots = rentalPricesAndLimitations.Item3;
+                        carsPerSpace = newConfigFileValue;
+                        mcsPerSpace = rentalPricesAndLimitations.Item5;
+
+                        break;
+
+                    case 5:
+
+                        rentalPriceCar = rentalPricesAndLimitations.Item1;
+                        rentalPriceMC = rentalPricesAndLimitations.Item2;
+                        parkingSpots = rentalPricesAndLimitations.Item3;
+                        carsPerSpace = rentalPricesAndLimitations.Item4;
+                        mcsPerSpace = newConfigFileValue;
+
+                        break;
+
+                    default:
+
+                        Console.WriteLine("Enter a value");
+
+                        break;
+
+                }
+
+                return (rentalPriceCar, rentalPriceMC, parkingSpots, carsPerSpace, mcsPerSpace);
+
+            }
+        }
+
+        int GetNewIntValue(string value)
+        {
+
+          int configFileValue = ParseIntValue(value);
 
             return configFileValue;
 
         }
 
-        int parseIntValue(string? input)
+        int ParseIntValue(string? input)
         {
             int convertedValue = -1;
 
@@ -149,17 +145,14 @@ namespace Core
         3. int värdet bestämmer vilket värde i json-filen som ska ändras
         4. allt skrivs om på nytt men endast ett värde ändras*/
 
-        ////Update 1 value
-        //VehicleContext.EditParkingLotLimitionValues(rentalPricesAndLimitations);
-        //Console.WriteLine("Value was changed");
 
 
-////UI
-//       Console.WriteLine($"Rental price per hour for car is: {rentalPricesAndLimitations.Item1}\n" +
-//    $"Rental price per hour for mc is {rentalPricesAndLimitations.Item2} \n" +
-//    $"Parkingspot limit: {rentalPricesAndLimitations.Item3}\n" +
-//    $"Amount of cars in the same parking space: {rentalPricesAndLimitations.Item4}\n" +
-//    $"Amount of MCs in the same parking space: {rentalPricesAndLimitations.Item5}");
+        ////UI
+        //       Console.WriteLine($"Rental price per hour for car is: {rentalPricesAndLimitations.Item1}\n" +
+        //    $"Rental price per hour for mc is {rentalPricesAndLimitations.Item2} \n" +
+        //    $"Parkingspot limit: {rentalPricesAndLimitations.Item3}\n" +
+        //    $"Amount of cars in the same parking space: {rentalPricesAndLimitations.Item4}\n" +
+        //    $"Amount of MCs in the same parking space: {rentalPricesAndLimitations.Item5}");
 
     }
 }
