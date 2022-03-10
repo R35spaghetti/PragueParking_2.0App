@@ -5,7 +5,13 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GhostSheriffsDatabaseAccess", "PragueParking_2.0\GhostSheriffsDatabaseAccess.csproj", "{B620F49B-C218-4E41-A949-D4C8BAC79664}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{BCD1A8BF-BA08-41E3-9D45-4E9F7EED9E9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{BCD1A8BF-BA08-41E3-9D45-4E9F7EED9E9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{433E1ED5-2BC6-4DD3-92C0-805FCE40B8E7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B620F49B-C218-4E41-A949-D4C8BAC79664} = {B620F49B-C218-4E41-A949-D4C8BAC79664}
+		{BCD1A8BF-BA08-41E3-9D45-4E9F7EED9E9C} = {BCD1A8BF-BA08-41E3-9D45-4E9F7EED9E9C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,10 @@ Global
 		{BCD1A8BF-BA08-41E3-9D45-4E9F7EED9E9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCD1A8BF-BA08-41E3-9D45-4E9F7EED9E9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCD1A8BF-BA08-41E3-9D45-4E9F7EED9E9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{433E1ED5-2BC6-4DD3-92C0-805FCE40B8E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{433E1ED5-2BC6-4DD3-92C0-805FCE40B8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{433E1ED5-2BC6-4DD3-92C0-805FCE40B8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{433E1ED5-2BC6-4DD3-92C0-805FCE40B8E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

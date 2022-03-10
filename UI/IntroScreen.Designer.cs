@@ -1,0 +1,99 @@
+﻿namespace UI
+{
+    partial class IntroScreen
+    {
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        ///  Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.UpdatePrice = new System.Windows.Forms.Button();
+            this.rentalPricesLabel = new System.Windows.Forms.Label();
+            this.PriceWindow = new System.Windows.Forms.RichTextBox();
+            this.ParkingGarageLimitationValuesButton = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // UpdatePrice
+            // 
+            this.UpdatePrice.Location = new System.Drawing.Point(279, 47);
+            this.UpdatePrice.Name = "UpdatePrice";
+            this.UpdatePrice.Size = new System.Drawing.Size(133, 29);
+            this.UpdatePrice.TabIndex = 1;
+            this.UpdatePrice.Text = "Update prices";
+            this.UpdatePrice.UseVisualStyleBackColor = true;
+            this.UpdatePrice.Click += new System.EventHandler(this.UpdatePrice_Click);
+            // 
+            // rentalPricesLabel
+            // 
+            this.rentalPricesLabel.AutoSize = true;
+            this.rentalPricesLabel.Location = new System.Drawing.Point(12, 24);
+            this.rentalPricesLabel.Name = "rentalPricesLabel";
+            this.rentalPricesLabel.Size = new System.Drawing.Size(264, 20);
+            this.rentalPricesLabel.TabIndex = 2;
+            this.rentalPricesLabel.Text = "Click below to see current rental prices";
+            // 
+            // PriceWindow
+            // 
+            this.PriceWindow.Location = new System.Drawing.Point(12, 47);
+            this.PriceWindow.Name = "PriceWindow";
+            this.PriceWindow.ReadOnly = true;
+            this.PriceWindow.Size = new System.Drawing.Size(241, 120);
+            this.PriceWindow.TabIndex = 3;
+            this.PriceWindow.Text = "";
+            this.PriceWindow.Click += new System.EventHandler(this.PriceWindow_TextChanged);
+            this.PriceWindow.TextChanged += new System.EventHandler(this.PriceWindow_TextChanged);
+            // 
+            // ParkingGarageLimitationValuesButton
+            // 
+            this.ParkingGarageLimitationValuesButton.Location = new System.Drawing.Point(12, 182);
+            this.ParkingGarageLimitationValuesButton.Name = "ParkingGarageLimitationValuesButton";
+            this.ParkingGarageLimitationValuesButton.Size = new System.Drawing.Size(241, 29);
+            this.ParkingGarageLimitationValuesButton.TabIndex = 4;
+            this.ParkingGarageLimitationValuesButton.Text = "Update limitation values";
+            this.ParkingGarageLimitationValuesButton.UseVisualStyleBackColor = true;
+            this.ParkingGarageLimitationValuesButton.Click += new System.EventHandler(this.ParkingGarageLimitationValuesButton_Click);
+            // 
+            // IntroScreen
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(447, 255);
+            this.Controls.Add(this.ParkingGarageLimitationValuesButton);
+            this.Controls.Add(this.PriceWindow);
+            this.Controls.Add(this.rentalPricesLabel);
+            this.Controls.Add(this.UpdatePrice);
+            this.Name = "IntroScreen";
+            this.Text = "Parking garage app";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+        private Button UpdatePrice;
+        private Label rentalPricesLabel;
+        private RichTextBox PriceWindow;
+        private Button ParkingGarageLimitationValuesButton;
+    }
+}

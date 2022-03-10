@@ -15,4 +15,10 @@
     <ProjectReference Include="..\PragueParking_2.0\GhostSheriffsDatabaseAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="ParkingLotLimitationValues.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
