@@ -12,7 +12,7 @@ namespace UI
 {
     public partial class ChangeRentalPricesScreen : Form
     {
-        readonly Core.ParkingGarageLimitations parkingGarageLimitations = new();
+       readonly Core.ParkingGarageLimitations parkingGarageLimitations = new();
        readonly IntroScreen introScreen = new();
 
         public ChangeRentalPricesScreen()
