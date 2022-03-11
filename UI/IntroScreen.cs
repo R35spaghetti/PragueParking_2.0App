@@ -29,6 +29,7 @@ namespace UI
 
         private void ParkingGarageLimitationValuesButton_Click(object sender, EventArgs e)
         {
+            this.Hide();
             ChangeParkingSpacesScreen changeParkingSpacesScreen = new();
             changeParkingSpacesScreen.Show(this);
         }

@@ -121,6 +121,7 @@
             this.Controls.Add(this.SubmitParkingSpotLimitationValuesButton);
             this.Name = "ChangeParkingSpacesScreen";
             this.Text = "ChangeParkingSpacesScreen";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChangeParkingSpacesScreen_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

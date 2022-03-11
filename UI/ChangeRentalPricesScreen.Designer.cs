@@ -89,6 +89,7 @@
             this.Controls.Add(this.CarRentalPriceTextbox);
             this.Name = "ChangeRentalPricesScreen";
             this.Text = "ChangeRentalPricesScreen";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChangeRentalPricesScreen_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

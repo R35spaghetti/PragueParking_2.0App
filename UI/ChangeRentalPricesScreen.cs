@@ -13,6 +13,7 @@ namespace UI
     public partial class ChangeRentalPricesScreen : Form
     {
         readonly Core.ParkingGarageLimitations parkingGarageLimitations = new();
+       readonly IntroScreen introScreen = new();
 
         public ChangeRentalPricesScreen()
         {
@@ -32,7 +33,14 @@ namespace UI
                 parkingGarageLimitations.SwitchMenuValues(MCRentalPriceTextbox.Text, 2);
             }
             this.Hide();
-            IntroScreen introScreen = new();
+            introScreen.Show();
+        }
+
+       
+        private void ChangeRentalPricesScreen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            this.Hide();
             introScreen.Show();
         }
     }

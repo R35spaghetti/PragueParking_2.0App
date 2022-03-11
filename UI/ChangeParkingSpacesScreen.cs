@@ -13,6 +13,7 @@ namespace UI
     public partial class ChangeParkingSpacesScreen : Form
     {
         readonly Core.ParkingGarageLimitations parkingGarageLimitations = new();
+        readonly IntroScreen introScreen = new();
 
 
         public ChangeParkingSpacesScreen()
@@ -38,6 +39,10 @@ namespace UI
             }
         }
 
-   
+        private void ChangeParkingSpacesScreen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            introScreen.Show();
+        }
     }
 }
