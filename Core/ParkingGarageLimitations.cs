@@ -6,7 +6,6 @@ namespace Core
     public class ParkingGarageLimitations
     {
 
-        //TODO Snygga till koden
         int newConfigFileValue = 0;
 
         int parkingSpots = 0;
@@ -108,7 +107,7 @@ namespace Core
             }
         }
 
-        int GetNewIntValue(string value)
+       static int GetNewIntValue(string value)
         {
 
           int configFileValue = ParseIntValue(value);
@@ -117,7 +116,7 @@ namespace Core
 
         }
 
-        int ParseIntValue(string? input)
+        static int ParseIntValue(string? input)
         {
             int convertedValue = -1;
 

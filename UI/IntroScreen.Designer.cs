@@ -49,9 +49,9 @@
             this.rentalPricesLabel.AutoSize = true;
             this.rentalPricesLabel.Location = new System.Drawing.Point(12, 24);
             this.rentalPricesLabel.Name = "rentalPricesLabel";
-            this.rentalPricesLabel.Size = new System.Drawing.Size(264, 20);
+            this.rentalPricesLabel.Size = new System.Drawing.Size(142, 20);
             this.rentalPricesLabel.TabIndex = 2;
-            this.rentalPricesLabel.Text = "Click below to see current rental prices";
+            this.rentalPricesLabel.Text = "Current rental prices";
             // 
             // PriceWindow
             // 
@@ -62,7 +62,6 @@
             this.PriceWindow.TabIndex = 3;
             this.PriceWindow.Text = "";
             this.PriceWindow.Click += new System.EventHandler(this.PriceWindow_TextChanged);
-            this.PriceWindow.TextChanged += new System.EventHandler(this.PriceWindow_TextChanged);
             // 
             // ParkingGarageLimitationValuesButton
             // 
@@ -85,6 +84,8 @@
             this.Controls.Add(this.UpdatePrice);
             this.Name = "IntroScreen";
             this.Text = "Parking garage app";
+            this.Load += new System.EventHandler(this.PriceWindow_TextChanged);
+            this.Shown += new System.EventHandler(this.PriceWindow_TextChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 

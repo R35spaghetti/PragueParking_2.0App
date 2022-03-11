@@ -31,7 +31,9 @@ namespace UI
             {
                 parkingGarageLimitations.SwitchMenuValues(MCRentalPriceTextbox.Text, 2);
             }
-
+            this.Hide();
+            IntroScreen introScreen = new();
+            introScreen.Show();
         }
     }
 }

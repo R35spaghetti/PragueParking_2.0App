@@ -15,6 +15,7 @@ namespace UI
     
         private void UpdatePrice_Click(object sender, EventArgs e)
         {
+            this.Hide(); //hide previous window
             ChangeRentalPricesScreen rentalPricesScreen = new();
             rentalPricesScreen.Show(this);
         }
