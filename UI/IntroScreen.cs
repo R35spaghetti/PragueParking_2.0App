@@ -33,5 +33,12 @@ namespace UI
             ChangeParkingSpacesScreen changeParkingSpacesScreen = new();
             changeParkingSpacesScreen.Show(this);
         }
+
+        private void GarageOperationsButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            OperateTheParkingGarageScreen operateTheParkingGarageScreen = new();
+            operateTheParkingGarageScreen.Show(this);
+        }
     }
 }

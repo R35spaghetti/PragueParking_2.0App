@@ -37,6 +37,9 @@ namespace UI
             {
                 parkingGarageLimitations.SwitchMenuValues(MCParkingSpotTextBox.Text, 5);
             }
+
+            this.Hide();
+            introScreen.Show();
         }
 
         private void ChangeParkingSpacesScreen_FormClosing(object sender, FormClosingEventArgs e)

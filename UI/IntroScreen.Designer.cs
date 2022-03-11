@@ -32,11 +32,12 @@
             this.rentalPricesLabel = new System.Windows.Forms.Label();
             this.PriceWindow = new System.Windows.Forms.RichTextBox();
             this.ParkingGarageLimitationValuesButton = new System.Windows.Forms.Button();
+            this.GarageOperationsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UpdatePrice
             // 
-            this.UpdatePrice.Location = new System.Drawing.Point(279, 47);
+            this.UpdatePrice.Location = new System.Drawing.Point(277, 46);
             this.UpdatePrice.Name = "UpdatePrice";
             this.UpdatePrice.Size = new System.Drawing.Size(133, 29);
             this.UpdatePrice.TabIndex = 1;
@@ -73,11 +74,22 @@
             this.ParkingGarageLimitationValuesButton.UseVisualStyleBackColor = true;
             this.ParkingGarageLimitationValuesButton.Click += new System.EventHandler(this.ParkingGarageLimitationValuesButton_Click);
             // 
+            // GarageOperationsButton
+            // 
+            this.GarageOperationsButton.Location = new System.Drawing.Point(259, 182);
+            this.GarageOperationsButton.Name = "GarageOperationsButton";
+            this.GarageOperationsButton.Size = new System.Drawing.Size(243, 29);
+            this.GarageOperationsButton.TabIndex = 5;
+            this.GarageOperationsButton.Text = "Update the parking garage";
+            this.GarageOperationsButton.UseVisualStyleBackColor = true;
+            this.GarageOperationsButton.Click += new System.EventHandler(this.GarageOperationsButton_Click);
+            // 
             // IntroScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 255);
+            this.ClientSize = new System.Drawing.Size(514, 253);
+            this.Controls.Add(this.GarageOperationsButton);
             this.Controls.Add(this.ParkingGarageLimitationValuesButton);
             this.Controls.Add(this.PriceWindow);
             this.Controls.Add(this.rentalPricesLabel);
@@ -96,5 +108,6 @@
         private Label rentalPricesLabel;
         private RichTextBox PriceWindow;
         private Button ParkingGarageLimitationValuesButton;
+        private Button GarageOperationsButton;
     }
 }

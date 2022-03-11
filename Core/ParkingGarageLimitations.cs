@@ -8,11 +8,11 @@ namespace Core
 
         int newConfigFileValue = 0;
 
-        int parkingSpots = 0;
-        int rentalPriceMC = 0;
-        int rentalPriceCar = 0;
-        int carsPerSpace = 0;
-        int mcsPerSpace = 0;
+      readonly int parkingSpots = 0;
+      readonly int rentalPriceMC = 0;
+      readonly int rentalPriceCar = 0;
+      readonly int carsPerSpace = 0;
+      readonly int mcsPerSpace = 0;
         (int, int, int, int, int) rentalPricesAndLimitations = (0, 0, 0, 0, 0);
 
         //Gets current car and mc price into a string
