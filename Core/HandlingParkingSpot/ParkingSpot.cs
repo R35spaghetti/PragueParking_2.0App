@@ -22,6 +22,7 @@ namespace Core.HandlingParkingSpot
         #region Settings
         public int ParkingSpotSize()
         {
+
             //json
             var pSizeConfig = 8; // Json
             return pSizeConfig;
