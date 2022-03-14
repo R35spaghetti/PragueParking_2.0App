@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.AddVehicleToDbButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -36,18 +36,19 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.ParkingSpotTextBox = new System.Windows.Forms.TextBox();
+            this.NumberPlateTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // AddVehicleToDbButton
             // 
-            this.button1.Location = new System.Drawing.Point(12, 193);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(146, 29);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Submit";
-            this.button1.UseVisualStyleBackColor = true;
+            this.AddVehicleToDbButton.Location = new System.Drawing.Point(12, 193);
+            this.AddVehicleToDbButton.Name = "AddVehicleToDbButton";
+            this.AddVehicleToDbButton.Size = new System.Drawing.Size(146, 29);
+            this.AddVehicleToDbButton.TabIndex = 2;
+            this.AddVehicleToDbButton.Text = "Submit";
+            this.AddVehicleToDbButton.UseVisualStyleBackColor = true;
+            this.AddVehicleToDbButton.Click += new System.EventHandler(this.AddVehicleToDbButton_Click);
             // 
             // label1
             // 
@@ -112,19 +113,19 @@
             this.button3.Text = "Submit";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // textBox5
+            // ParkingSpotTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(33, 111);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(125, 27);
-            this.textBox5.TabIndex = 1;
+            this.ParkingSpotTextBox.Location = new System.Drawing.Point(33, 111);
+            this.ParkingSpotTextBox.Name = "ParkingSpotTextBox";
+            this.ParkingSpotTextBox.Size = new System.Drawing.Size(125, 27);
+            this.ParkingSpotTextBox.TabIndex = 1;
             // 
-            // textBox6
+            // NumberPlateTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(32, 56);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(125, 27);
-            this.textBox6.TabIndex = 0;
+            this.NumberPlateTextBox.Location = new System.Drawing.Point(32, 56);
+            this.NumberPlateTextBox.Name = "NumberPlateTextBox";
+            this.NumberPlateTextBox.Size = new System.Drawing.Size(125, 27);
+            this.NumberPlateTextBox.TabIndex = 0;
             // 
             // OperateTheParkingGarageScreen
             // 
@@ -135,12 +136,12 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.ParkingSpotTextBox);
+            this.Controls.Add(this.NumberPlateTextBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.AddVehicleToDbButton);
             this.Name = "OperateTheParkingGarageScreen";
             this.Text = "OperateTheParkingGarageScreen";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OperateTheParkingGarageScreen_FormClosed);
@@ -150,7 +151,7 @@
         }
 
         #endregion
-        private Button button1;
+        private Button AddVehicleToDbButton;
         private Label label1;
         private Label label6;
         private Button button2;
@@ -158,7 +159,7 @@
         private Label label8;
         private Label label9;
         private Button button3;
-        private TextBox textBox5;
-        private TextBox textBox6;
+        private TextBox ParkingSpotTextBox;
+        private TextBox NumberPlateTextBox;
     }
 }

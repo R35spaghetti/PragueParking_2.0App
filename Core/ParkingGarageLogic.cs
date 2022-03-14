@@ -5,7 +5,7 @@ using Core.Vehicles;
 namespace Core
 {
     //TODO få in logiken
-    internal class ParkingGarageLogic
+    public class ParkingGarageLogic
     {
         CreateDb createDb = new();
         HandleParkingGarage Garage = new();
@@ -28,14 +28,15 @@ namespace Core
 
         //var input = int.Parse(Console.ReadLine());
 
-
-        public void ParkingGarageOptions(int choice) {
+        //smidigare sätt att få placementForVehicle till int?
+        public void ParkingGarageOptions(int choice, string NumberPlate, string placementForVehicle)
+        {
             switch (choice)
             {
                 //Add vehicle
                 case 1:
-                    var regNrCar = AngeReg();
-                    var platsCar = VäljPlats();
+                    var regNrCar = NumberPlate;
+                    var platsCar = int.Parse(placementForVehicle);
                     Car newCar = new(regNrCar);
                     Garage.AddVehicleToDb
                         (
@@ -45,8 +46,8 @@ namespace Core
                         );
                     break;
                 case 2:
-                    var regNrMc = AngeReg();
-                    var platsMc = VäljPlats();
+                    var regNrMc = NumberPlate;
+                    var platsMc = int.Parse(placementForVehicle);
                     Motorcycle newMc = new(regNrMc);
                     Garage.AddVehicleToDb
                         (
@@ -56,8 +57,8 @@ namespace Core
                         );
                     break;
                 case 3:
-                    var searchForVehicle = AngeReg();
-                    var newPSpace = VäljPlats();
+                    var searchForVehicle = NumberPlate;
+                    var newPSpace = int.Parse(placementForVehicle);
                     Garage.MoveVehicle
                         (
                         Garage.SearchVehicle(searchForVehicle),
@@ -69,8 +70,8 @@ namespace Core
                 case 4:
                     Garage.RemoveVehicle
                     (
-                        //Garage.SearchVehicle(AngeReg()),
-                        //Garage.SelectVehicle(AngeReg())
+                        Garage.SearchVehicle(NumberPlate),
+                        Garage.SelectVehicle(NumberPlate)
                     );
                     break;
                 default:
@@ -79,6 +80,7 @@ namespace Core
             }
         }
     }
+}
 //// WinForms
 //static string AngeReg()
 //    {
