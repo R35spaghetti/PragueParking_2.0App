@@ -1,10 +1,10 @@
-﻿using DataAccess.DataAccess;
-using DataAccess.Models;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GhostSheriffsDatabaseAccess;
 
 namespace Core.ParkingGarage
 {
@@ -12,7 +12,7 @@ namespace Core.ParkingGarage
     {
         //public DateTime TimeStamp { get; set; }
 
-        PTableContext context = new();
+        VehicleContext context = new();
 
         #region ConditionAndData
         public bool canVehiclePark(int currentUsedPSize, int newVehiclePSize, int sizeOfSelectedPSpot)
@@ -24,7 +24,7 @@ namespace Core.ParkingGarage
             }
             return allowIt;
         }
-        public List<PTable> SelectVehicle(string searchWord)
+        public List<VehiclesDB> SelectVehicle(string searchWord)
         {
             var dbIndexNumber = context.Garage
                 .Where(condition => condition.NumberPlate == searchWord)
@@ -50,7 +50,7 @@ namespace Core.ParkingGarage
         #endregion
 
         #region ApplyAction
-        public void AddVehicleToDb(bool GarageCapacity, bool canVehiclePark, PTable newVehicle)
+        public void AddVehicleToDb(bool GarageCapacity, bool canVehiclePark, VehiclesDB newVehicle)
         {
             if (GarageCapacity)
             {
@@ -61,7 +61,7 @@ namespace Core.ParkingGarage
                 }
             }
         }
-        public void MoveVehicle(bool searchVehicle, bool canVehiclePark, List<PTable> selectVehicle, int newSpot)
+        public void MoveVehicle(bool searchVehicle, bool canVehiclePark, List<VehiclesDB> selectVehicle, int newSpot)
         {
             if (searchVehicle)
             {
@@ -73,7 +73,7 @@ namespace Core.ParkingGarage
                 }
             }
         }
-        public void RemoveVehicle(bool searchVehicle, List<PTable> selectVehicle)
+        public void RemoveVehicle(bool searchVehicle, List<VehiclesDB> selectVehicle)
         {
             if (searchVehicle)
             {

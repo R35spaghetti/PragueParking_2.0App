@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccess;
-using DataAccess.DataAccess;
-using DataAccess.Models;
+using GhostSheriffsDatabaseAccess;
 
 namespace Core.ParkingGarage
 {
@@ -13,12 +11,12 @@ namespace Core.ParkingGarage
     {
         public void EnsureCreatedDb()
         {
-            PTableContext buildDb = new();
+            VehicleContext buildDb = new();
             buildDb.Database.EnsureCreated();
         }
         public void InitializeDb()
         {
-            PTableContext context = new();
+            VehicleContext context = new();
             HandleParkingGarage handleParkingGarage = new();
             string path = @"Initialize.csv";
             string[] listOfVehicles = System.IO.File.ReadAllLines(path);
@@ -28,7 +26,7 @@ namespace Core.ParkingGarage
             {
                 string[] columns = item.Split(',');
 
-                context.Garage.Add(new PTable()
+                context.Garage.Add(new VehiclesDB()
                 {
                     NumberPlate = columns[0],
                     CheckInTimeStamp = DateTime.Parse(columns[1]),

@@ -10,6 +10,7 @@ namespace Core.Vehicles
     public abstract class Vehicle
     {
        
+       
         public string? Regnumber { get; protected set; }
         public string? VehicleType { get; protected set; }
         public int VehicleSize { get; protected set; }

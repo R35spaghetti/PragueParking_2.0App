@@ -131,7 +131,7 @@ namespace Core
 
                         break;
 
-                    case 6:
+                    case 7:
 
                         rentalPriceCar = rentalPricesAndLimitations.Item1;
                         rentalPriceMC = rentalPricesAndLimitations.Item2;
