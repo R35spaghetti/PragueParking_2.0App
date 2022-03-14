@@ -33,6 +33,15 @@ namespace UI
             parkingGarageLogic.ParkingGarageOptions(1, NumberPlateTextBox.Text,ParkingSpotTextBox.Text);
         }
 
-     
+        private void MoveVehicleButton_Click(object sender, EventArgs e)
+        {
+            parkingGarageLogic.ParkingGarageOptions(3, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
+        }
+
+        private void RemoveVehicleButton_Click(object sender, EventArgs e)
+        {
+            parkingGarageLogic.ParkingGarageOptions(4, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
+
+        }
     }
 }

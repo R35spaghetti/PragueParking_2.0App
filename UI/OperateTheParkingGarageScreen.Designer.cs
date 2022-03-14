@@ -31,11 +31,11 @@
             this.AddVehicleToDbButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.RemoveVehicleButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.MoveVehicleButton = new System.Windows.Forms.Button();
             this.ParkingSpotTextBox = new System.Windows.Forms.TextBox();
             this.NumberPlateTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -68,14 +68,15 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "Remove the Vehicle";
             // 
-            // button2
+            // RemoveVehicleButton
             // 
-            this.button2.Location = new System.Drawing.Point(322, 193);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(146, 29);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Submit";
-            this.button2.UseVisualStyleBackColor = true;
+            this.RemoveVehicleButton.Location = new System.Drawing.Point(322, 193);
+            this.RemoveVehicleButton.Name = "RemoveVehicleButton";
+            this.RemoveVehicleButton.Size = new System.Drawing.Size(146, 29);
+            this.RemoveVehicleButton.TabIndex = 4;
+            this.RemoveVehicleButton.Text = "Submit";
+            this.RemoveVehicleButton.UseVisualStyleBackColor = true;
+            this.RemoveVehicleButton.Click += new System.EventHandler(this.RemoveVehicleButton_Click);
             // 
             // label7
             // 
@@ -104,14 +105,15 @@
             this.label9.TabIndex = 16;
             this.label9.Text = "Move the Vehicle";
             // 
-            // button3
+            // MoveVehicleButton
             // 
-            this.button3.Location = new System.Drawing.Point(170, 193);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(146, 29);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Submit";
-            this.button3.UseVisualStyleBackColor = true;
+            this.MoveVehicleButton.Location = new System.Drawing.Point(170, 193);
+            this.MoveVehicleButton.Name = "MoveVehicleButton";
+            this.MoveVehicleButton.Size = new System.Drawing.Size(146, 29);
+            this.MoveVehicleButton.TabIndex = 3;
+            this.MoveVehicleButton.Text = "Submit";
+            this.MoveVehicleButton.UseVisualStyleBackColor = true;
+            this.MoveVehicleButton.Click += new System.EventHandler(this.MoveVehicleButton_Click);
             // 
             // ParkingSpotTextBox
             // 
@@ -135,11 +137,11 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.MoveVehicleButton);
             this.Controls.Add(this.ParkingSpotTextBox);
             this.Controls.Add(this.NumberPlateTextBox);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.RemoveVehicleButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AddVehicleToDbButton);
             this.Name = "OperateTheParkingGarageScreen";
@@ -154,11 +156,11 @@
         private Button AddVehicleToDbButton;
         private Label label1;
         private Label label6;
-        private Button button2;
+        private Button RemoveVehicleButton;
         private Label label7;
         private Label label8;
         private Label label9;
-        private Button button3;
+        private Button MoveVehicleButton;
         private TextBox ParkingSpotTextBox;
         private TextBox NumberPlateTextBox;
     }
