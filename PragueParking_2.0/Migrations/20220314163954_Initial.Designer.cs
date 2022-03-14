@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace PragueParking_2._0.Migrations
 {
     [DbContext(typeof(VehicleContext))]
-    [Migration("20220303105955_Initial")]
+    [Migration("20220314163954_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace PragueParking_2._0.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("GhostSheriffsDatabaseAccess.Vehicles", b =>
+            modelBuilder.Entity("GhostSheriffsDatabaseAccess.VehiclesDB", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -44,6 +44,10 @@ namespace PragueParking_2._0.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ParkingSpot");
 
+                    b.Property<int>("VehicleSize")
+                        .HasColumnType("int")
+                        .HasColumnName("VehicleSize");
+
                     b.Property<string>("VehicleType")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("VehicleType");
@@ -54,7 +58,7 @@ namespace PragueParking_2._0.Migrations
                         .IsUnique()
                         .HasFilter("[NumberPlate] IS NOT NULL");
 
-                    b.ToTable("Vehicles");
+                    b.ToTable("Garage");
                 });
 #pragma warning restore 612, 618
         }

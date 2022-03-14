@@ -13,4 +13,10 @@
     <ProjectReference Include="..\PragueParking_2.0\GhostSheriffsDatabaseAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Program.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
 </Project>

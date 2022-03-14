@@ -13,7 +13,7 @@ namespace UI
 
     public partial class OperateTheParkingGarageScreen : Form
     {
-        readonly IntroScreen introScreen = new();
+       readonly IntroScreen introScreen = new();
 
         public OperateTheParkingGarageScreen()
         {

@@ -6,10 +6,10 @@ namespace UI
 {
     public partial class IntroScreen : Form
     {
-      readonly OperateTheParkingGarageScreen operateTheParkingGarageScreen = new();
-      readonly ChangeParkingSpacesScreen changeParkingSpacesScreen = new();
-      readonly ChangeRentalPricesScreen rentalPricesScreen = new();
-      readonly ParkingGarageLimitations parkingGarageLimitations = new(); //Intelsense föreslog static
+
+
+
+        //readonly ParkingGarageLimitations parkingGarageLimitations = new(); //Intelsense föreslog static
         public IntroScreen()
         {
             InitializeComponent();
@@ -18,25 +18,30 @@ namespace UI
     
         private void UpdatePrice_Click(object sender, EventArgs e)
         {
+            ChangeRentalPricesScreen rentalPricesScreen = new();
+
             this.Hide(); //hide previous window
-            rentalPricesScreen.Show(this);
+         rentalPricesScreen.Show(this);
         }
 
         private void PriceWindow_TextChanged(object sender, EventArgs e)
         {
+            ParkingGarageLimitations parkingGarageLimitations = new();
             string prices = "";
-            PriceWindow.Text = parkingGarageLimitations.GetRentalPrices(prices);
+         PriceWindow.Text = parkingGarageLimitations.GetRentalPrices(prices);
         }
 
 
         private void ParkingGarageLimitationValuesButton_Click(object sender, EventArgs e)
         {
+            ChangeParkingSpacesScreen changeParkingSpacesScreen = new();
             this.Hide();
             changeParkingSpacesScreen.Show(this);
         }
 
         private void GarageOperationsButton_Click(object sender, EventArgs e)
         {
+            OperateTheParkingGarageScreen operateTheParkingGarageScreen = new();
             this.Hide();
             operateTheParkingGarageScreen.Show(this);
         }

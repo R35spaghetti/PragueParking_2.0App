@@ -97,7 +97,6 @@
             this.Name = "IntroScreen";
             this.Text = "Parking garage app";
             this.Load += new System.EventHandler(this.PriceWindow_TextChanged);
-            this.Shown += new System.EventHandler(this.PriceWindow_TextChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
