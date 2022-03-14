@@ -11,7 +11,7 @@ namespace Core.Vehicles
     {
 
         public string? Regnumber { get; protected set; }
-        public string? VehicleType { get; protected set; }
+        public string VehicleType { get; protected set; } = null!;
         public int VehicleSize { get; protected set; }
 
         public VehiclesDB GetVehicleData(DateTime checkIn, int parkingSpot, string vehicleType)
