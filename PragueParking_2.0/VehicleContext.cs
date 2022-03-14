@@ -38,7 +38,7 @@ namespace GhostSheriffsDatabaseAccess
 
   
 
-        public static (int,int, int, int, int) GiveParkGarageValuesFromJsonFile((int,int, int, int, int) rentalPricesAndParkingLimitations)
+        public static (int,int, int, int, int, string ,string ,int) GiveParkGarageValuesFromJsonFile((int,int, int, int, int, string, string, int) rentalPricesAndParkingLimitations)
         {
        
 
@@ -50,26 +50,34 @@ namespace GhostSheriffsDatabaseAccess
             var parkingSpotLimit = builder.Build().GetSection("Parking spots in the garage").Value;
             var parkedCarsLimit = builder.Build().GetSection("Cars in the same parking spot").Value;
             var parkedMCsLimit = builder.Build().GetSection("Motorcycles in the same parking spot").Value;
+            var car = builder.Build().GetSection("Vehicle Car").Value;
+            var motorcycle = builder.Build().GetSection("Vehicle Motorcycle").Value;
+            var vehicleSize = builder.Build().GetSection("Vehicle Size").Value;
 
         
-            rentalPricesAndParkingLimitations = ApplyTupleValues(priceForCar, priceForMC, parkingSpotLimit, parkedCarsLimit, parkedMCsLimit);
+
+            rentalPricesAndParkingLimitations = ApplyTupleValues(priceForCar, priceForMC, parkingSpotLimit, parkedCarsLimit, parkedMCsLimit, car, motorcycle, vehicleSize);
 
 
             return rentalPricesAndParkingLimitations;
         }
 
-        private static (int carPrice, int mcPrice, int parkingSpace, int parkedCarsTogether, int parkedMCsTogether) ApplyTupleValues(string priceForCar, string priceForMC, string parkingSpotLimit, string parkedCarsLimit, string parkedMCsLimit)
+        private static (int carPrice, int mcPrice, int parkingSpace, int parkedCarsTogether, int parkedMCsTogether, string car, string motorcycle, int vehicleSize) ApplyTupleValues(string priceForCar, string priceForMC, string parkingSpotLimit, string parkedCarsLimit, string parkedMCsLimit, string car, string motorcycle, string vehicleSize)
         {
             int carPrice = int.Parse(priceForCar);
             int mcPrice = int.Parse(priceForMC);
             int parkingSpace = int.Parse(parkingSpotLimit);
             int parkedCarsTogether = int.Parse(parkedCarsLimit);
             int parkedMCsTogether = int.Parse(parkedMCsLimit);
+            string carType = car;
+            string motorcycleType = motorcycle;
+            int sizeOfVehicle = int.Parse(vehicleSize);
 
-            return (carPrice, mcPrice, parkingSpace, parkedCarsTogether, parkedMCsTogether);
+
+            return (carPrice, mcPrice, parkingSpace, parkedCarsTogether, parkedMCsTogether, carType, motorcycleType, sizeOfVehicle);
         }
 
-        public static void EditParkingLotLimitionValues((int, int, int, int, int) editOneValueInJsonValueFile)
+        public static void EditParkingLotLimitionValues((int, int, int, int, int, string, string, int) editOneValueInJsonValueFile)
         {
 
             //Gets the json-file values
@@ -88,6 +96,9 @@ namespace GhostSheriffsDatabaseAccess
             config.ParkingSpotsInTheGarage = editOneValueInJsonValueFile.Item3;
             config.CarsInTheSameParkingSpot = editOneValueInJsonValueFile.Item4;
             config.MotorcyclesInTheSameParkingSpot = editOneValueInJsonValueFile.Item5;
+            config.VehicleTypeCar = editOneValueInJsonValueFile.Item6;
+            config.VehicleTypeMotorcycle = editOneValueInJsonValueFile.Item7;
+            config.VehicleSize=editOneValueInJsonValueFile.Item8;
 
 
             var jsonWriteOptions = new JsonSerializerOptions()

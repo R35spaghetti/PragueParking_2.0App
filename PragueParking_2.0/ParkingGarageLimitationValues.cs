@@ -20,6 +20,15 @@ namespace PragueParking_2._0
         [JsonPropertyName("Cars in the same parking spot")]
         public int CarsInTheSameParkingSpot { get; set; }
 
+        [JsonPropertyName("Vehicle Car")]
+        public string? VehicleTypeCar { get; set; }
+
+        [JsonPropertyName("Vehicle Motorcycle")]
+        public string? VehicleTypeMotorcycle { get; set; }
+
+
+        [JsonPropertyName("Vehicle Size")]
+        public int VehicleSize { get; set; }
 
     }
 
