@@ -116,6 +116,34 @@ namespace Core
 
                         break;
 
+
+
+                    case 6:
+                       
+                        rentalPriceCar = rentalPricesAndLimitations.Item1;
+                        rentalPriceMC = rentalPricesAndLimitations.Item2;
+                        parkingSpots = rentalPricesAndLimitations.Item3;
+                        carsPerSpace = rentalPricesAndLimitations.Item4;
+                        mcsPerSpace = rentalPricesAndLimitations.Item5;
+                        carType = newConfigFileValue.ToString();
+                        motorcycleType = rentalPricesAndLimitations.Item7;
+                        vehicleSize = rentalPricesAndLimitations.Item8;
+
+                        break;
+
+                    case 6:
+
+                        rentalPriceCar = rentalPricesAndLimitations.Item1;
+                        rentalPriceMC = rentalPricesAndLimitations.Item2;
+                        parkingSpots = rentalPricesAndLimitations.Item3;
+                        carsPerSpace = rentalPricesAndLimitations.Item4;
+                        mcsPerSpace = rentalPricesAndLimitations.Item5;
+                        carType = rentalPricesAndLimitations.Item6;
+                        motorcycleType = newConfigFileValue.ToString();
+                        vehicleSize = rentalPricesAndLimitations.Item8;
+
+                        break;
+
                     case 8:
 
                         rentalPriceCar = rentalPricesAndLimitations.Item1;

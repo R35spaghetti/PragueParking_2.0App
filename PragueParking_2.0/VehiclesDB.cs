@@ -14,7 +14,7 @@ namespace GhostSheriffsDatabaseAccess
         public int Id { get; set; }
 
         [Column("NumberPlate")]
-        public string NumberPlate { get; set; }
+        public string? NumberPlate { get; set; }
 
         [Column("CheckInTimeStamp")]
         public DateTime? CheckInTimeStamp { get; set; }
@@ -23,7 +23,9 @@ namespace GhostSheriffsDatabaseAccess
         public int ParkingSpot { get; set; }
 
         [Column("VehicleType")]
-        public string VehicleType { get; set; }
-
+        public string? VehicleType { get; set; }
+       
+        [Column("VehicleSize")]
+        public int VehicleSize { get; set; }
     }
 }
