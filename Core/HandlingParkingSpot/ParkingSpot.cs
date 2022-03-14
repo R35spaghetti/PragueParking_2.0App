@@ -9,6 +9,7 @@ namespace Core.HandlingParkingSpot
 {
     public class ParkingSpot
     {
+        ParkingGarageLimitations parkingGarageLimitations = new();
         public int numberOfP_spot { get; set; }
         public int P_SpotSize { get; set; }
         public ParkingSpot()// CTOR
@@ -24,12 +25,12 @@ namespace Core.HandlingParkingSpot
         {
 
             //json
-            var pSizeConfig = 8; // Json
+            var pSizeConfig = parkingGarageLimitations.GetOneIntValueFromJsonFile(10); // Json
             return pSizeConfig;
         }
         public int GarageSize()
         {
-            var GarageSizeConfig = 100; // Json
+            var GarageSizeConfig = parkingGarageLimitations.GetOneIntValueFromJsonFile(3); // Json
             return GarageSizeConfig;
         }
         #endregion

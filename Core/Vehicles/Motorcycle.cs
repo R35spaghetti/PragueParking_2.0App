@@ -8,10 +8,12 @@ namespace Core.Vehicles
 {
     public class Motorcycle : Vehicle
     {
+        ParkingGarageLimitations ParkingGarageLimitations = new();
+
         public Motorcycle(string regnr)
         {
-            this.VehicleSize = 2; // här ska det länkas mot json
-            this.VehicleType = "Motorcycle"; // samma här
+            this.VehicleSize = ParkingGarageLimitations.GetOneIntValueFromJsonFile(9); // här ska det länkas mot json
+            this.VehicleType = ParkingGarageLimitations.GetOneStringValueFromJsonFile(7); // samma här
             this.Regnumber = regnr;
         }
     }

@@ -27,9 +27,14 @@ namespace PragueParking_2._0
         public string? VehicleTypeMotorcycle { get; set; }
 
 
-        [JsonPropertyName("Vehicle Size")]
-        public int VehicleSize { get; set; }
+        [JsonPropertyName("Vehicle Size Car")]
+        public int VehicleSizeCar { get; set; }
 
+        [JsonPropertyName("Vehicle Size Motorcycle")]
+        public int VehicleSizeMotorcycle { get; set; }
+
+        [JsonPropertyName("Parking space size")]
+        public int ParkingSpaceSize { get; set; }
     }
 
 
