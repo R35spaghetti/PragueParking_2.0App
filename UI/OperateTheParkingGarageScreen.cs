@@ -14,7 +14,7 @@ namespace UI
 
     public partial class OperateTheParkingGarageScreen : Form
     {
-       readonly IntroScreen introScreen = new();
+        readonly IntroScreen introScreen = new();
         readonly ParkingGarageLogic parkingGarageLogic = new();
         public OperateTheParkingGarageScreen()
         {
@@ -30,7 +30,16 @@ namespace UI
 
         private void AddVehicleToDbButton_Click(object sender, EventArgs e)
         {
-            parkingGarageLogic.ParkingGarageOptions(1, NumberPlateTextBox.Text,ParkingSpotTextBox.Text);
+            if (VehicleTypeListBox.SelectedItem.Equals(("Car")))
+            {
+                parkingGarageLogic.ParkingGarageOptions(1, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
+            }
+
+            if(VehicleTypeListBox.SelectedItem.Equals(("Motorcycle")))
+            {
+                parkingGarageLogic.ParkingGarageOptions(2, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
+
+            }
         }
 
         private void MoveVehicleButton_Click(object sender, EventArgs e)
@@ -42,6 +51,19 @@ namespace UI
         {
             parkingGarageLogic.ParkingGarageOptions(4, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
 
+        }
+
+    
+
+        private void OperateTheParkingGarageScreen_Load(object sender, EventArgs e)
+        {
+            ParkingGarageLimitations parkingGarageLimitations = new();
+
+            for (int i = 6; i <= 7; i++)
+            {
+                VehicleTypeListBox.Text = parkingGarageLimitations.GetOneStringValueFromJsonFile(i);
+                VehicleTypeListBox.Items.Add(VehicleTypeListBox.Text);
+            }
         }
     }
 }

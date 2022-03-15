@@ -38,6 +38,7 @@
             this.MoveVehicleButton = new System.Windows.Forms.Button();
             this.ParkingSpotTextBox = new System.Windows.Forms.TextBox();
             this.NumberPlateTextBox = new System.Windows.Forms.TextBox();
+            this.VehicleTypeListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // AddVehicleToDbButton
@@ -81,7 +82,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(51, 86);
+            this.label7.Location = new System.Drawing.Point(51, 79);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(90, 20);
             this.label7.TabIndex = 18;
@@ -90,7 +91,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(44, 31);
+            this.label8.Location = new System.Drawing.Point(44, 24);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(100, 20);
             this.label8.TabIndex = 17;
@@ -117,23 +118,33 @@
             // 
             // ParkingSpotTextBox
             // 
-            this.ParkingSpotTextBox.Location = new System.Drawing.Point(33, 111);
+            this.ParkingSpotTextBox.Location = new System.Drawing.Point(33, 104);
             this.ParkingSpotTextBox.Name = "ParkingSpotTextBox";
             this.ParkingSpotTextBox.Size = new System.Drawing.Size(125, 27);
             this.ParkingSpotTextBox.TabIndex = 1;
             // 
             // NumberPlateTextBox
             // 
-            this.NumberPlateTextBox.Location = new System.Drawing.Point(32, 56);
+            this.NumberPlateTextBox.Location = new System.Drawing.Point(32, 49);
             this.NumberPlateTextBox.Name = "NumberPlateTextBox";
             this.NumberPlateTextBox.Size = new System.Drawing.Size(125, 27);
             this.NumberPlateTextBox.TabIndex = 0;
+            // 
+            // VehicleTypeListBox
+            // 
+            this.VehicleTypeListBox.FormattingEnabled = true;
+            this.VehicleTypeListBox.ItemHeight = 20;
+            this.VehicleTypeListBox.Location = new System.Drawing.Point(180, 28);
+            this.VehicleTypeListBox.Name = "VehicleTypeListBox";
+            this.VehicleTypeListBox.Size = new System.Drawing.Size(288, 104);
+            this.VehicleTypeListBox.TabIndex = 20;
             // 
             // OperateTheParkingGarageScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(555, 291);
+            this.Controls.Add(this.VehicleTypeListBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
@@ -147,6 +158,7 @@
             this.Name = "OperateTheParkingGarageScreen";
             this.Text = "OperateTheParkingGarageScreen";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OperateTheParkingGarageScreen_FormClosed);
+            this.Load += new System.EventHandler(this.OperateTheParkingGarageScreen_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,5 +175,6 @@
         private Button MoveVehicleButton;
         private TextBox ParkingSpotTextBox;
         private TextBox NumberPlateTextBox;
+        private ListBox VehicleTypeListBox;
     }
 }

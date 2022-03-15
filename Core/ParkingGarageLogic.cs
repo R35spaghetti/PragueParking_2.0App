@@ -7,9 +7,9 @@ namespace Core
     //TODO få in logiken
     public class ParkingGarageLogic
     {
-        CreateDb createDb = new();
-        HandleParkingGarage Garage = new();
-        ParkingSpot parking = new();
+      readonly  CreateDb createDb = new();
+      readonly  HandleParkingGarage Garage = new();
+      readonly   ParkingSpot parking = new();
 
         public void CreateTheDB()
         {
@@ -33,8 +33,8 @@ namespace Core
         {
             switch (choice)
             {
-                //Add vehicle
-                case 1:
+                //Add car 
+               case 1:
                     var regNrCar = NumberPlate;
                     var platsCar = int.Parse(placementForVehicle);
                     Car newCar = new(regNrCar);
@@ -45,6 +45,8 @@ namespace Core
                         newCar.GetVehicleData(DateTime.Now, platsCar, newCar.VehicleType)
                         );
                     break;
+                
+                //Add MC
                 case 2:
                     var regNrMc = NumberPlate;
                     var platsMc = int.Parse(placementForVehicle);
@@ -56,6 +58,8 @@ namespace Core
                         newMc.GetVehicleData(DateTime.Now, platsMc, newMc.VehicleType)
                         );
                     break;
+                
+                //Move vehicle
                 case 3:
                     var searchForVehicle = NumberPlate;
                     var newPSpace = int.Parse(placementForVehicle);
@@ -67,6 +71,8 @@ namespace Core
                         newPSpace
                         );
                     break;
+                
+                //Remove vehicle
                 case 4:
                     Garage.RemoveVehicle
                     (
@@ -74,6 +80,7 @@ namespace Core
                         Garage.SelectVehicle(NumberPlate)
                     );
                     break;
+
                 default:
                     break;
 

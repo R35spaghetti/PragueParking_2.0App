@@ -88,6 +88,8 @@ namespace Core
                 case 7:
                     value = rentalPricesAndLimitations.Item7;
                     break;
+
+               
             }
 
 

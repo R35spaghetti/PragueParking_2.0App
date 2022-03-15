@@ -103,8 +103,8 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(385, 60);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Here you can do the following:\r\n-Limit the amount of vehicles in the parking gara" +
-    "ge\r\n-Limit the amount of parking spots in the parking garage\r\n";
+            this.label4.Text = "Here you can do the following:\r\n-Limit the amount of vehicles on the same parking" +
+    " spot\r\n-Limit the amount of parking spots in the parking garage\r\n";
             // 
             // ChangeParkingSpacesScreen
             // 
