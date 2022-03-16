@@ -1,6 +1,7 @@
 ﻿using Core.HandlingParkingSpot;
 using Core.ParkingGarage;
 using Core.Vehicles;
+using GhostSheriffsDatabaseAccess;
 
 namespace Core
 {
@@ -12,9 +13,15 @@ namespace Core
 
         public void CreateTheDB()
         {
+            VehicleContext vehicleContext = new();
             createDb.EnsureCreatedDb();
-            //createDb.InitializeDb();
+            var isDbEmpty = vehicleContext.Garage.Where(x => x.Id == 1);
+            if (!isDbEmpty.Any())
+            {
+                createDb.InitializeDb();
+            }
         }
+    
 
 
         //var input = int.Parse(Console.ReadLine());
