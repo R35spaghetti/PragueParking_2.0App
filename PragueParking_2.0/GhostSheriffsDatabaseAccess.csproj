@@ -9,6 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DataBaseAccess\**" />
+    <Compile Remove="DataBaseModel\**" />
+    <EmbeddedResource Remove="DataBaseAccess\**" />
+    <EmbeddedResource Remove="DataBaseModel\**" />
+    <None Remove="DataBaseAccess\**" />
+    <None Remove="DataBaseModel\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
       <PrivateAssets>all</PrivateAssets>
@@ -27,11 +36,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataBaseAccess\" />
-    <Folder Include="DataBaseModel\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="ParkingGarageLimitationValues.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
@@ -42,9 +46,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="ParkingLotLimitationValues.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="TESTDATA.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -9,7 +9,8 @@ namespace Core
     {
       readonly  CreateDb createDb = new();
       readonly  HandleParkingGarage Garage = new();
-      readonly   ParkingSpot parking = new();
+      readonly  ParkingSpot parking = new();
+        
 
         public void CreateTheDB()
         {
