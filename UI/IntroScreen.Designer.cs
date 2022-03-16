@@ -33,6 +33,8 @@
             this.PriceWindow = new System.Windows.Forms.RichTextBox();
             this.ParkingGarageLimitationValuesButton = new System.Windows.Forms.Button();
             this.GarageOperationsButton = new System.Windows.Forms.Button();
+            this.ShowParkingLotButton = new System.Windows.Forms.Button();
+            this.ver2Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UpdatePrice
@@ -84,11 +86,33 @@
             this.GarageOperationsButton.UseVisualStyleBackColor = true;
             this.GarageOperationsButton.Click += new System.EventHandler(this.GarageOperationsButton_Click);
             // 
+            // ShowParkingLotButton
+            // 
+            this.ShowParkingLotButton.Location = new System.Drawing.Point(307, 113);
+            this.ShowParkingLotButton.Name = "ShowParkingLotButton";
+            this.ShowParkingLotButton.Size = new System.Drawing.Size(176, 29);
+            this.ShowParkingLotButton.TabIndex = 6;
+            this.ShowParkingLotButton.Text = "Show parking lot";
+            this.ShowParkingLotButton.UseVisualStyleBackColor = true;
+            this.ShowParkingLotButton.Click += new System.EventHandler(this.ShowParkingLotButton_Click);
+            // 
+            // ver2Button
+            // 
+            this.ver2Button.Location = new System.Drawing.Point(489, 113);
+            this.ver2Button.Name = "ver2Button";
+            this.ver2Button.Size = new System.Drawing.Size(176, 29);
+            this.ver2Button.TabIndex = 7;
+            this.ver2Button.Text = "Show parking lot ver2";
+            this.ver2Button.UseVisualStyleBackColor = true;
+            this.ver2Button.Click += new System.EventHandler(this.ver2Button_Click);
+            // 
             // IntroScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 253);
+            this.ClientSize = new System.Drawing.Size(830, 253);
+            this.Controls.Add(this.ver2Button);
+            this.Controls.Add(this.ShowParkingLotButton);
             this.Controls.Add(this.GarageOperationsButton);
             this.Controls.Add(this.ParkingGarageLimitationValuesButton);
             this.Controls.Add(this.PriceWindow);
@@ -108,5 +132,7 @@
         private RichTextBox PriceWindow;
         private Button ParkingGarageLimitationValuesButton;
         private Button GarageOperationsButton;
+        private Button ShowParkingLotButton;
+        private Button ver2Button;
     }
 }

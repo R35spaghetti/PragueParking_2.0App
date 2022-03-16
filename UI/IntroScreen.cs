@@ -30,11 +30,8 @@ namespace UI
             string prices = "";
          PriceWindow.Text = parkingGarageLimitations.GetRentalPrices(prices);
 
-            //TODO sätt denna i separat knapp
-         //   PresentTheParkingGarageScreen presentTheParkingGarageScreen = new PresentTheParkingGarageScreen();
-           // presentTheParkingGarageScreen.Show(this);
-            IfParkingGarageSpotsMoreThanOnehundredScreen ifParkingGarageSpotsMoreThanOnehundredScreen = new IfParkingGarageSpotsMoreThanOnehundredScreen();
-            ifParkingGarageSpotsMoreThanOnehundredScreen.Show(this);
+     
+           
         }
 
 
@@ -50,6 +47,19 @@ namespace UI
             OperateTheParkingGarageScreen operateTheParkingGarageScreen = new();
             this.Hide();
             operateTheParkingGarageScreen.Show(this);
+        }
+
+        //TODO: En knapp och kom åt endast en beroende på antalet parkeringsplatser
+        private void ShowParkingLotButton_Click(object sender, EventArgs e)
+        {
+            IfParkingGarageSpotsMoreThanOnehundredScreen ifParkingGarageSpotsMoreThanOnehundredScreen = new IfParkingGarageSpotsMoreThanOnehundredScreen();
+            ifParkingGarageSpotsMoreThanOnehundredScreen.Show(this);
+        }
+
+        private void ver2Button_Click(object sender, EventArgs e)
+        {
+            PresentTheParkingGarageScreen presentTheParkingGarageScreen = new PresentTheParkingGarageScreen();
+            presentTheParkingGarageScreen.Show(this);
         }
     }
 }
