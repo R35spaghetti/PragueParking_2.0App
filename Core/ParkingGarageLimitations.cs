@@ -11,8 +11,6 @@ namespace Core
       readonly int parkingSpots = 0;
       readonly int rentalPriceMC = 0;
       readonly int rentalPriceCar = 0;
-      readonly int carsPerSpace = 0;
-      readonly int mcsPerSpace = 0;
       readonly string carType = string.Empty;
       readonly string motorcycleType = string.Empty;
       readonly int vehicleSizeCar = 0;
@@ -22,7 +20,7 @@ namespace Core
 
 
 
-        (int, int, int, int, int, string, string, int, int, int) rentalPricesAndLimitations = (0, 0, 0, 0, 0, "", "", 0, 0, 0);
+        (int, int, int, string, string, int, int, int) rentalPricesAndLimitations = (0, 0, 0, "", "", 0, 0, 0);
 
         //Gets current car and mc price into a string
         public string GetRentalPrices(string prices)
@@ -48,22 +46,23 @@ namespace Core
             switch(placementOfJsonValue)
             {
 
-                case 3:
+                case 3: //Parking spots in the garage
                     value = rentalPricesAndLimitations.Item3;
                     break;
+                case 6: //vehicle Size car
+                    value = rentalPricesAndLimitations.Item6;
+                    break;
 
+                case 7: //vehicle size motorcycle
+                    value = rentalPricesAndLimitations.Item7;
 
-                case 8:
+                    break;
+
+                case 8: //Parking space size
                     value = rentalPricesAndLimitations.Item8;
                     break;
             
-                case 9:
-                    value = rentalPricesAndLimitations.Item9;
-                    break;
-
-                case 10:
-                value = rentalPricesAndLimitations.Item10;
-                    break;
+               
             }
 
 
@@ -80,12 +79,14 @@ namespace Core
 
             switch (placementOfJsonValue)
             {
-                case 6:
-                    value = rentalPricesAndLimitations.Item6;
+                //Get vehicle type: Car
+                case 4:
+                    value = rentalPricesAndLimitations.Item4;
                     break;
 
-                case 7:
-                    value = rentalPricesAndLimitations.Item7;
+                //Get vehicle type: Motorcycle
+                case 5:
+                    value = rentalPricesAndLimitations.Item5;
                     break;
 
                
@@ -99,7 +100,7 @@ namespace Core
 
 
 
-        //TODO Behöver man kunna ta ut alla värden från json-filen?
+        
         public void SwitchMenuValues(string value, int switchValue)
 
         {
@@ -108,102 +109,69 @@ namespace Core
 
             //Get the current values from the ParkingLotLimitationValues-jsonfile
             rentalPricesAndLimitations = VehicleContext.GiveParkGarageValuesFromJsonFile(rentalPricesAndLimitations);
-            rentalPricesAndLimitations = ChangeOneValue(rentalPriceCar, rentalPriceMC, parkingSpots, carsPerSpace, mcsPerSpace, carType, motorcycleType, vehicleSizeCar, vehicleSizeMotorcycle, parkingSpaceSize);
+            rentalPricesAndLimitations = ChangeOneValue(rentalPriceCar, rentalPriceMC, parkingSpots, carType, motorcycleType, vehicleSizeCar, vehicleSizeMotorcycle, parkingSpaceSize);
             VehicleContext.EditParkingLotLimitionValues(rentalPricesAndLimitations);
 
-            (int, int, int, int, int, string, string, int, int, int) ChangeOneValue(int rentalPriceCar, int rentalPriceMC, int parkingSpots, int carsPerSpace, int mcsPerSpace, string carType, string motorcycleType, int vehicleSizeCar, int vehicleSizeMotorcycle, int parkingSpaceSize)
+            (int, int, int, string, string, int, int, int) ChangeOneValue(int rentalPriceCar, int rentalPriceMC, int parkingSpots, string carType, string motorcycleType, int vehicleSizeCar, int vehicleSizeMotorcycle, int parkingSpaceSize)
             {
                 switch (switchValue)
-                {
+                { //Alla får sitt gamla värde utom ett som byts ut
                     case 1:
 
                         rentalPriceCar = newConfigFileValue;
+
                         rentalPriceMC = rentalPricesAndLimitations.Item2;
                         parkingSpots = rentalPricesAndLimitations.Item3;
-                        carsPerSpace = rentalPricesAndLimitations.Item4;
-                        mcsPerSpace = rentalPricesAndLimitations.Item5;
-                        carType = rentalPricesAndLimitations.Item6;
-                        motorcycleType = rentalPricesAndLimitations.Item7;
-                        vehicleSizeCar = rentalPricesAndLimitations.Item8;
-                        vehicleSizeMotorcycle = rentalPricesAndLimitations.Item9;
-                        parkingSpaceSize = rentalPricesAndLimitations.Item10;
+                        carType = rentalPricesAndLimitations.Item4;
+                        motorcycleType = rentalPricesAndLimitations.Item5;
+                        vehicleSizeCar = rentalPricesAndLimitations.Item6;
+                        vehicleSizeMotorcycle = rentalPricesAndLimitations.Item7;
+                        parkingSpaceSize = rentalPricesAndLimitations.Item8;
 
                         break;
-
+                   
                     case 2:
 
                         rentalPriceCar = rentalPricesAndLimitations.Item1;
+
                         rentalPriceMC = newConfigFileValue;
+
                         parkingSpots = rentalPricesAndLimitations.Item3;
-                        carsPerSpace = rentalPricesAndLimitations.Item4;
-                        mcsPerSpace = rentalPricesAndLimitations.Item5;
-                        carType = rentalPricesAndLimitations.Item6;
-                        motorcycleType = rentalPricesAndLimitations.Item7;
-                        vehicleSizeCar = rentalPricesAndLimitations.Item8;
-                        vehicleSizeMotorcycle = rentalPricesAndLimitations.Item9;
-                        parkingSpaceSize = rentalPricesAndLimitations.Item10;
+                        carType = rentalPricesAndLimitations.Item4;
+                        motorcycleType = rentalPricesAndLimitations.Item5;
+                        vehicleSizeCar = rentalPricesAndLimitations.Item6;
+                        vehicleSizeMotorcycle = rentalPricesAndLimitations.Item7;
+                        parkingSpaceSize = rentalPricesAndLimitations.Item8;
 
                         break;
 
                     case 3:
-
                         rentalPriceCar = rentalPricesAndLimitations.Item1;
                         rentalPriceMC = rentalPricesAndLimitations.Item2;
+
                         parkingSpots = newConfigFileValue;
-                        carsPerSpace = rentalPricesAndLimitations.Item4;
-                        mcsPerSpace = rentalPricesAndLimitations.Item5;
-                        carType = rentalPricesAndLimitations.Item6;
-                        motorcycleType = rentalPricesAndLimitations.Item7;
-                        vehicleSizeCar = rentalPricesAndLimitations.Item8;
-                        vehicleSizeMotorcycle = rentalPricesAndLimitations.Item9;
-                        parkingSpaceSize = rentalPricesAndLimitations.Item10;
 
+                        carType = rentalPricesAndLimitations.Item4;
+                        motorcycleType = rentalPricesAndLimitations.Item5;
+                        vehicleSizeCar = rentalPricesAndLimitations.Item6;
+                        vehicleSizeMotorcycle = rentalPricesAndLimitations.Item7;
+                        parkingSpaceSize = rentalPricesAndLimitations.Item8;
+                     
                         break;
-
-                    case 4:
-
-                        rentalPriceCar = rentalPricesAndLimitations.Item1;
-                        rentalPriceMC = rentalPricesAndLimitations.Item2;
-                        parkingSpots = rentalPricesAndLimitations.Item3;
-                        carsPerSpace = newConfigFileValue;
-                        mcsPerSpace = rentalPricesAndLimitations.Item5;
-                        carType = rentalPricesAndLimitations.Item6;
-                        motorcycleType = rentalPricesAndLimitations.Item7;
-                        vehicleSizeCar = rentalPricesAndLimitations.Item8;
-                        vehicleSizeMotorcycle = rentalPricesAndLimitations.Item9;
-                        parkingSpaceSize = rentalPricesAndLimitations.Item10;
-
-                        break;
-
-                    case 5:
-
-                        rentalPriceCar = rentalPricesAndLimitations.Item1;
-                        rentalPriceMC = rentalPricesAndLimitations.Item2;
-                        parkingSpots = rentalPricesAndLimitations.Item3;
-                        carsPerSpace = rentalPricesAndLimitations.Item4;
-                        mcsPerSpace = newConfigFileValue;
-                        carType = rentalPricesAndLimitations.Item6;
-                        motorcycleType = rentalPricesAndLimitations.Item7;
-                        vehicleSizeCar = rentalPricesAndLimitations.Item8;
-                        vehicleSizeMotorcycle = rentalPricesAndLimitations.Item9;
-                        parkingSpaceSize = rentalPricesAndLimitations.Item10;
-
-                        break;
-
 
 
                     case 6:
-                       
+
                         rentalPriceCar = rentalPricesAndLimitations.Item1;
                         rentalPriceMC = rentalPricesAndLimitations.Item2;
                         parkingSpots = rentalPricesAndLimitations.Item3;
-                        carsPerSpace = rentalPricesAndLimitations.Item4;
-                        mcsPerSpace = rentalPricesAndLimitations.Item5;
-                        carType = newConfigFileValue.ToString();
-                        motorcycleType = rentalPricesAndLimitations.Item7;
-                        vehicleSizeCar = rentalPricesAndLimitations.Item8;
-                        vehicleSizeMotorcycle = rentalPricesAndLimitations.Item9;
-                        parkingSpaceSize = rentalPricesAndLimitations.Item10;
+                        carType = rentalPricesAndLimitations.Item4;
+                        motorcycleType = rentalPricesAndLimitations.Item5;
+
+                        vehicleSizeCar = newConfigFileValue;
+
+                        vehicleSizeMotorcycle = rentalPricesAndLimitations.Item7;
+                        parkingSpaceSize = rentalPricesAndLimitations.Item8;
 
                         break;
 
@@ -212,31 +180,30 @@ namespace Core
                         rentalPriceCar = rentalPricesAndLimitations.Item1;
                         rentalPriceMC = rentalPricesAndLimitations.Item2;
                         parkingSpots = rentalPricesAndLimitations.Item3;
-                        carsPerSpace = rentalPricesAndLimitations.Item4;
-                        mcsPerSpace = rentalPricesAndLimitations.Item5;
-                        carType = rentalPricesAndLimitations.Item6;
-                        motorcycleType = newConfigFileValue.ToString();
-                        vehicleSizeCar = rentalPricesAndLimitations.Item8;
-                        vehicleSizeMotorcycle = rentalPricesAndLimitations.Item9;
-                        parkingSpaceSize = rentalPricesAndLimitations.Item10;
+                        carType = rentalPricesAndLimitations.Item4;
+                        motorcycleType = rentalPricesAndLimitations.Item5;
+                        vehicleSizeCar = rentalPricesAndLimitations.Item6;
+
+                        vehicleSizeMotorcycle = newConfigFileValue;
+
+                        parkingSpaceSize = rentalPricesAndLimitations.Item8;
 
                         break;
+
 
                     case 8:
 
                         rentalPriceCar = rentalPricesAndLimitations.Item1;
                         rentalPriceMC = rentalPricesAndLimitations.Item2;
                         parkingSpots = rentalPricesAndLimitations.Item3;
-                        carsPerSpace = rentalPricesAndLimitations.Item4;
-                        mcsPerSpace = rentalPricesAndLimitations.Item5;
-                        carType = rentalPricesAndLimitations.Item6;
-                        motorcycleType = rentalPricesAndLimitations.Item7;
-                        vehicleSizeCar = newConfigFileValue;
-                        vehicleSizeMotorcycle = rentalPricesAndLimitations.Item9;
-                        parkingSpaceSize = rentalPricesAndLimitations.Item10;
+                        carType = rentalPricesAndLimitations.Item4;
+                        motorcycleType = rentalPricesAndLimitations.Item5;
+                        vehicleSizeCar = rentalPricesAndLimitations.Item6;
+                        vehicleSizeMotorcycle = rentalPricesAndLimitations.Item7;
+
+                        parkingSpaceSize = newConfigFileValue;
 
                         break;
-
 
                     default:
 
@@ -246,7 +213,7 @@ namespace Core
 
                 }
 
-                return (rentalPriceCar, rentalPriceMC, parkingSpots, carsPerSpace, mcsPerSpace, carType, motorcycleType, vehicleSizeCar, vehicleSizeMotorcycle, parkingSpaceSize);
+                return (rentalPriceCar, rentalPriceMC, parkingSpots, carType, motorcycleType, vehicleSizeCar, vehicleSizeMotorcycle, parkingSpaceSize);
 
             }
         }

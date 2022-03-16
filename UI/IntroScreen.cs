@@ -52,13 +52,13 @@ namespace UI
         //TODO: En knapp och kom åt endast en beroende på antalet parkeringsplatser
         private void ShowParkingLotButton_Click(object sender, EventArgs e)
         {
-            IfParkingGarageSpotsMoreThanOnehundredScreen ifParkingGarageSpotsMoreThanOnehundredScreen = new IfParkingGarageSpotsMoreThanOnehundredScreen();
+            IfParkingGarageSpotsMoreThanOnehundredScreen ifParkingGarageSpotsMoreThanOnehundredScreen = new();
             ifParkingGarageSpotsMoreThanOnehundredScreen.Show(this);
         }
 
-        private void ver2Button_Click(object sender, EventArgs e)
+        private void Ver2Button_Click(object sender, EventArgs e)
         {
-            PresentTheParkingGarageScreen presentTheParkingGarageScreen = new PresentTheParkingGarageScreen();
+            PresentTheParkingGarageScreen presentTheParkingGarageScreen = new();
             presentTheParkingGarageScreen.Show(this);
         }
     }

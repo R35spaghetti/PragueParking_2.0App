@@ -90,9 +90,9 @@ namespace Core
         //Hämta regnummer och parkeringsplats, slå sedan ihop båda två till en sträng
         public string PresentVehicles(string numberPlateWithParkingSpot, int parkingSpot, string vehicle)
         {
-            List<object> vehiclesWithParkingSpot = new();
-         
-                    vehiclesWithParkingSpot = Garage.PresentVehicle(vehicle);
+
+
+            List<object> vehiclesWithParkingSpot = Garage.PresentVehicle(vehicle);
 
                       //om outofbounds
                     try

@@ -25,7 +25,7 @@ namespace Core.HandlingParkingSpot
         {
 
             //json
-            var pSizeConfig = parkingGarageLimitations.GetOneIntValueFromJsonFile(10); // Json
+            var pSizeConfig = parkingGarageLimitations.GetOneIntValueFromJsonFile(8); // Json
             return pSizeConfig;
         }
         public int GarageSize()

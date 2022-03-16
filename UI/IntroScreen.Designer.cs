@@ -104,7 +104,7 @@
             this.ver2Button.TabIndex = 7;
             this.ver2Button.Text = "Show parking lot ver2";
             this.ver2Button.UseVisualStyleBackColor = true;
-            this.ver2Button.Click += new System.EventHandler(this.ver2Button_Click);
+            this.ver2Button.Click += new System.EventHandler(this.Ver2Button_Click);
             // 
             // IntroScreen
             // 

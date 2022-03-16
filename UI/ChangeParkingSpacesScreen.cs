@@ -28,14 +28,19 @@ namespace UI
                 parkingGarageLimitations.SwitchMenuValues(ParkingSpotTextBox.Text, 3);
             }
 
-            if (!string.IsNullOrWhiteSpace(CarsParkingSpotTextBox.Text))
+            if (!string.IsNullOrWhiteSpace(CarSizeTextBox.Text))
             {
-                parkingGarageLimitations.SwitchMenuValues(CarsParkingSpotTextBox.Text, 4);
+                parkingGarageLimitations.SwitchMenuValues(CarSizeTextBox.Text, 6);
             }
 
-            if (!string.IsNullOrWhiteSpace(MCParkingSpotTextBox.Text))
+            if (!string.IsNullOrWhiteSpace(MCSizeTextBox.Text))
             {
-                parkingGarageLimitations.SwitchMenuValues(MCParkingSpotTextBox.Text, 5);
+                parkingGarageLimitations.SwitchMenuValues(MCSizeTextBox.Text, 7);
+            }
+
+            if (!string.IsNullOrWhiteSpace(ParkingSpotSizeTextBox.Text))
+            {
+                parkingGarageLimitations.SwitchMenuValues(ParkingSpotSizeTextBox.Text, 8);
             }
 
             this.Hide();
@@ -47,5 +52,7 @@ namespace UI
             this.Hide();
             introScreen.Show();
         }
+
+      
     }
 }

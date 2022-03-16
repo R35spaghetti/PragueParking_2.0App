@@ -29,13 +29,15 @@
         private void InitializeComponent()
         {
             this.SubmitParkingSpotLimitationValuesButton = new System.Windows.Forms.Button();
-            this.MCParkingSpotTextBox = new System.Windows.Forms.TextBox();
-            this.CarsParkingSpotTextBox = new System.Windows.Forms.TextBox();
+            this.MCSizeTextBox = new System.Windows.Forms.TextBox();
+            this.CarSizeTextBox = new System.Windows.Forms.TextBox();
             this.ParkingSpotTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ParkingSpotSizeTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // SubmitParkingSpotLimitationValuesButton
@@ -48,19 +50,19 @@
             this.SubmitParkingSpotLimitationValuesButton.UseVisualStyleBackColor = true;
             this.SubmitParkingSpotLimitationValuesButton.Click += new System.EventHandler(this.SubmitParkingSpotLimitationValuesButton_Click);
             // 
-            // MCParkingSpotTextBox
+            // MCSizeTextBox
             // 
-            this.MCParkingSpotTextBox.Location = new System.Drawing.Point(348, 108);
-            this.MCParkingSpotTextBox.Name = "MCParkingSpotTextBox";
-            this.MCParkingSpotTextBox.Size = new System.Drawing.Size(125, 27);
-            this.MCParkingSpotTextBox.TabIndex = 2;
+            this.MCSizeTextBox.Location = new System.Drawing.Point(348, 108);
+            this.MCSizeTextBox.Name = "MCSizeTextBox";
+            this.MCSizeTextBox.Size = new System.Drawing.Size(125, 27);
+            this.MCSizeTextBox.TabIndex = 2;
             // 
-            // CarsParkingSpotTextBox
+            // CarSizeTextBox
             // 
-            this.CarsParkingSpotTextBox.Location = new System.Drawing.Point(191, 108);
-            this.CarsParkingSpotTextBox.Name = "CarsParkingSpotTextBox";
-            this.CarsParkingSpotTextBox.Size = new System.Drawing.Size(125, 27);
-            this.CarsParkingSpotTextBox.TabIndex = 1;
+            this.CarSizeTextBox.Location = new System.Drawing.Point(191, 108);
+            this.CarSizeTextBox.Name = "CarSizeTextBox";
+            this.CarSizeTextBox.Size = new System.Drawing.Size(125, 27);
+            this.CarSizeTextBox.TabIndex = 1;
             // 
             // ParkingSpotTextBox
             // 
@@ -74,27 +76,27 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(21, 85);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 20);
+            this.label1.Size = new System.Drawing.Size(124, 20);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Parking spots";
+            this.label1.Text = "Parking spot limit";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(191, 85);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 20);
+            this.label2.Size = new System.Drawing.Size(69, 20);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Cars";
+            this.label2.Text = "Cars\' size";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(348, 85);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 20);
+            this.label3.Size = new System.Drawing.Size(121, 20);
             this.label3.TabIndex = 6;
-            this.label3.Text = "MCs";
+            this.label3.Text = "Motorcycles\' size";
             // 
             // label4
             // 
@@ -103,21 +105,39 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(385, 60);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Here you can do the following:\r\n-Limit the amount of vehicles on the same parking" +
-    " spot\r\n-Limit the amount of parking spots in the parking garage\r\n";
+            this.label4.Text = "Here you can do the following:\r\n-Limit the size of vehicles and parking spot\r\n-Li" +
+    "mit the amount of parking spots in the parking garage\r\n";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(487, 85);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(119, 20);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Parking spot size";
+            // 
+            // ParkingSpotSizeTextBox
+            // 
+            this.ParkingSpotSizeTextBox.Location = new System.Drawing.Point(487, 108);
+            this.ParkingSpotSizeTextBox.Name = "ParkingSpotSizeTextBox";
+            this.ParkingSpotSizeTextBox.Size = new System.Drawing.Size(125, 27);
+            this.ParkingSpotSizeTextBox.TabIndex = 8;
             // 
             // ChangeParkingSpacesScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 222);
+            this.ClientSize = new System.Drawing.Size(701, 222);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.ParkingSpotSizeTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ParkingSpotTextBox);
-            this.Controls.Add(this.CarsParkingSpotTextBox);
-            this.Controls.Add(this.MCParkingSpotTextBox);
+            this.Controls.Add(this.CarSizeTextBox);
+            this.Controls.Add(this.MCSizeTextBox);
             this.Controls.Add(this.SubmitParkingSpotLimitationValuesButton);
             this.Name = "ChangeParkingSpacesScreen";
             this.Text = "ChangeParkingSpacesScreen";
@@ -130,12 +150,14 @@
         #endregion
 
         private Button SubmitParkingSpotLimitationValuesButton;
-        private TextBox MCParkingSpotTextBox;
-        private TextBox CarsParkingSpotTextBox;
+        private TextBox MCSizeTextBox;
+        private TextBox CarSizeTextBox;
         private TextBox ParkingSpotTextBox;
         private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
+        private Label label5;
+        private TextBox ParkingSpotSizeTextBox;
     }
 }
