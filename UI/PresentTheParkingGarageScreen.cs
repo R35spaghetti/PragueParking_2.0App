@@ -39,7 +39,6 @@ namespace UI
                 if (MotorcycleListBox.Text != "" && MotorcycleListBox.Text != previousEntryMC)
                 {
                     MotorcycleListBox.Items.Add(MotorcycleListBox.Text);
-                    MotorcycleListBox.BackColor = Color.Green;
                     previousEntryMC = MotorcycleListBox.Text;
 
                
@@ -47,7 +46,6 @@ namespace UI
                 if (CarListBox.Text != "" && CarListBox.Text != previousEntryCar)
                 {
                     CarListBox.Items.Add(CarListBox.Text);
-                    CarListBox.BackColor = Color.Red;
                     previousEntryCar = CarListBox.Text;
                 }
             }

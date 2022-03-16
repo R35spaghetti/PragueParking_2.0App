@@ -23,89 +23,30 @@ namespace UI
 
         private void IfParkingGarageSpotsMoreThanOnehundredScreen_Load(object sender, EventArgs e)
         {
-            string text = "";
-            string text2 = "";
-            string previousEntryMC = "";
-            string previousEntryCar = "";
-            int currentParkingSpot = 0;
+
+            string carNumberPlate = "";
+            string motorcycleNumberPlate = "";
+          //  string previousEntryMC = "";
+          //  string previousEntryCar = "";
+            int currentParkingSpotWithNumberPlate = 0;
 
             for (int i = 0; i < 10; i++)
             {
-                text = parkingGarageLogic.PresentVehicles(text, currentParkingSpot, "Car");
-                text2 = parkingGarageLogic.PresentVehicles(text2, currentParkingSpot, "Motorcycle");
+                List<object> test = new();
 
-                currentParkingSpot += 2;
+                carNumberPlate = parkingGarageLogic.PresentVehicles(carNumberPlate, currentParkingSpotWithNumberPlate, "Car");
+                motorcycleNumberPlate = parkingGarageLogic.PresentVehicles(motorcycleNumberPlate, currentParkingSpotWithNumberPlate, "Motorcycle");
+                test.Add(motorcycleNumberPlate);
 
-                if (text != "" && text != previousEntryCar)
-                {
-                    previousEntryCar = text;
+                currentParkingSpotWithNumberPlate += 2; //jaha
 
-                }
-          
-
-                if (text2 != "" && text2 != previousEntryMC)
-                {
-                    previousEntryMC = text2;
-                }
-
-
-                if (text == "")
-                {
-                    text = text2;
-                    text2 = String.Empty;
-                }
+                //dataGridView1 row = (dataGridView1)dataGridView1.Rows[0].Clone();
+                //row.Cells[0].Value = carNumberPlate;
+                //numberPlateDataGridViewTextBoxColumn = (DataGridViewTextBoxColumn)test[0];
+                //parkingSpotDataGridViewTextBoxColumn = (DataGridViewTextBoxColumn)test[1];
 
 
 
-                {
-                    switch (i)
-                    {
-                        case 0:
-                            textBox1.Text = text;
-                            textBox2.Text = text2;
-                           
-
-
-
-                            (text,text2) = EmptyTheTexts(text, text2);
-                           
-                            break;
-
-                        case 1:
-                            textBox3.Text = text;
-                            textBox4.Text = text2;
-                            
-
-                            (text, text2) = EmptyTheTexts(text, text2);
-                            break;
-
-                        case 2:
-                            textBox5.Text = text;
-                            textBox6.Text = text2;
-
-                            (text, text2) = EmptyTheTexts(text, text2);
-                            break;
-
-                        case 3:
-                            textBox7.Text = text;
-                            textBox8.Text = text2;
-
-                            (text, text2) = EmptyTheTexts(text, text2);
-                           
-                            break;
-
-                        case 4:
-                            textBox9.Text = text;
-                            textBox10.Text = text2;
-                            (text, text2) = EmptyTheTexts(text, text2);
-
-                            break;
-                            //todo
-
-
-                    }
-
-                }
 
             }
         }
@@ -116,5 +57,7 @@ namespace UI
             text2 = "";
             return (text, text2);
         }
+
+     
     }
 }

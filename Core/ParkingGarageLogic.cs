@@ -97,6 +97,7 @@ namespace Core
                       //om outofbounds
                     try
                     {
+                        //Tar både nummerplåten och parkeringsnummret 
                         numberPlateWithParkingSpot = (string)vehiclesWithParkingSpot[parkingSpot];
                         parkingSpot++; //Parkeringsplatsen kommer alltid ligga bredvid nummerplåten i objektlistan
                         parkingSpot = (int)vehiclesWithParkingSpot[parkingSpot];

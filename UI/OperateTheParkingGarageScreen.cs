@@ -59,7 +59,7 @@ namespace UI
         {
             ParkingGarageLimitations parkingGarageLimitations = new();
 
-            for (int i = 6; i <= 7; i++)
+            for (int i = 4; i <= 5; i++)
             {
                 VehicleTypeListBox.Text = parkingGarageLimitations.GetOneStringValueFromJsonFile(i);
                 VehicleTypeListBox.Items.Add(VehicleTypeListBox.Text);
