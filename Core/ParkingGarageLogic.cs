@@ -93,7 +93,7 @@ namespace Core
                         parkingSpot++; //Parkeringsplatsen kommer alltid ligga bredvid nummerplåten i objektlistan
                         parkingSpot = (int)vehiclesWithParkingSpot[parkingSpot];
 
-                        numberPlateWithParkingSpot += "\t" + "\t" + parkingSpot.ToString();
+                        numberPlateWithParkingSpot += " | " + parkingSpot.ToString();
                     }
 
                     catch (ArgumentOutOfRangeException)

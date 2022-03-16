@@ -31,8 +31,10 @@ namespace UI
          PriceWindow.Text = parkingGarageLimitations.GetRentalPrices(prices);
 
             //TODO sätt denna i separat knapp
-            PresentTheParkingGarageScreen presentTheParkingGarageScreen = new PresentTheParkingGarageScreen();
-            presentTheParkingGarageScreen.Show(this);
+         //   PresentTheParkingGarageScreen presentTheParkingGarageScreen = new PresentTheParkingGarageScreen();
+           // presentTheParkingGarageScreen.Show(this);
+            IfParkingGarageSpotsMoreThanOnehundredScreen ifParkingGarageSpotsMoreThanOnehundredScreen = new IfParkingGarageSpotsMoreThanOnehundredScreen();
+            ifParkingGarageSpotsMoreThanOnehundredScreen.Show(this);
         }
 
 
