@@ -4,7 +4,6 @@ using Core.Vehicles;
 
 namespace Core
 {
-    //TODO få in logiken
     public class ParkingGarageLogic
     {
       readonly  CreateDb createDb = new();
@@ -17,14 +16,6 @@ namespace Core
             //createDb.InitializeDb();
         }
 
-        //Console.Write
-        //    (
-        //    "1. Park car\n" +
-        //    "2. Park mc\n" +
-        //    "3. Move vehicle\n" +
-        //    "4. Remove vehicle\n" +
-        //    "Select: "
-        //    );
 
         //var input = int.Parse(Console.ReadLine());
 
@@ -81,25 +72,37 @@ namespace Core
                     );
                     break;
 
+
                 default:
                     break;
 
             }
         }
+
+        //Hämta regnummer och parkeringsplats, slå sedan ihop båda två till en sträng
+        public string PresentVehicles(string numberPlateWithParkingSpot, int parkingSpot, string vehicle)
+        {
+            List<object> vehiclesWithParkingSpot = new();
+         
+                    vehiclesWithParkingSpot = Garage.PresentVehicle(vehicle);
+
+                      //om outofbounds
+                    try
+                    {
+                        numberPlateWithParkingSpot = (string)vehiclesWithParkingSpot[parkingSpot];
+                        parkingSpot++; //Parkeringsplatsen kommer alltid ligga bredvid nummerplåten i objektlistan
+                        parkingSpot = (int)vehiclesWithParkingSpot[parkingSpot];
+
+                        numberPlateWithParkingSpot += "\t" + "\t" + parkingSpot.ToString();
+                    }
+
+                    catch (ArgumentOutOfRangeException)
+                    { }
+
+            return numberPlateWithParkingSpot;
+
+        }
     }
 }
-//// WinForms
-//static string AngeReg()
-//    {
-//        Console.WriteLine("Ange regnr");
-//        var reg = Console.ReadLine();
-//        return reg;
-//    }
-//    static int VäljPlats()
-//    {
-//        Console.WriteLine("Välj plats");
-//        var plats = int.Parse(Console.ReadLine());
-//        return plats;
-//    }
-//}
+
 

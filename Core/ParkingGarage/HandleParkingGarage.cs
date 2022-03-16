@@ -89,5 +89,40 @@ namespace Core.ParkingGarage
             
         }
 
+        //Tar ut både parkeringsplatsen och nummerplåten i en objektlista
+        public List<object> PresentVehicle(string vehicleType)
+        {
+            List<object> vehicle = new();
+
+            using var context = new VehicleContext();
+            {
+                foreach (var foundVehicle in context.Garage)
+                    
+               
+
+                {
+                    var typeOfVehicle = foundVehicle.VehicleType;
+
+                    if (typeOfVehicle == vehicleType)
+                    {
+
+                        var numberPlate = foundVehicle.NumberPlate;
+                        var parkingSpot = foundVehicle.ParkingSpot;
+                       
+                        if (numberPlate == null)
+                        { }
+                        else
+                        {
+                            vehicle.Add(numberPlate);
+                            vehicle.Add(parkingSpot);
+                        }
+                    }
+                }
+
+                return vehicle;
+            }
+        }
+
+
+        }
     }
-}

@@ -62,7 +62,7 @@
             this.PriceWindow.Size = new System.Drawing.Size(241, 120);
             this.PriceWindow.TabIndex = 3;
             this.PriceWindow.Text = "";
-            this.PriceWindow.Click += new System.EventHandler(this.PriceWindow_TextChanged);
+            this.PriceWindow.Click += new System.EventHandler(this.PriceWindow_Load);
             // 
             // ParkingGarageLimitationValuesButton
             // 
@@ -96,7 +96,7 @@
             this.Controls.Add(this.UpdatePrice);
             this.Name = "IntroScreen";
             this.Text = "Parking garage app";
-            this.Load += new System.EventHandler(this.PriceWindow_TextChanged);
+            this.Load += new System.EventHandler(this.PriceWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

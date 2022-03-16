@@ -24,11 +24,14 @@ namespace UI
          rentalPricesScreen.Show(this);
         }
 
-        private void PriceWindow_TextChanged(object sender, EventArgs e)
+        private void PriceWindow_Load(object sender, EventArgs e)
         {
             ParkingGarageLimitations parkingGarageLimitations = new();
             string prices = "";
          PriceWindow.Text = parkingGarageLimitations.GetRentalPrices(prices);
+
+            PresentTheParkingGarageScreen presentTheParkingGarageScreen = new PresentTheParkingGarageScreen();
+            presentTheParkingGarageScreen.Show(this);
         }
 
 

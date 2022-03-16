@@ -25,7 +25,6 @@ namespace Core
         (int, int, int, int, int, string, string, int, int, int) rentalPricesAndLimitations = (0, 0, 0, 0, 0, "", "", 0, 0, 0);
 
         //Gets current car and mc price into a string
-        //TODO slå ihop med GetOneValueFromJsonFile?
         public string GetRentalPrices(string prices)
         {
             //Get the current values from the ParkingLotLimitationValues-jsonfile
@@ -100,7 +99,7 @@ namespace Core
 
 
 
-        //TODO en metod som tar ett värde
+        //TODO Behöver man kunna ta ut alla värden från json-filen?
         public void SwitchMenuValues(string value, int switchValue)
 
         {
@@ -112,7 +111,6 @@ namespace Core
             rentalPricesAndLimitations = ChangeOneValue(rentalPriceCar, rentalPriceMC, parkingSpots, carsPerSpace, mcsPerSpace, carType, motorcycleType, vehicleSizeCar, vehicleSizeMotorcycle, parkingSpaceSize);
             VehicleContext.EditParkingLotLimitionValues(rentalPricesAndLimitations);
 
-            //TODO UI ska kunna ändra resterande värden, just nu kan den bara ändra 5 värden
             (int, int, int, int, int, string, string, int, int, int) ChangeOneValue(int rentalPriceCar, int rentalPriceMC, int parkingSpots, int carsPerSpace, int mcsPerSpace, string carType, string motorcycleType, int vehicleSizeCar, int vehicleSizeMotorcycle, int parkingSpaceSize)
             {
                 switch (switchValue)
