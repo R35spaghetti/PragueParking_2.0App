@@ -30,6 +30,7 @@ namespace UI
             string prices = "";
          PriceWindow.Text = parkingGarageLimitations.GetRentalPrices(prices);
 
+            //TODO sätt denna i separat knapp
             PresentTheParkingGarageScreen presentTheParkingGarageScreen = new PresentTheParkingGarageScreen();
             presentTheParkingGarageScreen.Show(this);
         }
