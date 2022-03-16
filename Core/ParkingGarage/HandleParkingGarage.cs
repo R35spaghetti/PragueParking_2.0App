@@ -84,9 +84,9 @@ namespace Core.ParkingGarage
         #endregion
 
         // Json
-        public void HandlePrice()
+        public void HandlePrice(DateTime checkIn, DateTime checkOut, int price) // hatera pris, första 10 min är gratis
         {
-            
+
         }
 
         //Tar ut både parkeringsplatsen och nummerplåten i en objektlista
@@ -97,8 +97,8 @@ namespace Core.ParkingGarage
             using var context = new VehicleContext();
             {
                 foreach (var foundVehicle in context.Garage)
-                    
-               
+
+
 
                 {
                     var typeOfVehicle = foundVehicle.VehicleType;
@@ -108,7 +108,7 @@ namespace Core.ParkingGarage
 
                         var numberPlate = foundVehicle.NumberPlate;
                         var parkingSpot = foundVehicle.ParkingSpot;
-                       
+
                         if (numberPlate == null)
                         { }
                         else
@@ -124,5 +124,5 @@ namespace Core.ParkingGarage
         }
 
 
-        }
     }
+}

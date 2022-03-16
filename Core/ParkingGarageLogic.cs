@@ -1,6 +1,7 @@
 ﻿using Core.HandlingParkingSpot;
 using Core.ParkingGarage;
 using Core.Vehicles;
+using GhostSheriffsDatabaseAccess;
 
 namespace Core
 {
@@ -8,12 +9,18 @@ namespace Core
     {
       readonly  CreateDb createDb = new();
       readonly  HandleParkingGarage Garage = new();
-      readonly   ParkingSpot parking = new();
+      readonly  ParkingSpot parking = new();
+        
 
         public void CreateTheDB()
         {
+            VehicleContext vehicleContext = new();
             createDb.EnsureCreatedDb();
-            //createDb.InitializeDb();
+            var isDbEmpty = vehicleContext.Garage.Where(x => x.Id == 1);
+            if (!isDbEmpty.Any())
+            {
+                createDb.InitializeDb();
+            }
         }
 
 
