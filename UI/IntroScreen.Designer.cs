@@ -93,7 +93,7 @@
             this.ParkedvehiclesButton.TabIndex = 2;
             this.ParkedvehiclesButton.Text = "Show parked vehicles";
             this.ParkedvehiclesButton.UseVisualStyleBackColor = true;
-            this.ParkedvehiclesButton.Click += new System.EventHandler(this.Ver2Button_Click);
+            this.ParkedvehiclesButton.Click += new System.EventHandler(this.ParkedVehiclesButton_Click);
             // 
             // IntroScreen
             // 

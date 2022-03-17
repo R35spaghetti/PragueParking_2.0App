@@ -21,6 +21,8 @@ namespace UI
         }
         private void PresentTheParkingGarageScreen_Load(object sender, EventArgs e)
         {
+           
+
             string previousEntryMC = "";
             string previousEntryCar = "";
             int currentParkingSpot = 0;

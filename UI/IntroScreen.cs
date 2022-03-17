@@ -49,10 +49,15 @@ namespace UI
             operateTheParkingGarageScreen.Show(this);
         }
 
-        private void Ver2Button_Click(object sender, EventArgs e)
+        private void ParkedVehiclesButton_Click(object sender, EventArgs e)
         {
-            PresentTheParkingGarageScreen presentTheParkingGarageScreen = new();
-            presentTheParkingGarageScreen.Show(this);
+            LoadingScreen loadingScreen = new();
+            loadingScreen.Show(this);
+           
+     
+            
         }
+
+
     }
 }
