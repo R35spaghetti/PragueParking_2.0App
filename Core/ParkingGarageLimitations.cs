@@ -22,7 +22,7 @@ namespace Core
 
         (int, int, int, string, string, int, int, int) rentalPricesAndLimitations = (0, 0, 0, "", "", 0, 0, 0);
 
-        //Gets current car and mc price into a string
+        //Gets current car and mc price into a string //TODO:ändra?
         public string GetRentalPrices(string prices)
         {
             //Get the current values from the ParkingLotLimitationValues-jsonfile
@@ -45,6 +45,18 @@ namespace Core
 
             switch(placementOfJsonValue)
             {
+                case 1:
+                    //Price for car
+                    value = rentalPricesAndLimitations.Item1;
+
+                    break;
+
+
+                    case 2:
+                          //Price for mc
+                        value = rentalPricesAndLimitations.Item2;
+                    break;
+
 
                 case 3: //Parking spots in the garage
                     value = rentalPricesAndLimitations.Item3;

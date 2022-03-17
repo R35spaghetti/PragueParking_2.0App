@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Core;
+using Core.ParkingGarage;
 
 namespace UI
 {
@@ -16,6 +17,7 @@ namespace UI
     {
         readonly IntroScreen introScreen = new();
         readonly ParkingGarageLogic parkingGarageLogic = new();
+        readonly HandleParkingGarage handleParkingGarage = new();
         public OperateTheParkingGarageScreen()
         {
             InitializeComponent();
@@ -59,8 +61,21 @@ namespace UI
 
         private void RemoveVehicleButton_Click(object sender, EventArgs e)
         {
-            parkingGarageLogic.ParkingGarageOptions(4, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
+            TimeSpan checkoutPrice = new();
+            double price = 0;
+            string currentVehicleType = "";
 
+            checkoutPrice = handleParkingGarage.AmountOfTime(NumberPlateTextBox.Text);
+            currentVehicleType = handleParkingGarage.GetNumberPlateVehicleType(NumberPlateTextBox.Text);
+
+            price = handleParkingGarage.HandlePrice(checkoutPrice, currentVehicleType);
+            InfoRichTextBox.Text = $"Current rental price is {price.ToString()}";
+
+            parkingGarageLogic.ParkingGarageOptions(4, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
+            
+           
+            
+           
         }
 
     

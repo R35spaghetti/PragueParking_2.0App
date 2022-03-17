@@ -119,16 +119,20 @@ namespace Core.ParkingGarage
             var result = checkOut - checkIn;
             return (TimeSpan)result;
         }
-        public double HandlePrice(TimeSpan amountOfTime, string vehicleType) // hatera pris, första 10 min är gratis
+        public double HandlePrice(TimeSpan amountOfTime, string vehicleType) // hantera pris, första 10 min är gratis
         {
+            ParkingGarageLimitations parkingGarageLimitations = new();
+            int carRentalPrice = parkingGarageLimitations.GetOneIntValueFromJsonFile(1);
+            int mcRentalPrice = parkingGarageLimitations.GetOneIntValueFromJsonFile(2);
+
             double price = 0;
             if (vehicleType == "Car")
             {
-                price = Math.Round(((double)amountOfTime.TotalHours * 20), 2); // json
+                price = Math.Round(((double)amountOfTime.TotalHours * carRentalPrice), 2); // json
             }
             else if (vehicleType == "Motorcycle")
             {
-                price = Math.Round(((double)amountOfTime.TotalHours * 10), 2);// json
+                price = Math.Round(((double)amountOfTime.TotalHours * mcRentalPrice), 2);// json
             }
             return price;
         }
@@ -167,6 +171,27 @@ namespace Core.ParkingGarage
             }
         }
 
+        //Hämtar fordonstypen
+        public string GetNumberPlateVehicleType(string numberPlate)
+        {
 
+            var getVehicleType = context.Garage
+             .Where(condition => condition.NumberPlate == numberPlate)
+             .Select(select => select.VehicleType)
+             .FirstOrDefault();
+
+            var result = getVehicleType?.ToString();
+          
+            if (result == null)
+            { 
+             result = ""; 
+            }
+            else
+            {
+
+            }
+
+            return result;
+        }
     }
 }

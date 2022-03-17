@@ -42,6 +42,7 @@
             this.ParkVehicleRadioButton = new System.Windows.Forms.RadioButton();
             this.MoveVehicleRadioButton = new System.Windows.Forms.RadioButton();
             this.RemoveVehicleRadioButton = new System.Windows.Forms.RadioButton();
+            this.InfoRichTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // AddVehicleToDbButton
@@ -178,11 +179,20 @@
             this.RemoveVehicleRadioButton.UseVisualStyleBackColor = true;
             this.RemoveVehicleRadioButton.CheckedChanged += new System.EventHandler(this.RemoveVehicleRadioButton_CheckedChanged);
             // 
+            // InfoRichTextBox
+            // 
+            this.InfoRichTextBox.Location = new System.Drawing.Point(488, 131);
+            this.InfoRichTextBox.Name = "InfoRichTextBox";
+            this.InfoRichTextBox.Size = new System.Drawing.Size(125, 120);
+            this.InfoRichTextBox.TabIndex = 25;
+            this.InfoRichTextBox.Text = "";
+            // 
             // OperateTheParkingGarageScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(636, 291);
+            this.Controls.Add(this.InfoRichTextBox);
             this.Controls.Add(this.RemoveVehicleRadioButton);
             this.Controls.Add(this.MoveVehicleRadioButton);
             this.Controls.Add(this.ParkVehicleRadioButton);
@@ -221,5 +231,6 @@
         private RadioButton ParkVehicleRadioButton;
         private RadioButton MoveVehicleRadioButton;
         private RadioButton RemoveVehicleRadioButton;
+        private RichTextBox InfoRichTextBox;
     }
 }

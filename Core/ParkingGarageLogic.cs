@@ -30,6 +30,11 @@ namespace Core
         //smidigare sätt att få placementForVehicle till int?
         public void ParkingGarageOptions(int choice, string NumberPlate, string placementForVehicle)
         {
+            //Hämtar json-värdet på parkeringsplatsen
+            ParkingGarageLimitations limitations = new ParkingGarageLimitations();
+           int maximalParkingSpots = limitations.GetOneIntValueFromJsonFile(3);
+
+
             switch (choice)
             {
                 //Add car 
@@ -39,7 +44,7 @@ namespace Core
                     Car newCar = new(regNrCar);
                     Garage.AddVehicleToDb
                         (
-                        Garage.CanVehiclePark(Garage.CheckNumberSpot(100, platsCar), parking.CurrentOccupiedPSpace(platsCar), newCar.VehicleSize, parking.P_SpotSize),
+                        Garage.CanVehiclePark(Garage.CheckNumberSpot(maximalParkingSpots, platsCar), parking.CurrentOccupiedPSpace(platsCar), newCar.VehicleSize, parking.P_SpotSize),
                         parking.GarageCapacity(parking.AllOccupiedPSpace(), parking.GarageMaxCapacity()),
                         newCar.GetVehicleData(DateTime.Now, platsCar, newCar.VehicleType)
                         );
@@ -52,7 +57,7 @@ namespace Core
                     Motorcycle newMc = new(regNrMc);
                     Garage.AddVehicleToDb
                         (
-                        Garage.CanVehiclePark(Garage.CheckNumberSpot(100, platsMc), parking.CurrentOccupiedPSpace(platsMc), newMc.VehicleSize, parking.P_SpotSize),
+                        Garage.CanVehiclePark(Garage.CheckNumberSpot(maximalParkingSpots, platsMc), parking.CurrentOccupiedPSpace(platsMc), newMc.VehicleSize, parking.P_SpotSize),
                         parking.GarageCapacity(parking.AllOccupiedPSpace(), parking.GarageMaxCapacity()),
                         newMc.GetVehicleData(DateTime.Now, platsMc, newMc.VehicleType)
                         );
@@ -65,7 +70,7 @@ namespace Core
                     Garage.MoveVehicle
                         (
                         Garage.SearchVehicle(searchForVehicle),
-                        Garage.CanVehiclePark(Garage.CheckNumberSpot(100, newPSpace), parking.CurrentOccupiedPSpace(newPSpace), Garage.GetVehicleSize(searchForVehicle), parking.P_SpotSize),
+                        Garage.CanVehiclePark(Garage.CheckNumberSpot(maximalParkingSpots, newPSpace), parking.CurrentOccupiedPSpace(newPSpace), Garage.GetVehicleSize(searchForVehicle), parking.P_SpotSize),
                         Garage.SelectVehicle(searchForVehicle),
                         newPSpace
                         );
