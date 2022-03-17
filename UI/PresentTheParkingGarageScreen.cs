@@ -26,8 +26,11 @@ namespace UI
             string previousEntryMC = "";
             string previousEntryCar = "";
             int currentParkingSpot = 0; 
-            //kraschar beroende på antalet parkeringsplatser
-            for (int i = 0; i < 100; i++)
+
+            ParkingGarageLimitations parkingGarageLimitations = new();
+        int parkingSpotsInTheGarage =   parkingGarageLimitations.GetOneIntValueFromJsonFile(3);
+
+            for (int i = 0; i < parkingSpotsInTheGarage; i++)
             {
 
                CarListBox.Text = parkingGarageLogic.PresentVehicles(CarListBox.Text, currentParkingSpot, "Car");
