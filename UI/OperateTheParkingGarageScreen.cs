@@ -59,11 +59,55 @@ namespace UI
         {
             ParkingGarageLimitations parkingGarageLimitations = new();
 
+
+            AddVehicleToDbButton.Enabled = false;
+            MoveVehicleButton.Enabled = false;
+            RemoveVehicleButton.Enabled = false;
+            NumberPlateTextBox.Enabled = false;
+            ParkingSpotTextBox.Enabled = false;
+            VehicleTypeListBox.Enabled = false;
+
+
             for (int i = 4; i <= 5; i++)
             {
                 VehicleTypeListBox.Text = parkingGarageLimitations.GetOneStringValueFromJsonFile(i);
                 VehicleTypeListBox.Items.Add(VehicleTypeListBox.Text);
             }
+        }
+
+        private void ParkVehicleRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            AddVehicleToDbButton.Enabled = true;
+            MoveVehicleButton.Enabled = false;
+            RemoveVehicleButton.Enabled = false;
+            NumberPlateTextBox.Enabled = true;
+            ParkingSpotTextBox.Enabled = true;
+            VehicleTypeListBox.Enabled = true;
+
+        }
+
+        private void MoveVehicleRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            AddVehicleToDbButton.Enabled = false;
+            MoveVehicleButton.Enabled = true;
+            RemoveVehicleButton.Enabled = false;
+            NumberPlateTextBox.Enabled = true;
+            ParkingSpotTextBox.Enabled = true;
+            VehicleTypeListBox.Enabled = false;
+
+
+        }
+
+        private void RemoveVehicleRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            AddVehicleToDbButton.Enabled = false;
+            MoveVehicleButton.Enabled = false;
+            RemoveVehicleButton.Enabled = true;
+            NumberPlateTextBox.Enabled = true;
+            ParkingSpotTextBox.Enabled = false;
+            VehicleTypeListBox.Enabled = false;
+
+
         }
     }
 }

@@ -12,40 +12,38 @@ using Core.ParkingGarage;
 
 namespace UI
 {
-    //TODO Två versioner
     public partial class PresentTheParkingGarageScreen : Form
     {
-        ParkingGarageLogic parkingGarageLogic = new();
+      readonly ParkingGarageLogic parkingGarageLogic = new();
         public PresentTheParkingGarageScreen()
         {
             InitializeComponent();
         }
-        //if mer än 100 visa denna lista annars ett par bilder
         private void PresentTheParkingGarageScreen_Load(object sender, EventArgs e)
         {
             string previousEntryMC = "";
             string previousEntryCar = "";
-            int currentParkingSpot = 0; 
-
+            int currentParkingSpot = 0;
+         
             ParkingGarageLimitations parkingGarageLimitations = new();
         int parkingSpotsInTheGarage =   parkingGarageLimitations.GetOneIntValueFromJsonFile(3);
 
             for (int i = 0; i < parkingSpotsInTheGarage; i++)
             {
 
-               CarListBox.Text = parkingGarageLogic.PresentVehicles(CarListBox.Text, currentParkingSpot, "Car");
-
-
-           
+                CarListBox.Text = parkingGarageLogic.PresentVehicles(CarListBox.Text, currentParkingSpot, "Car");
                 MotorcycleListBox.Text = parkingGarageLogic.PresentVehicles(MotorcycleListBox.Text, currentParkingSpot, "Motorcycle");
+                             
+
                 currentParkingSpot += 2;
+
                 if (MotorcycleListBox.Text != "" && MotorcycleListBox.Text != previousEntryMC)
                 {
-                    MotorcycleListBox.Items.Add(MotorcycleListBox.Text);
+                   MotorcycleListBox.Items.Add(MotorcycleListBox.Text);
                     previousEntryMC = MotorcycleListBox.Text;
-
                
                 }
+
                 if (CarListBox.Text != "" && CarListBox.Text != previousEntryCar)
                 {
                     CarListBox.Items.Add(CarListBox.Text);

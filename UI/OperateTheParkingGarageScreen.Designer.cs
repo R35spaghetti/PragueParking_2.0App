@@ -39,6 +39,9 @@
             this.ParkingSpotTextBox = new System.Windows.Forms.TextBox();
             this.NumberPlateTextBox = new System.Windows.Forms.TextBox();
             this.VehicleTypeListBox = new System.Windows.Forms.ListBox();
+            this.ParkVehicleRadioButton = new System.Windows.Forms.RadioButton();
+            this.MoveVehicleRadioButton = new System.Windows.Forms.RadioButton();
+            this.RemoveVehicleRadioButton = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // AddVehicleToDbButton
@@ -139,11 +142,50 @@
             this.VehicleTypeListBox.Size = new System.Drawing.Size(288, 104);
             this.VehicleTypeListBox.TabIndex = 20;
             // 
+            // ParkVehicleRadioButton
+            // 
+            this.ParkVehicleRadioButton.AutoSize = true;
+            this.ParkVehicleRadioButton.Location = new System.Drawing.Point(484, 28);
+            this.ParkVehicleRadioButton.Name = "ParkVehicleRadioButton";
+            this.ParkVehicleRadioButton.Size = new System.Drawing.Size(119, 24);
+            this.ParkVehicleRadioButton.TabIndex = 21;
+            this.ParkVehicleRadioButton.TabStop = true;
+            this.ParkVehicleRadioButton.Text = "Park a vehicle";
+            this.ParkVehicleRadioButton.UseVisualStyleBackColor = true;
+            this.ParkVehicleRadioButton.CheckedChanged += new System.EventHandler(this.ParkVehicleRadioButton_CheckedChanged);
+            // 
+            // MoveVehicleRadioButton
+            // 
+            this.MoveVehicleRadioButton.AutoSize = true;
+            this.MoveVehicleRadioButton.Location = new System.Drawing.Point(484, 58);
+            this.MoveVehicleRadioButton.Name = "MoveVehicleRadioButton";
+            this.MoveVehicleRadioButton.Size = new System.Drawing.Size(129, 24);
+            this.MoveVehicleRadioButton.TabIndex = 22;
+            this.MoveVehicleRadioButton.TabStop = true;
+            this.MoveVehicleRadioButton.Text = "Move a vehicle";
+            this.MoveVehicleRadioButton.UseVisualStyleBackColor = true;
+            this.MoveVehicleRadioButton.CheckedChanged += new System.EventHandler(this.MoveVehicleRadioButton_CheckedChanged);
+            // 
+            // RemoveVehicleRadioButton
+            // 
+            this.RemoveVehicleRadioButton.AutoSize = true;
+            this.RemoveVehicleRadioButton.Location = new System.Drawing.Point(484, 88);
+            this.RemoveVehicleRadioButton.Name = "RemoveVehicleRadioButton";
+            this.RemoveVehicleRadioButton.Size = new System.Drawing.Size(146, 24);
+            this.RemoveVehicleRadioButton.TabIndex = 23;
+            this.RemoveVehicleRadioButton.TabStop = true;
+            this.RemoveVehicleRadioButton.Text = "Remove a vehicle";
+            this.RemoveVehicleRadioButton.UseVisualStyleBackColor = true;
+            this.RemoveVehicleRadioButton.CheckedChanged += new System.EventHandler(this.RemoveVehicleRadioButton_CheckedChanged);
+            // 
             // OperateTheParkingGarageScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 291);
+            this.ClientSize = new System.Drawing.Size(636, 291);
+            this.Controls.Add(this.RemoveVehicleRadioButton);
+            this.Controls.Add(this.MoveVehicleRadioButton);
+            this.Controls.Add(this.ParkVehicleRadioButton);
             this.Controls.Add(this.VehicleTypeListBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
@@ -176,5 +218,8 @@
         private TextBox ParkingSpotTextBox;
         private TextBox NumberPlateTextBox;
         private ListBox VehicleTypeListBox;
+        private RadioButton ParkVehicleRadioButton;
+        private RadioButton MoveVehicleRadioButton;
+        private RadioButton RemoveVehicleRadioButton;
     }
 }
