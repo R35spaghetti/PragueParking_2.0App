@@ -30,12 +30,17 @@ namespace UI
 
         private void AddVehicleToDbButton_Click(object sender, EventArgs e)
         {
-            if (VehicleTypeListBox.SelectedItem.Equals(("Car")))
+
+
+            if (VehicleTypeListBox.Text.Equals(""))
+            { }
+
+          else if (VehicleTypeListBox.Text.Equals(("Car")))
             {
                 parkingGarageLogic.ParkingGarageOptions(1, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
             }
 
-            if(VehicleTypeListBox.SelectedItem.Equals(("Motorcycle")))
+           else if(VehicleTypeListBox.Text.Equals(("Motorcycle")))
             {
                 parkingGarageLogic.ParkingGarageOptions(2, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
 
@@ -44,7 +49,12 @@ namespace UI
 
         private void MoveVehicleButton_Click(object sender, EventArgs e)
         {
-            parkingGarageLogic.ParkingGarageOptions(3, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
+            if (NumberPlateTextBox.Text == "" || ParkingSpotTextBox.Text == "")
+            { }
+            else
+            {
+                parkingGarageLogic.ParkingGarageOptions(3, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
+            }
         }
 
         private void RemoveVehicleButton_Click(object sender, EventArgs e)
@@ -59,7 +69,6 @@ namespace UI
         {
             ParkingGarageLimitations parkingGarageLimitations = new();
 
-
             AddVehicleToDbButton.Enabled = false;
             MoveVehicleButton.Enabled = false;
             RemoveVehicleButton.Enabled = false;
@@ -73,6 +82,8 @@ namespace UI
                 VehicleTypeListBox.Text = parkingGarageLimitations.GetOneStringValueFromJsonFile(i);
                 VehicleTypeListBox.Items.Add(VehicleTypeListBox.Text);
             }
+            VehicleTypeListBox.Text = ""; //Annars blir det motorcykel
+
         }
 
         private void ParkVehicleRadioButton_CheckedChanged(object sender, EventArgs e)

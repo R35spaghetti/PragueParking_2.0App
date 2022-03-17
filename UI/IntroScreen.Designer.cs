@@ -108,6 +108,7 @@
             this.Controls.Add(this.UpdatePrice);
             this.Name = "IntroScreen";
             this.Text = "Parking garage app";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IntroScreen_FormClosing);
             this.Load += new System.EventHandler(this.PriceWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

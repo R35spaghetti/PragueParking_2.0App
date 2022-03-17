@@ -2,8 +2,7 @@ using Core;
 
 namespace UI
 {
-    //TODO: ändra jsonfilen att antal fordon på samma parkeringsplats inte ska finnas, den kör på storlek
-    //TODO: trevligare UI, in och titta även i switchmenuvalues
+    
 
     internal static class Program
     {

@@ -58,6 +58,9 @@ namespace UI
             
         }
 
-
+        private void IntroScreen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           Application.Exit();
+        }
     }
 }
