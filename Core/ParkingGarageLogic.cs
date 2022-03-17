@@ -7,10 +7,10 @@ namespace Core
 {
     public class ParkingGarageLogic
     {
-      readonly  CreateDb createDb = new();
-      readonly  HandleParkingGarage Garage = new();
-      readonly  ParkingSpot parking = new();
-        
+        readonly CreateDb createDb = new();
+        readonly HandleParkingGarage Garage = new();
+        readonly ParkingSpot parking = new();
+
 
         public void CreateTheDB()
         {
@@ -22,7 +22,7 @@ namespace Core
                 createDb.InitializeDb();
             }
         }
-    
+
 
 
         //var input = int.Parse(Console.ReadLine());
@@ -33,18 +33,18 @@ namespace Core
             switch (choice)
             {
                 //Add car 
-               case 1:
+                case 1:
                     var regNrCar = NumberPlate;
                     var platsCar = int.Parse(placementForVehicle);
                     Car newCar = new(regNrCar);
                     Garage.AddVehicleToDb
                         (
-                        Garage.canVehiclePark(parking.CurrentOccupiedPSpace(platsCar), newCar.VehicleSize, parking.P_SpotSize),
+                        Garage.CanVehiclePark(Garage.CheckNumberSpot(100, platsCar), parking.CurrentOccupiedPSpace(platsCar), newCar.VehicleSize, parking.P_SpotSize),
                         parking.GarageCapacity(parking.AllOccupiedPSpace(), parking.GarageMaxCapacity()),
                         newCar.GetVehicleData(DateTime.Now, platsCar, newCar.VehicleType)
                         );
                     break;
-                
+
                 //Add MC
                 case 2:
                     var regNrMc = NumberPlate;
@@ -52,12 +52,12 @@ namespace Core
                     Motorcycle newMc = new(regNrMc);
                     Garage.AddVehicleToDb
                         (
-                        Garage.canVehiclePark(parking.CurrentOccupiedPSpace(platsMc), newMc.VehicleSize, parking.P_SpotSize),
+                        Garage.CanVehiclePark(Garage.CheckNumberSpot(100, platsMc), parking.CurrentOccupiedPSpace(platsMc), newMc.VehicleSize, parking.P_SpotSize),
                         parking.GarageCapacity(parking.AllOccupiedPSpace(), parking.GarageMaxCapacity()),
                         newMc.GetVehicleData(DateTime.Now, platsMc, newMc.VehicleType)
                         );
                     break;
-                
+
                 //Move vehicle
                 case 3:
                     var searchForVehicle = NumberPlate;
@@ -65,12 +65,12 @@ namespace Core
                     Garage.MoveVehicle
                         (
                         Garage.SearchVehicle(searchForVehicle),
-                        Garage.canVehiclePark(parking.CurrentOccupiedPSpace(newPSpace), Garage.GetVehicleSize(searchForVehicle), parking.P_SpotSize),
+                        Garage.CanVehiclePark(Garage.CheckNumberSpot(100, newPSpace), parking.CurrentOccupiedPSpace(newPSpace), Garage.GetVehicleSize(searchForVehicle), parking.P_SpotSize),
                         Garage.SelectVehicle(searchForVehicle),
                         newPSpace
                         );
                     break;
-                
+
                 //Remove vehicle
                 case 4:
                     Garage.RemoveVehicle
@@ -94,19 +94,19 @@ namespace Core
 
             List<object> vehiclesWithParkingSpot = Garage.PresentVehicle(vehicle);
 
-                      //om outofbounds
-                    try
-                    {
-                        //Tar både nummerplåten och parkeringsnummret 
-                        numberPlateWithParkingSpot = (string)vehiclesWithParkingSpot[parkingSpot];
-                        parkingSpot++; //Parkeringsplatsen kommer alltid ligga bredvid nummerplåten i objektlistan
-                        parkingSpot = (int)vehiclesWithParkingSpot[parkingSpot];
+            //om outofbounds
+            try
+            {
+                //Tar både nummerplåten och parkeringsnummret 
+                numberPlateWithParkingSpot = (string)vehiclesWithParkingSpot[parkingSpot];
+                parkingSpot++; //Parkeringsplatsen kommer alltid ligga bredvid nummerplåten i objektlistan
+                parkingSpot = (int)vehiclesWithParkingSpot[parkingSpot];
 
-                        numberPlateWithParkingSpot += " | " + parkingSpot.ToString();
-                    }
+                numberPlateWithParkingSpot += " | " + parkingSpot.ToString();
+            }
 
-                    catch (ArgumentOutOfRangeException)
-                    { }
+            catch (ArgumentOutOfRangeException)
+            { }
 
             return numberPlateWithParkingSpot;
 

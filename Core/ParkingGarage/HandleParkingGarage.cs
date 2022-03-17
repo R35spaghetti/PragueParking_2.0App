@@ -1,4 +1,4 @@
-﻿
+﻿using System.Globalization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,37 +15,60 @@ namespace Core.ParkingGarage
         VehicleContext context = new();
 
         #region ConditionAndData
-        public bool canVehiclePark(int currentUsedPSize, int newVehiclePSize, int sizeOfSelectedPSpot)
+        public bool CheckNumberSpot(int parkingSpotMax, int userInput)
+        {
+            var validNumber = false;
+
+            if (userInput >= 1 && userInput <= parkingSpotMax)
+            {
+                validNumber = true;
+            }
+            return validNumber;
+        }
+        public bool CanVehiclePark(bool validParkingSpotNumber, int currentUsedPSize, int newVehiclePSize, int sizeOfSelectedPSpot)
         {
             bool allowIt = false;
-            if ((currentUsedPSize + newVehiclePSize) <= sizeOfSelectedPSpot)
+            if (validParkingSpotNumber)
             {
-                allowIt = true;
+                if ((currentUsedPSize + newVehiclePSize) <= sizeOfSelectedPSpot)
+                {
+                    allowIt = true;
+                }
             }
+
             return allowIt;
         }
         public List<VehiclesDB> SelectVehicle(string searchWord)
         {
             var dbIndexNumber = context.Garage
-                .Where(condition => condition.NumberPlate == searchWord)
+                .Where(condition => condition.NumberPlate == searchWord.ToUpper())
                 .Select(select => select).ToList();
             return dbIndexNumber;
         }
         public bool SearchVehicle(string searchWord)
         {
             var isFound = context.Garage
-                .Where(condition => condition.NumberPlate == searchWord)
+                .Where(condition => condition.NumberPlate == searchWord.ToUpper())
                 .Select(select => select)
                 .Any();
             return isFound;
         }
-        public int GetVehicleSize(string NumberPlate)
+        public int GetVehicleSize(string numberPlate)
         {
             var vehicleSize = context.Garage
-                .Where(condition => condition.NumberPlate == NumberPlate)
+                .Where(condition => condition.NumberPlate == numberPlate)
                 .Select(select => select.VehicleSize)
                 .ToList();
             return vehicleSize[0];
+        }
+
+        public string GetVehicleType(string numberPlate)
+        {
+            var vehicleType = context.Garage
+               .Where(condition => condition.NumberPlate == numberPlate)
+               .Select(select => select.VehicleType)
+               .ToList();
+            return vehicleType[0];
         }
         #endregion
 
@@ -84,9 +107,30 @@ namespace Core.ParkingGarage
         #endregion
 
         // Json
-        public void HandlePrice(DateTime checkIn, DateTime checkOut, int price) // hatera pris, första 10 min är gratis
+        public TimeSpan AmountOfTime(string numberPlate)
         {
+            var checkOut = DateTime.Now.AddMinutes(-10);
 
+            var checkIn = context.Garage
+                .Where(condition => condition.NumberPlate == numberPlate)
+                .Select(select => select.CheckInTimeStamp)
+                .FirstOrDefault();
+
+            var result = checkOut - checkIn;
+            return (TimeSpan)result;
+        }
+        public double HandlePrice(TimeSpan amountOfTime, string vehicleType) // hatera pris, första 10 min är gratis
+        {
+            double price = 0;
+            if (vehicleType == "Car")
+            {
+                price = Math.Round(((double)amountOfTime.TotalHours * 20), 2); // json
+            }
+            else if (vehicleType == "Motorcycle")
+            {
+                price = Math.Round(((double)amountOfTime.TotalHours * 10), 2);// json
+            }
+            return price;
         }
 
         //Tar ut både parkeringsplatsen och nummerplåten i en objektlista

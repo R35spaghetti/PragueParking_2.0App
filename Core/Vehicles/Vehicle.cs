@@ -17,7 +17,7 @@ namespace Core.Vehicles
         public VehiclesDB GetVehicleData(DateTime checkIn, int parkingSpot, string vehicleType)
         {
             VehiclesDB newVehicleData = new VehiclesDB();
-            newVehicleData.NumberPlate = this.Regnumber;
+            newVehicleData.NumberPlate = this.Regnumber.ToUpper();
             newVehicleData.CheckInTimeStamp = checkIn;
             newVehicleData.ParkingSpot = parkingSpot;
             newVehicleData.VehicleType = vehicleType;
