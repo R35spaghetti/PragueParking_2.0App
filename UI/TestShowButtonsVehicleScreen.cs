@@ -73,8 +73,7 @@ namespace UI
 
             var previousEntryMC = "";
             var previousEntryCar = "";
-          //  string longStringWithCars = "Cars: ";
-          //  string longStringWithMCS = "Motorcycles: ";
+       
 
             this.VehicleTableLayoutPanel.ColumnCount = columns;
             this.VehicleTableLayoutPanel.RowCount = rows;
@@ -146,12 +145,6 @@ namespace UI
                     CreateVehicleButton.Dock = DockStyle.Fill;
 
 
-
-
-                    //?????? det är väl bara inte referens-jämförelse
-                    //TODO Alla parkerade rutor blir färgade gröna, tryck på en o se hela parkeringsplistan
-                    //3=3 men färgar ändå inte rutan
-
                     foreach (var items in splitGetCarParkinglot)
                     {
 
@@ -171,10 +164,7 @@ namespace UI
             }
         }
 
-     
-
-
-
+    
 
 
 
