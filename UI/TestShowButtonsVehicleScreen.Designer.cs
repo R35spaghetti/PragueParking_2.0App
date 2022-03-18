@@ -245,9 +245,9 @@
             // 
             // ShowVehiclesRichTextBox
             // 
-            this.ShowVehiclesRichTextBox.Location = new System.Drawing.Point(1000, 0);
+            this.ShowVehiclesRichTextBox.Location = new System.Drawing.Point(1101, 12);
             this.ShowVehiclesRichTextBox.Name = "ShowVehiclesRichTextBox";
-            this.ShowVehiclesRichTextBox.Size = new System.Drawing.Size(191, 377);
+            this.ShowVehiclesRichTextBox.Size = new System.Drawing.Size(227, 585);
             this.ShowVehiclesRichTextBox.TabIndex = 7;
             this.ShowVehiclesRichTextBox.Text = "";
             // 
@@ -255,7 +255,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1203, 450);
+            this.ClientSize = new System.Drawing.Size(1340, 597);
             this.Controls.Add(this.ShowVehiclesRichTextBox);
             this.Controls.Add(this.VehicleTableLayoutPanel);
             this.Name = "TestShowButtonsVehicleScreen";
@@ -269,7 +269,6 @@
         #endregion
 
         private TableLayoutPanel VehicleTableLayoutPanel;
-        private Button ShowVehicleButton;
         private RichTextBox ShowVehiclesRichTextBox;
     }
 }

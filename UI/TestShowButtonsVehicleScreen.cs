@@ -13,6 +13,7 @@ namespace UI
 {
     public partial class TestShowButtonsVehicleScreen : Form
     {
+     
         //TODO
         //1. gör tabellen och döp den, under programmets gång
         //        //2. gå igenom dina fordonsvärden
@@ -23,29 +24,37 @@ namespace UI
 
         public TestShowButtonsVehicleScreen()
         {
+
             InitializeComponent();
         }
 
         //skapar knapp
         private void TestShowButtonsVehicleScreen_Load(object sender, EventArgs e)
         {
+            ParkingGarageLogic logic = new();
             int parkingSpotsInTheGarage = parkingGarageLimitations.GetOneIntValueFromJsonFile(3);
 
 
             //Antalet platser beroende på maximala antalet parkeringsplatser
             var rows = parkingSpotsInTheGarage / 10;
             var columns = parkingSpotsInTheGarage / 10;
+
             
-
-
+            int counter = 0; //för att visa knapparna som "1" "2" "3"...osv
             int currentParkingSpot = 0;
-            int counter = 0;
+            List<string> splitGetCarParkinglot = new();
 
 
+            var carNumberPlateAndParkingSpot = "";
+            var motorcycleNumberPlateAndParkingSpot = "";
+
+            var previousEntryMC = "";
+            var previousEntryCar = "";
+            string longStringWithCars = "Cars: ";
+            string longStringWithMCS = "Motorcycles: ";
 
             this.VehicleTableLayoutPanel.ColumnCount = columns;
             this.VehicleTableLayoutPanel.RowCount = rows;
-
 
             //Rensa standardvärden, är skumt utan dessa
             this.VehicleTableLayoutPanel.ColumnStyles.Clear();
@@ -66,14 +75,38 @@ namespace UI
             for (int i = 0; i < rows; i++)
             {
 
-
                 for (int j = 0; j < columns; j++)
                 {
-                   
+                    
+                    //Få ut nummerplåten och parkeringsplatsen från databasen
+                    carNumberPlateAndParkingSpot = logic.PresentVehicles(carNumberPlateAndParkingSpot, currentParkingSpot, "Car");
+                    motorcycleNumberPlateAndParkingSpot = logic.PresentVehicles(motorcycleNumberPlateAndParkingSpot, currentParkingSpot, "Motorcycle");
 
-                    //string[] numbers = mc.Split('|');
-                    //int parkingSpotNumber = int.Parse(numbers[1]);
-                    //currentParkingSpot += 2;
+                    if (carNumberPlateAndParkingSpot != "" && carNumberPlateAndParkingSpot != previousEntryCar)
+                    {
+                        //få regnummer
+                      string[]  splitGetCarAndParkingSpot = carNumberPlateAndParkingSpot.Split('|');
+                        longStringWithCars += $"\n{carNumberPlateAndParkingSpot}\n";
+
+                        splitGetCarParkinglot.Add(splitGetCarAndParkingSpot[1]);
+
+                        previousEntryCar = carNumberPlateAndParkingSpot;
+
+
+                    }
+
+                    if (motorcycleNumberPlateAndParkingSpot != "" && motorcycleNumberPlateAndParkingSpot != previousEntryMC)
+                    {
+                        //få regnummer
+                       string[] splitGetMotorcycleAndParkingSpot = motorcycleNumberPlateAndParkingSpot.Split('|');
+                        longStringWithMCS += $"\n{motorcycleNumberPlateAndParkingSpot}\n";
+                        splitGetCarParkinglot.Add(splitGetMotorcycleAndParkingSpot[1]);
+                        previousEntryMC = motorcycleNumberPlateAndParkingSpot;
+
+
+                    }
+
+                    currentParkingSpot += 2;
                     counter++;
 
                     //En ny knapp vid varje ny position
@@ -88,95 +121,42 @@ namespace UI
                     this.VehicleTableLayoutPanel.Controls.Add(VehicleInfoButton, j, i);
                     VehicleInfoButton.Dock = DockStyle.Fill;
 
-                    //Klicka på 12 för att visa text
-                    if(VehicleInfoButton.Name == "12")
+           
+                    //??????
+                    //TODO Alla parkerade rutor blir färgade gröna, tryck på en o se hela parkeringsplistan
+                    //3=3 men färgar ändå inte rutan
+                    string EnSiffra = VehicleInfoButton.Name.ToString(); //Försöker med denna men färgar inte
+                    string siffranIListan = "";
+                    foreach (var items in splitGetCarParkinglot)
                     {
-                        VehicleInfoButton.Click += new EventHandler(VehicleInfoButton_Click);
-                        this.VehicleTableLayoutPanel.Controls.Add(VehicleInfoButton);
+                        siffranIListan = items.ToString();
+                        //Testat både equals och ==
+                        //Ska kolla igenom vilka rutor som har denna parkeringsplats o färga dessa rutor gröna
+                        if (EnSiffra.Equals(siffranIListan)) //konverta till samma datatyp funkar inte
+                        {
+                            VehicleInfoButton.BackColor = Color.Green;
+                            VehicleInfoButton.Click += new EventHandler(VehicleInfoButton_Click);
+                            this.VehicleTableLayoutPanel.Controls.Add(VehicleInfoButton);
+                        }
                     }
+                    void VehicleInfoButton_Click(object sender, EventArgs e)
+                    {
 
+                        //Presenterar alla nummerplåtar genom en sträng
+                        ShowVehiclesRichTextBox.Text = $"{longStringWithCars} \n {longStringWithMCS}";
 
+                        //Kan visa parkeringsnummer också
+                    }
                 }
-                void VehicleInfoButton_Click(object sender, EventArgs e)
-                {
-                    ShowVehiclesRichTextBox.Text = "fasf | 12";
-                }
-            }
-        }
-        //Njaa
-        private void ReplaceNumericButtonsWithNumberPlateAndParkingSpot(int parkingSpotsInTheGarage)
-        {
-        //    int[] onlyTheParkingSpot = 0;
-            List<string> numberplatesWithParkingSpot = new();
-            parkingSpotsInTheGarage = parkingGarageLimitations.GetOneIntValueFromJsonFile(3);
+          
 
+           
 
-
-
-            ParkingGarageLogic logic = new();
-
-            var carNumberPlateAndParkingSpot = "";
-            var motorcycleNumberPlateAndParkingSpot = "";
-
-            var previousEntryMC = "";
-            var previousEntryCar = "";
-
-            for (int i = 0; i < parkingSpotsInTheGarage; i++)
-            {
-
-                //Få ut nummerplåten och parkeringsplatsen från databasen
-                carNumberPlateAndParkingSpot = logic.PresentVehicles(carNumberPlateAndParkingSpot, parkingSpotsInTheGarage, "Car");
-                motorcycleNumberPlateAndParkingSpot = logic.PresentVehicles(motorcycleNumberPlateAndParkingSpot, parkingSpotsInTheGarage, "Motorcycle");
-
-                if (carNumberPlateAndParkingSpot != "" && carNumberPlateAndParkingSpot != previousEntryCar)
-                {
-
-                    numberplatesWithParkingSpot.Add(carNumberPlateAndParkingSpot);
-                     previousEntryCar = carNumberPlateAndParkingSpot;
-
-
-                }
-
-                if (motorcycleNumberPlateAndParkingSpot != "" && motorcycleNumberPlateAndParkingSpot != previousEntryMC)
-                {
-                    numberplatesWithParkingSpot.Add(motorcycleNumberPlateAndParkingSpot);
-                    previousEntryMC = motorcycleNumberPlateAndParkingSpot;
-
-
-                }
+               
             }
         }
 
-
-
-        //TODO ta endast ut nummerplåten här, använd siffran för att skippa en knapp
-
-        ////Fyller knappen med nummerplåten från bil
-        //if (mc != "" && mc != previousEntryMC)
-        //{
-        //    VehicleInfoButton.Text = string.Format(mc, counter);
-        //    VehicleInfoButton.BackColor = Color.Green;
-        //    previousEntryMC = mc;
-        //    this.VehicleTableLayoutPanel.Controls.Add(VehicleInfoButton, j, i);
-        //    VehicleInfoButton.Dock = DockStyle.Fill;
-
-        //    if (parkingSpotNumber != counter)
-        //    {
-        //        VehicleInfoButton.Text = string.Format("{0}", counter);
-        //        //Namnger kontrollerna
-        //        VehicleInfoButton.Name = string.Format("{0}",counter);
-        //        this.VehicleTableLayoutPanel.Controls.Add(VehicleInfoButton, j, i);
-        //        VehicleInfoButton.Dock = DockStyle.Fill;
-
-        //    }
-        //    if (this.VehicleTableLayoutPanel.Name = parkingSpotNumber)
-        //    {
-        //        //ersätt värden här
-
-
-        //      
-        //    }
-        //}
+     
 
 
 
