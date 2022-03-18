@@ -36,7 +36,7 @@ namespace UI
         private void CreateVehicleButton()
         {
             Button VehicleButton = new Button();
-            VehicleButton.Height = 100;
+            VehicleButton.Height = 200;
             VehicleButton.Width = 200;
 
             VehicleButton.Click += new EventHandler(CreateVehicleButton_Click);
@@ -133,6 +133,7 @@ namespace UI
                     counter++;
 
                     //En ny knapp vid varje ny position
+
                     var CreateVehicleButton = new Button();
 
                     //Lägger till siffror, som 1,2,3,4,5 osv till de genererade knapparna
@@ -145,39 +146,28 @@ namespace UI
                     CreateVehicleButton.Dock = DockStyle.Fill;
 
 
-                    //Kan färga tvåan i alla fall
-                    if (CreateVehicleButton.Name == "2") //konverta till samma datatyp funkar inte
-                    {
-                        CreateVehicleButton.BackColor = Color.Green;
-                        CreateVehicleButton.Click += new EventHandler(CreateVehicleButton_Click);
-                        this.VehicleTableLayoutPanel.Controls.Add(CreateVehicleButton);
-                    }
 
 
                     //?????? det är väl bara inte referens-jämförelse
                     //TODO Alla parkerade rutor blir färgade gröna, tryck på en o se hela parkeringsplistan
                     //3=3 men färgar ändå inte rutan
-                    string EnSiffra = CreateVehicleButton.Name.ToString(); //Försöker med denna men färgar inte
-                    string siffranIListan = "";
+
                     foreach (var items in splitGetCarParkinglot)
                     {
-                        siffranIListan = items.ToString();
-                        //Testat både equals och ==
-                        //Ska kolla igenom vilka rutor som har denna parkeringsplats o färga dessa rutor gröna
-                        if (EnSiffra.Equals(siffranIListan)) //konverta till samma datatyp funkar inte
-                        {
+
+                      int compareParkingLot=  int.Parse(items);
+                        if(compareParkingLot.Equals(counter)) { 
                             CreateVehicleButton.BackColor = Color.Green;
                             CreateVehicleButton.Click += new EventHandler(CreateVehicleButton_Click);
                             this.VehicleTableLayoutPanel.Controls.Add(CreateVehicleButton);
-                        }
+                      }
+                     
                     }
                
                 }
-          
+              
 
-           
 
-               
             }
         }
 
