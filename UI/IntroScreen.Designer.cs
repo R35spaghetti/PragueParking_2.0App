@@ -34,6 +34,7 @@
             this.ParkingGarageLimitationValuesButton = new System.Windows.Forms.Button();
             this.GarageOperationsButton = new System.Windows.Forms.Button();
             this.ParkedvehiclesButton = new System.Windows.Forms.Button();
+            this.TestDataButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UpdatePrice
@@ -95,11 +96,22 @@
             this.ParkedvehiclesButton.UseVisualStyleBackColor = true;
             this.ParkedvehiclesButton.Click += new System.EventHandler(this.ParkedVehiclesButton_Click);
             // 
+            // TestDataButton
+            // 
+            this.TestDataButton.Location = new System.Drawing.Point(440, 46);
+            this.TestDataButton.Name = "TestDataButton";
+            this.TestDataButton.Size = new System.Drawing.Size(133, 29);
+            this.TestDataButton.TabIndex = 5;
+            this.TestDataButton.Text = "Get test data";
+            this.TestDataButton.UseVisualStyleBackColor = true;
+            this.TestDataButton.Click += new System.EventHandler(this.TestDataButton_Click);
+            // 
             // IntroScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 253);
+            this.ClientSize = new System.Drawing.Size(620, 253);
+            this.Controls.Add(this.TestDataButton);
             this.Controls.Add(this.ParkedvehiclesButton);
             this.Controls.Add(this.GarageOperationsButton);
             this.Controls.Add(this.ParkingGarageLimitationValuesButton);
@@ -122,5 +134,6 @@
         private Button ParkingGarageLimitationValuesButton;
         private Button GarageOperationsButton;
         private Button ParkedvehiclesButton;
+        private Button TestDataButton;
     }
 }

@@ -65,6 +65,10 @@ namespace UI
       
         }
 
-
+        private void TestDataButton_Click(object sender, EventArgs e)
+        {
+            ParkingGarageLogic logic = new ParkingGarageLogic();
+            logic.CreateTheDB();
+        }
     }
 }
