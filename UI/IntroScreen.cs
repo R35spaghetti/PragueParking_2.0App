@@ -26,6 +26,10 @@ namespace UI
 
         private void PriceWindow_Load(object sender, EventArgs e)
         {
+            TestShowButtonsVehicleScreen testShowButtonsVehicleScreen = new TestShowButtonsVehicleScreen();
+            testShowButtonsVehicleScreen.Show(this);
+
+
             ParkingGarageLimitations parkingGarageLimitations = new();
             string prices = "";
          PriceWindow.Text = parkingGarageLimitations.GetRentalPrices(prices);
