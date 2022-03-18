@@ -124,7 +124,7 @@ namespace Core.ParkingGarage
             ParkingGarageLimitations parkingGarageLimitations = new();
             int carRentalPrice = parkingGarageLimitations.GetOneIntValueFromJsonFile(1);
             int mcRentalPrice = parkingGarageLimitations.GetOneIntValueFromJsonFile(2);
-
+            Console.WriteLine("test");
             double price = 0;
             if (vehicleType == "Car")
             {
@@ -136,7 +136,7 @@ namespace Core.ParkingGarage
             }
             return price;
         }
-
+        
         //Tar ut både parkeringsplatsen och nummerplåten i en objektlista
         public List<object> PresentVehicle(string vehicleType)
         {
