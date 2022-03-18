@@ -19,6 +19,7 @@ namespace UI
         //        //3. plocka ut alla parkeringsplatser o lägg i en array
         //        //4. jämför dessa parkeringsplatser med tabellen
         //        //5. om samma, byt ut
+        ParkingGarageLimitations parkingGarageLimitations = new();
 
         public TestShowButtonsVehicleScreen()
         {
@@ -28,7 +29,6 @@ namespace UI
         //skapar knapp
         private void TestShowButtonsVehicleScreen_Load(object sender, EventArgs e)
         {
-            ParkingGarageLimitations parkingGarageLimitations = new();
             int parkingSpotsInTheGarage = parkingGarageLimitations.GetOneIntValueFromJsonFile(3);
 
 
@@ -88,22 +88,31 @@ namespace UI
                     this.VehicleTableLayoutPanel.Controls.Add(VehicleInfoButton, j, i);
                     VehicleInfoButton.Dock = DockStyle.Fill;
 
-                    //Siffran 12 byts ut mot hej världen
+                    //Klicka på 12 för att visa text
                     if(VehicleInfoButton.Name == "12")
                     {
-                        VehicleInfoButton.Text = "Hej världen";
+                        VehicleInfoButton.Click += new EventHandler(VehicleInfoButton_Click);
                         this.VehicleTableLayoutPanel.Controls.Add(VehicleInfoButton);
                     }
 
-                    //För långsam
-             //   ReplaceNumericButtonsWithNumberPlateAndParkingSpot(VehicleInfoButton, parkingSpotsInTheGarage);
 
+                }
+                void VehicleInfoButton_Click(object sender, EventArgs e)
+                {
+                    ShowVehiclesRichTextBox.Text = "fasf | 12";
                 }
             }
         }
         //Njaa
-        private void ReplaceNumericButtonsWithNumberPlateAndParkingSpot(Button VehicleInfoButton, int parkingSpotsInTheGarage)
+        private void ReplaceNumericButtonsWithNumberPlateAndParkingSpot(int parkingSpotsInTheGarage)
         {
+        //    int[] onlyTheParkingSpot = 0;
+            List<string> numberplatesWithParkingSpot = new();
+            parkingSpotsInTheGarage = parkingGarageLimitations.GetOneIntValueFromJsonFile(3);
+
+
+
+
             ParkingGarageLogic logic = new();
 
             var carNumberPlateAndParkingSpot = "";
@@ -121,13 +130,16 @@ namespace UI
 
                 if (carNumberPlateAndParkingSpot != "" && carNumberPlateAndParkingSpot != previousEntryCar)
                 {
-                    previousEntryCar = carNumberPlateAndParkingSpot;
+
+                    numberplatesWithParkingSpot.Add(carNumberPlateAndParkingSpot);
+                     previousEntryCar = carNumberPlateAndParkingSpot;
 
 
                 }
 
                 if (motorcycleNumberPlateAndParkingSpot != "" && motorcycleNumberPlateAndParkingSpot != previousEntryMC)
                 {
+                    numberplatesWithParkingSpot.Add(motorcycleNumberPlateAndParkingSpot);
                     previousEntryMC = motorcycleNumberPlateAndParkingSpot;
 
 

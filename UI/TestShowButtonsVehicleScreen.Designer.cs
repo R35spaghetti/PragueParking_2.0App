@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.VehicleTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.ShowVehiclesRichTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // VehicleTableLayoutPanel
@@ -238,15 +239,24 @@
             this.VehicleTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.VehicleTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.VehicleTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.VehicleTableLayoutPanel.Size = new System.Drawing.Size(917, 459);
+            this.VehicleTableLayoutPanel.Size = new System.Drawing.Size(893, 449);
             this.VehicleTableLayoutPanel.TabIndex = 6;
             this.VehicleTableLayoutPanel.TabStop = true;
+            // 
+            // ShowVehiclesRichTextBox
+            // 
+            this.ShowVehiclesRichTextBox.Location = new System.Drawing.Point(1000, 0);
+            this.ShowVehiclesRichTextBox.Name = "ShowVehiclesRichTextBox";
+            this.ShowVehiclesRichTextBox.Size = new System.Drawing.Size(191, 377);
+            this.ShowVehiclesRichTextBox.TabIndex = 7;
+            this.ShowVehiclesRichTextBox.Text = "";
             // 
             // TestShowButtonsVehicleScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(916, 450);
+            this.ClientSize = new System.Drawing.Size(1203, 450);
+            this.Controls.Add(this.ShowVehiclesRichTextBox);
             this.Controls.Add(this.VehicleTableLayoutPanel);
             this.Name = "TestShowButtonsVehicleScreen";
             this.Text = "TestShowButtonsVehicleScreen";
@@ -260,5 +270,6 @@
 
         private TableLayoutPanel VehicleTableLayoutPanel;
         private Button ShowVehicleButton;
+        private RichTextBox ShowVehiclesRichTextBox;
     }
 }
