@@ -30,12 +30,13 @@
         {
             this.ShowVehiclesRichTextBox = new System.Windows.Forms.RichTextBox();
             this.VehicleTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.InfoButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ShowVehiclesRichTextBox
             // 
             this.ShowVehiclesRichTextBox.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ShowVehiclesRichTextBox.Location = new System.Drawing.Point(1101, 12);
+            this.ShowVehiclesRichTextBox.Location = new System.Drawing.Point(1197, 12);
             this.ShowVehiclesRichTextBox.Name = "ShowVehiclesRichTextBox";
             this.ShowVehiclesRichTextBox.Size = new System.Drawing.Size(307, 738);
             this.ShowVehiclesRichTextBox.TabIndex = 7;
@@ -51,14 +52,26 @@
             this.VehicleTableLayoutPanel.RowCount = 2;
             this.VehicleTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.VehicleTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.VehicleTableLayoutPanel.Size = new System.Drawing.Size(1080, 863);
+            this.VehicleTableLayoutPanel.Size = new System.Drawing.Size(1171, 863);
             this.VehicleTableLayoutPanel.TabIndex = 8;
+            // 
+            // InfoButton
+            // 
+            this.InfoButton.BackColor = System.Drawing.Color.IndianRed;
+            this.InfoButton.Location = new System.Drawing.Point(1609, 12);
+            this.InfoButton.Name = "InfoButton";
+            this.InfoButton.Size = new System.Drawing.Size(35, 29);
+            this.InfoButton.TabIndex = 0;
+            this.InfoButton.Text = "?";
+            this.InfoButton.UseVisualStyleBackColor = false;
+            this.InfoButton.Click += new System.EventHandler(this.InfoButton_Click);
             // 
             // ShowParkingLotOverviewScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1656, 875);
+            this.Controls.Add(this.InfoButton);
             this.Controls.Add(this.VehicleTableLayoutPanel);
             this.Controls.Add(this.ShowVehiclesRichTextBox);
             this.Name = "ShowParkingLotOverviewScreen";
@@ -71,5 +84,6 @@
         #endregion
         private RichTextBox ShowVehiclesRichTextBox;
         private TableLayoutPanel VehicleTableLayoutPanel;
+        private Button InfoButton;
     }
 }

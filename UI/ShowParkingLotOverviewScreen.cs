@@ -165,6 +165,7 @@ namespace UI
                         }
                     }
 
+
                     //För att rött och gult blir orange 8)
                     else if (HoldVehicleTypeAndAmountOfVehicles.Item2 >= 2)
                     {
@@ -189,6 +190,12 @@ namespace UI
        //     ShowVehiclesRichTextBox.Text = 
 
 
+        }
+
+        private void InfoButton_Click(object sender, EventArgs e)
+        {
+            InfoParkingLotColoursScreen infoParkingLot = new();
+            infoParkingLot.Show(this);
         }
     }
 }

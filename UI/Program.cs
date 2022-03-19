@@ -3,7 +3,8 @@ using Core;
 namespace UI
 {
     
-
+//TODO: Inte krascha när man skickar in data igen.
+//TODO: Kunna se vad varje parkering innehåller, antingen vid klick eller som en hel lista om man misslyckas med föregående.
     internal static class Program
     {
         /// <summary>
