@@ -246,10 +246,54 @@ namespace Core.ParkingGarage
                 }
             }
 
-           // result = sizeOfCar+ sizeOfMotorcycle;
-
             return result;
         }
     
+       /* item1 - håller i typ av fordon (byts alltid ut om flera typer av fordon finns)
+          item2 - håller i antalet unika fordonstyper på vald parkeringsplats
+          item3 - håller i den genomsökta parkeringsplatsens plats */
+        public (string, int, int) WhatKindOfVehiclesInSelectedParkingSpot((string,int, int) holdVehicleTypeAndAmountOfVehicles)
+        {
+            int countVehicleTypes = 0;
+            var previousVehicleType = "";
+
+            using var context = new VehicleContext();
+            {
+                foreach (var foundVehicle in context.Garage)
+
+
+
+                {
+                    var currentParkingSpot = foundVehicle.ParkingSpot;
+
+                    if (currentParkingSpot == holdVehicleTypeAndAmountOfVehicles.Item3)
+                    {
+                        var vehicleType = foundVehicle.VehicleType; 
+                        
+
+                        if (vehicleType == null || vehicleType == null)
+                        { }
+
+                     else if(vehicleType != previousVehicleType)
+                        {
+                            countVehicleTypes++;
+
+                        }
+                      
+                            holdVehicleTypeAndAmountOfVehicles.Item1 = vehicleType;
+                            holdVehicleTypeAndAmountOfVehicles.Item2 = countVehicleTypes;
+                        
+
+
+                        previousVehicleType = vehicleType;
+
+                    }
+
+                }
+                return holdVehicleTypeAndAmountOfVehicles;
+
+
+            }
+        }
     }
 }
