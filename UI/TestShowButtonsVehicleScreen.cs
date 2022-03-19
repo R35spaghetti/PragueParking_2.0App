@@ -26,7 +26,7 @@ namespace UI
 
         public TestShowButtonsVehicleScreen()
         {
-            CreateVehicleInformationButton();
+           // CreateVehicleInformationButton();
             InitializeComponent();
 
         }
@@ -36,8 +36,8 @@ namespace UI
         private void CreateVehicleInformationButton()
         {
             Button VehicleButton = new Button();
-            //VehicleButton.Height = 200;
-            //VehicleButton.Width = 200;
+            VehicleButton.Height = 200;
+            VehicleButton.Width = 200;
 
 
 
@@ -90,11 +90,11 @@ namespace UI
             //Storleken på knapparna i % i TableLayoutPanelen
             for (int i = 0; i < columns; i++)
             {
-                this.VehicleTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25));
+                this.VehicleTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50));
             }
             for (int i = 0; i < rows; i++)
             {
-                this.VehicleTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25));
+                this.VehicleTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50));
             }
 
             //Två loopar för att skriva ut vardera knapp, lodrätt och vågrätt
@@ -109,6 +109,7 @@ namespace UI
 
                     //En ny knapp vid varje ny position
                     var CreateVehicleButton = new Button();
+                    CreateVehicleInformationButton();
 
                     //Lägger till siffror, som 1,2,3,4,5 osv till de genererade knapparna
                     CreateVehicleButton.Text = string.Format("{0}", numberForButton);

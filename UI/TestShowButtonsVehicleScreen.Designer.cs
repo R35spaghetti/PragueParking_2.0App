@@ -50,14 +50,14 @@
             this.VehicleTableLayoutPanel.RowCount = 2;
             this.VehicleTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.VehicleTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.VehicleTableLayoutPanel.Size = new System.Drawing.Size(728, 489);
+            this.VehicleTableLayoutPanel.Size = new System.Drawing.Size(1081, 750);
             this.VehicleTableLayoutPanel.TabIndex = 8;
             // 
             // TestShowButtonsVehicleScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1340, 597);
+            this.ClientSize = new System.Drawing.Size(1531, 762);
             this.Controls.Add(this.VehicleTableLayoutPanel);
             this.Controls.Add(this.ShowVehiclesRichTextBox);
             this.Name = "TestShowButtonsVehicleScreen";
