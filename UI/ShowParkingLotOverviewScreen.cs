@@ -44,13 +44,15 @@ namespace UI
 
         }
 
-        private void CreateVehicleInformationButton_Click(object? sender, EventArgs e)
+        private void CreateVehicleInformationButton_Click(object sender, EventArgs e)
         {
+            //Kan nu få klickbara knappar
+            Button vehicleButton = sender as Button;
+          int counter = int.Parse(vehicleButton.Name);
+            MessageBox.Show("Jag är nummer "+vehicleButton.Name);
 
 
-            PrintInfoRichTextBox();
-            //Presenterar alla nummerplåtar och parkeringsplatsen genom en sträng
-
+     
         }
 
         //skapar knapp
@@ -131,8 +133,10 @@ namespace UI
 
                     //Lägger till siffror, som 1,2,3,4,5 osv till de genererade knapparna
                     CreateVehicleButton.Text = string.Format("{0}", numberForButton);
+
                     //Namnger kontrollerna
                     CreateVehicleButton.Name = string.Format("{0}", numberForButton);
+
 
                     //Lägger till knappen vid rad "x" och kolumn "y" i rutnätet.
                     this.VehicleTableLayoutPanel.Controls.Add(CreateVehicleButton, j, i);
