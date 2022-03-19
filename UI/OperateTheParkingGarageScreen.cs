@@ -69,10 +69,25 @@ namespace UI
             currentVehicleType = handleParkingGarage.GetNumberPlateVehicleType(NumberPlateTextBox.Text);
 
             price = handleParkingGarage.HandlePrice(checkoutPrice, currentVehicleType);
-            InfoRichTextBox.Text = $"Current rental price is {price.ToString()}";
 
-            parkingGarageLogic.ParkingGarageOptions(4, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
-            
+            if (price > 0)
+            {
+                InfoRichTextBox.Text = $"Current rental price for {NumberPlateTextBox.Text} is {price.ToString()}";
+            }
+            else
+            {
+                InfoRichTextBox.Text = $"Parking was free!";
+            }
+
+            if (NumberPlateTextBox.Text == null)
+            {
+                InfoRichTextBox.Text = $"The vehicle was already removed or it doesn't exist!";
+            }
+            else
+            {
+
+                parkingGarageLogic.ParkingGarageOptions(4, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
+            }
            
             
            

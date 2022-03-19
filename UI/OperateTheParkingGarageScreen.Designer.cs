@@ -191,7 +191,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(636, 291);
+            this.ClientSize = new System.Drawing.Size(638, 285);
             this.Controls.Add(this.InfoRichTextBox);
             this.Controls.Add(this.RemoveVehicleRadioButton);
             this.Controls.Add(this.MoveVehicleRadioButton);
