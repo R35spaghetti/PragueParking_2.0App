@@ -1,5 +1,6 @@
 
 using Core;
+using Core.ParkingGarage;
 using GhostSheriffsDatabaseAccess;
 using PragueParking_2._0;
 namespace UI
@@ -63,8 +64,14 @@ namespace UI
 
         private void TestDataButton_Click(object sender, EventArgs e)
         {
-            ParkingGarageLogic logic = new();
-            logic.CreateTheDB();
-        }
+            
+        
+          
+                ParkingGarageLogic logic = new();
+                logic.CreateTheDB();
+                TestDataButton.Text = "DONE!";
+                TestDataButton.BackColor = Color.Green;
+            }
+        
     }
 }
