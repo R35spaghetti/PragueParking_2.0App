@@ -46,10 +46,12 @@ namespace UI
 
         private void CreateVehicleInformationButton_Click(object sender, EventArgs e)
         {
+            string textForClickableButton = "";
             //Kan nu få klickbara knappar
             Button vehicleButton = sender as Button;
-          int counter = int.Parse(vehicleButton.Name);
-            MessageBox.Show("Jag är nummer "+vehicleButton.Name);
+          int buttonNameAsNumber = int.Parse(vehicleButton.Name);
+            textForClickableButton = logic.ShowParkingLotInformation(buttonNameAsNumber);
+            MessageBox.Show(textForClickableButton);
 
 
      
@@ -187,15 +189,7 @@ namespace UI
             }
         }
 
-        private void PrintInfoRichTextBox()
-        {
-            ShowVehiclesRichTextBox.Text = $"{longStringWithCars} \n {longStringWithMCS}";
-
-       //     ShowVehiclesRichTextBox.Text = 
-
-
-        }
-
+    
         private void InfoButton_Click(object sender, EventArgs e)
         {
             InfoParkingLotColoursScreen infoParkingLot = new();

@@ -91,36 +91,31 @@ namespace Core
 
             }
         }
-        //TODO gör om, att den presenterar alla fordon i parkeringshuset
-        //Hämta regnummer och parkeringsplats, slå sedan ihop båda två till en sträng
-        public string PresentVehicles(string numberPlateWithParkingSpot, int parkingSpot, string vehicle, DateTime timeStamp)
+        public string ShowParkingLotInformation(int NumberFromButton)
         {
-            /*Då allt ligger i en objektlista måste denna öka med 3 varje gång när man ska ta ut nästa fordon 
-             1. nummerplåt. 2. parkeringsplats 3. tidstämpel */
-            int placementInList = parkingSpot; //Parkeringsplatsen kan både ge parkeringsplatsvärdet och räkna upp listan
-            List<object> vehiclesWithParkingSpot = Garage.PresentVehicle(vehicle);
+            string result = "";
 
-            //om outofbounds
-            try
+            using var context = new VehicleContext();
             {
-                //Tar både nummerplåten och parkeringsnummret 
-                numberPlateWithParkingSpot = (string)vehiclesWithParkingSpot[placementInList];
+                foreach (var foundVehicles in context.Garage)
 
 
-                placementInList++; //Parkeringsplatsen kommer alltid ligga bredvid nummerplåten i objektlistan
-                parkingSpot = (int)vehiclesWithParkingSpot[placementInList];
 
-                placementInList++;
-                timeStamp = (DateTime)vehiclesWithParkingSpot[placementInList];
+                {
+                    var currentParkingSpot = foundVehicles.ParkingSpot;
 
+                    if (currentParkingSpot == NumberFromButton)
+                    {
 
-                numberPlateWithParkingSpot += " | " + parkingSpot.ToString() + " | " + vehicle + " | " + timeStamp.ToString();
+                        var numberPlate = foundVehicles.NumberPlate;
+                        var parkingSpot = foundVehicles.ParkingSpot;
+                        var TimeStampDate = foundVehicles.CheckInTimeStamp;
+
+                        result += $"Number plate: {numberPlate} - parking spot: {parkingSpot} - checked in: {TimeStampDate} \n";
+                    }
+                }
             }
-
-            catch (ArgumentOutOfRangeException)
-            { }
-
-            return numberPlateWithParkingSpot;
+            return result;
 
         }
 

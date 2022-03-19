@@ -138,41 +138,6 @@ namespace Core.ParkingGarage
             return price;
         }
 
-        //Tar ut både parkeringsplatsen, tiden nummerplåten i en objektlista
-        public List<object> PresentVehicle(string vehicleType)
-        {
-            List<object> vehicle = new();
-
-            using var context = new VehicleContext();
-            {
-                foreach (var foundVehicle in context.Garage)
-
-
-
-                {
-                    var typeOfVehicle = foundVehicle.VehicleType;
-
-                    if (typeOfVehicle == vehicleType)
-                    {
-
-                        var numberPlate = foundVehicle.NumberPlate;
-                        var parkingSpot = foundVehicle.ParkingSpot;
-                        var TimeStampDate = foundVehicle.CheckInTimeStamp;
-
-                        if (numberPlate == null)
-                        { }
-                        else
-                        {
-                            vehicle.Add(numberPlate);
-                            vehicle.Add(parkingSpot);
-                            vehicle.Add(TimeStampDate); 
-                        }
-                    }
-                }
-
-                return vehicle;
-            }
-        }
 
         //Hämtar fordonstypen
         public string GetNumberPlateVehicleType(string numberPlate)
