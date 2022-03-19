@@ -45,10 +45,9 @@ namespace UI
 
         private void CreateVehicleButton_Click(object? sender, EventArgs e)
         {
-            //Presenterar alla nummerplåtar genom en sträng
+            //Presenterar alla nummerplåtar och parkeringsplatsen genom en sträng
             ShowVehiclesRichTextBox.Text = $"{longStringWithCars} \n {longStringWithMCS}";
 
-            //Kan visa parkeringsnummer också
         }
 
         //skapar knapp
@@ -58,7 +57,9 @@ namespace UI
             List<string> splitGetAffectedParkinglot = new();
 
             int parkingSpotsInTheGarage = parkingGarageLimitations.GetOneIntValueFromJsonFile(3);
+
             splitGetAffectedParkinglot = GetAllAffectedParkingLots(splitGetAffectedParkinglot, parkingSpotsInTheGarage);
+            splitGetAffectedParkinglot.Sort();
 
             //TODO låta användaren lösa detta problem
             //Antalet platser beroende på maximala antalet parkeringsplatser
@@ -100,11 +101,6 @@ namespace UI
                 for (int j = 0; j < columns; j++)
                 {
                     
-              
-
-
-
-
 
                     numberForButton++;
 
