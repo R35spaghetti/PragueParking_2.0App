@@ -96,7 +96,6 @@ namespace Core
         public string PresentVehicles(string numberPlateWithParkingSpot, int parkingSpot, string vehicle)
         {
 
-
             List<object> vehiclesWithParkingSpot = Garage.PresentVehicle(vehicle);
 
             //om outofbounds
@@ -107,7 +106,8 @@ namespace Core
                 parkingSpot++; //Parkeringsplatsen kommer alltid ligga bredvid nummerplåten i objektlistan
                 parkingSpot = (int)vehiclesWithParkingSpot[parkingSpot];
 
-                numberPlateWithParkingSpot += " | " + parkingSpot.ToString();
+
+                numberPlateWithParkingSpot += " | " + parkingSpot.ToString() + " | " + vehicle;
             }
 
             catch (ArgumentOutOfRangeException)

@@ -32,7 +32,7 @@ namespace UI
         }
 
         /*Knapp som genereras, blir grön om ett fordon har parkerats. Vid ett tryck på knappen -
-        / visas allt som är parkerat*/
+        / visas allt som är parkerat - redundant?*/
         private void CreateVehicleButton()
         {
             Button VehicleButton = new Button();
@@ -54,7 +54,8 @@ namespace UI
         //skapar knapp
         private void TestShowButtonsVehicleScreen_Load(object sender, EventArgs e)
         {
-            ParkingGarageLogic logic = new();
+
+
             int parkingSpotsInTheGarage = parkingGarageLimitations.GetOneIntValueFromJsonFile(3);
 
             //TODO låta användaren lösa detta problem
@@ -63,16 +64,14 @@ namespace UI
             int columns = parkingSpotsInTheGarage / 10;
 
             
-            int counter = 0; //för att visa knapparna som "1" "2" "3"...osv
+            int numberForButton = 0; //för att visa knapparna som "1" "2" "3"...osv
             int currentParkingSpot = 0;
-            List<string> splitGetCarParkinglot = new();
+            List<string> splitGetAffectedParkinglot = new();
 
 
-            var carNumberPlateAndParkingSpot = "";
-            var motorcycleNumberPlateAndParkingSpot = "";
+          
 
-            var previousEntryMC = "";
-            var previousEntryCar = "";
+          
        
 
             this.VehicleTableLayoutPanel.ColumnCount = columns;
@@ -83,7 +82,7 @@ namespace UI
             this.VehicleTableLayoutPanel.RowStyles.Clear();
 
 
-            //Storleken på knapparna i pixlar i TableLayoutPanelen
+            //Storleken på knapparna i % i TableLayoutPanelen
             for (int i = 0; i < columns; i++)
             {
                 this.VehicleTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25));
@@ -100,56 +99,34 @@ namespace UI
                 for (int j = 0; j < columns; j++)
                 {
                     
-                    //Få ut nummerplåten och parkeringsplatsen från databasen
-                    carNumberPlateAndParkingSpot = logic.PresentVehicles(carNumberPlateAndParkingSpot, currentParkingSpot, "Car");
-                    motorcycleNumberPlateAndParkingSpot = logic.PresentVehicles(motorcycleNumberPlateAndParkingSpot, currentParkingSpot, "Motorcycle");
+              
 
-                    if (carNumberPlateAndParkingSpot != "" && carNumberPlateAndParkingSpot != previousEntryCar)
-                    {
-                        //få regnummer
-                      string[]  splitGetCarAndParkingSpot = carNumberPlateAndParkingSpot.Split('|');
-                        longStringWithCars += $"\n{carNumberPlateAndParkingSpot}\n";
-
-                        splitGetCarParkinglot.Add(splitGetCarAndParkingSpot[1]); //få parkeringsplats
-
-                        previousEntryCar = carNumberPlateAndParkingSpot;
-
-
-                    }
-
-                    if (motorcycleNumberPlateAndParkingSpot != "" && motorcycleNumberPlateAndParkingSpot != previousEntryMC)
-                    {
-                        //få regnummer
-                       string[] splitGetMotorcycleAndParkingSpot = motorcycleNumberPlateAndParkingSpot.Split('|');
-                        longStringWithMCS += $"\n{motorcycleNumberPlateAndParkingSpot}\n";
-                        splitGetCarParkinglot.Add(splitGetMotorcycleAndParkingSpot[1]); // få parkeringsplats
-                        previousEntryMC = motorcycleNumberPlateAndParkingSpot;
-
-
-                    }
+                    splitGetAffectedParkinglot = GetAllAffectedParkingLots(splitGetAffectedParkinglot, currentParkingSpot);
 
                     currentParkingSpot += 2; //För att kunna ta ut både nummerplåten och parkeringsplatsen
-                    counter++;
+
+
+
+                    numberForButton++;
 
                     //En ny knapp vid varje ny position
-
                     var CreateVehicleButton = new Button();
 
                     //Lägger till siffror, som 1,2,3,4,5 osv till de genererade knapparna
-                    CreateVehicleButton.Text = string.Format("{0}", counter);
+                    CreateVehicleButton.Text = string.Format("{0}", numberForButton);
                     //Namnger kontrollerna
-                    CreateVehicleButton.Name = string.Format("{0}",counter);
+                    CreateVehicleButton.Name = string.Format("{0}",numberForButton);
 
                     //Lägger till knappen vid rad "x" och kolumn "y" i rutnätet.
                     this.VehicleTableLayoutPanel.Controls.Add(CreateVehicleButton, j, i);
                     CreateVehicleButton.Dock = DockStyle.Fill;
 
 
-                    foreach (var items in splitGetCarParkinglot)
+                    foreach (var items in splitGetAffectedParkinglot)
                     {
 
                       int compareParkingLot=  int.Parse(items);
-                        if(compareParkingLot.Equals(counter)) { 
+                        if(compareParkingLot.Equals(numberForButton)) { 
                             CreateVehicleButton.BackColor = Color.Green;
                             CreateVehicleButton.Click += new EventHandler(CreateVehicleButton_Click);
                             this.VehicleTableLayoutPanel.Controls.Add(CreateVehicleButton);
@@ -164,11 +141,50 @@ namespace UI
             }
         }
 
-    
+        private List<string> GetAllAffectedParkingLots(List<string> splitGetAffectedParkinglot, int currentParkingSpot)
+        {
+            ParkingGarageLogic logic = new();
 
 
 
+            var carNumberPlateAndParkingSpot = "";
+            var motorcycleNumberPlateAndParkingSpot = "";
 
+            //Få ut nummerplåten och parkeringsplatsen från databasen
+            carNumberPlateAndParkingSpot = logic.PresentVehicles(carNumberPlateAndParkingSpot, currentParkingSpot, "Car");
+            motorcycleNumberPlateAndParkingSpot = logic.PresentVehicles(motorcycleNumberPlateAndParkingSpot, currentParkingSpot, "Motorcycle");
+
+
+            var previousEntryMC = "";
+            var previousEntryCar = "";
+
+            if (carNumberPlateAndParkingSpot != "" && carNumberPlateAndParkingSpot != previousEntryCar)
+            {
+                //få regnummer
+                string[] splitGetCarAndParkingSpot = carNumberPlateAndParkingSpot.Split('|');
+                longStringWithCars += $"\n{carNumberPlateAndParkingSpot}\n";
+
+                splitGetAffectedParkinglot.Add(splitGetCarAndParkingSpot[1]); //få parkeringsplats
+
+                previousEntryCar = carNumberPlateAndParkingSpot;
+
+
+            }
+
+            if (motorcycleNumberPlateAndParkingSpot != "" && motorcycleNumberPlateAndParkingSpot != previousEntryMC)
+            {
+                //få regnummer
+                string[] splitGetMotorcycleAndParkingSpot = motorcycleNumberPlateAndParkingSpot.Split('|');
+                longStringWithMCS += $"\n{motorcycleNumberPlateAndParkingSpot}\n";
+                splitGetAffectedParkinglot.Add(splitGetMotorcycleAndParkingSpot[1]); // få parkeringsplats
+                previousEntryMC = motorcycleNumberPlateAndParkingSpot;
+
+
+            }
+
+
+            return splitGetAffectedParkinglot;
+        }
     }
 
 
