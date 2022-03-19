@@ -26,6 +26,7 @@ namespace UI
             string previousEntryMC = "";
             string previousEntryCar = "";
             int currentParkingSpot = 0;
+            var timeStamp = DateTime.Now;
          
             ParkingGarageLimitations parkingGarageLimitations = new();
         int parkingSpotsInTheGarage =   parkingGarageLimitations.GetOneIntValueFromJsonFile(3);
@@ -33,11 +34,11 @@ namespace UI
             for (int i = 0; i < parkingSpotsInTheGarage; i++)
             {
 
-                CarListBox.Text = parkingGarageLogic.PresentVehicles(CarListBox.Text, currentParkingSpot, "Car");
-                MotorcycleListBox.Text = parkingGarageLogic.PresentVehicles(MotorcycleListBox.Text, currentParkingSpot, "Motorcycle");
+                CarListBox.Text = parkingGarageLogic.PresentVehicles(CarListBox.Text, currentParkingSpot, "Car", timeStamp);
+                MotorcycleListBox.Text = parkingGarageLogic.PresentVehicles(MotorcycleListBox.Text, currentParkingSpot, "Motorcycle", timeStamp);
                              
 
-                currentParkingSpot += 2;
+                currentParkingSpot += 3; 
 
                 if (MotorcycleListBox.Text != "" && MotorcycleListBox.Text != previousEntryMC)
                 {

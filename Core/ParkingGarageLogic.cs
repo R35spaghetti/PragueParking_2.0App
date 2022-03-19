@@ -93,21 +93,28 @@ namespace Core
         }
 
         //Hämta regnummer och parkeringsplats, slå sedan ihop båda två till en sträng
-        public string PresentVehicles(string numberPlateWithParkingSpot, int parkingSpot, string vehicle)
+        public string PresentVehicles(string numberPlateWithParkingSpot, int parkingSpot, string vehicle, DateTime timeStamp)
         {
-
+            /*Då allt ligger i en objektlista måste denna öka med 3 varje gång när man ska ta ut nästa fordon 
+             1. nummerplåt. 2. parkeringsplats 3. tidstämpel */
+            int placementInList = parkingSpot; //Parkeringsplatsen kan både ge parkeringsplatsvärdet och räkna upp listan
             List<object> vehiclesWithParkingSpot = Garage.PresentVehicle(vehicle);
 
             //om outofbounds
             try
             {
                 //Tar både nummerplåten och parkeringsnummret 
-                numberPlateWithParkingSpot = (string)vehiclesWithParkingSpot[parkingSpot];
-                parkingSpot++; //Parkeringsplatsen kommer alltid ligga bredvid nummerplåten i objektlistan
-                parkingSpot = (int)vehiclesWithParkingSpot[parkingSpot];
+                numberPlateWithParkingSpot = (string)vehiclesWithParkingSpot[placementInList];
 
 
-                numberPlateWithParkingSpot += " | " + parkingSpot.ToString() + " | " + vehicle;
+                placementInList++; //Parkeringsplatsen kommer alltid ligga bredvid nummerplåten i objektlistan
+                parkingSpot = (int)vehiclesWithParkingSpot[placementInList];
+
+                placementInList++;
+                timeStamp = (DateTime)vehiclesWithParkingSpot[placementInList];
+
+
+                numberPlateWithParkingSpot += " | " + parkingSpot.ToString() + " | " + vehicle + " | " + timeStamp.ToString();
             }
 
             catch (ArgumentOutOfRangeException)

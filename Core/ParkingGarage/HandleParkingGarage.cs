@@ -156,6 +156,7 @@ namespace Core.ParkingGarage
 
                         var numberPlate = foundVehicle.NumberPlate;
                         var parkingSpot = foundVehicle.ParkingSpot;
+                        var TimeStampDate = foundVehicle.CheckInTimeStamp;
 
                         if (numberPlate == null)
                         { }
@@ -163,6 +164,7 @@ namespace Core.ParkingGarage
                         {
                             vehicle.Add(numberPlate);
                             vehicle.Add(parkingSpot);
+                            vehicle.Add(TimeStampDate); 
                         }
                     }
                 }
@@ -193,5 +195,6 @@ namespace Core.ParkingGarage
 
             return result;
         }
+
     }
 }
