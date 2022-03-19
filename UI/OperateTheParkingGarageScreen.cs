@@ -35,10 +35,12 @@ namespace UI
         {
 
 
-            if (VehicleTypeListBox.Text.Equals(""))
-            { }
+            if (NumberPlateTextBox.Text == "" || ParkingSpotTextBox.Text == "")
+            {
+                InfoRichTextBox.Text = "Invalid value at Number Plate field or Parking Spot field";
+            }
 
-          else if (VehicleTypeListBox.Text.Equals(("Car")))
+            else if (VehicleTypeListBox.Text.Equals(("Car")))
             {
                 parkingGarageLogic.ParkingGarageOptions(1, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
             }
@@ -57,7 +59,10 @@ namespace UI
             int amountOfParkingSpots = jsonValues.GetOneIntValueFromJsonFile(3);
             int spaceLeftInParkingSpot = 0;
             int usedParkingSpotSpace = 0;
+            List<string> allVehicleTypesInCurrentParkingSpot = new List<string>();
 
+             allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
+            usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
 
 
             if (NumberPlateTextBox.Text == "" || ParkingSpotTextBox.Text == "")
@@ -66,7 +71,7 @@ namespace UI
             }
 
             //TODO säger inget om man försöker parkera med samma fordon, men resultatet blir detsamma
-            else if(usedParkingSpotSpace == 0)
+            else if(usedParkingSpotSpace == currentParkingSpotSize)
             {
                 InfoRichTextBox.Text = $"The selected parking spot is full!";
             }
@@ -80,8 +85,9 @@ namespace UI
                 try
                 { 
                 parkingGarageLogic.ParkingGarageOptions(3, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
-
-                List<string> allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
+                
+                //Check the values again
+                allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
                 usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
 
                 spaceLeftInParkingSpot = currentParkingSpotSize - usedParkingSpotSpace;
