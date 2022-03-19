@@ -57,4 +57,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Here you can do the following:
+-Limit the size of vehicles and parking spot
+-Limit the amount of parking spots in the parking garage
+-Fields can be left blank if you don't want to change that value
+
+</value>
+  </data>
 </root>

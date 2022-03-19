@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class TestShowButtonsVehicleScreen
+    partial class ShowParkingLotOverviewScreen
     {
         /// <summary>
         /// Required designer variable.

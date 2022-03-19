@@ -10,19 +10,31 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class ChangeParkingSpacesScreen : Form
+    public partial class ChangeParkingLimitationsScreen : Form
     {
         readonly Core.ParkingGarageLimitations parkingGarageLimitations = new();
         readonly IntroScreen introScreen = new();
 
 
-        public ChangeParkingSpacesScreen()
+        public ChangeParkingLimitationsScreen()
         {
             InitializeComponent();
         }
 
         private void SubmitParkingSpotLimitationValuesButton_Click(object sender, EventArgs e)
         {
+
+            if (!string.IsNullOrWhiteSpace(CarRentalPriceTextbox.Text))
+            {
+                parkingGarageLimitations.SwitchMenuValues(CarRentalPriceTextbox.Text, 1);
+            }
+
+
+            if (!string.IsNullOrWhiteSpace(MCRentalPriceTextbox.Text))
+            {
+                parkingGarageLimitations.SwitchMenuValues(MCRentalPriceTextbox.Text, 2);
+            }
+
             if (!string.IsNullOrWhiteSpace(ParkingSpotTextBox.Text))
             {
                 parkingGarageLimitations.SwitchMenuValues(ParkingSpotTextBox.Text, 3);
@@ -42,6 +54,7 @@ namespace UI
             {
                 parkingGarageLimitations.SwitchMenuValues(ParkingSpotSizeTextBox.Text, 8);
             }
+
 
             this.Hide();
             introScreen.Show();

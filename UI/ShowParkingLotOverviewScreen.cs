@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class TestShowButtonsVehicleScreen : Form
+    public partial class ShowParkingLotOverviewScreen : Form
     {
 
   
@@ -21,7 +21,7 @@ namespace UI
         private object longStringWithCars = "Cars: ";
         private object longStringWithMCS = "Motorcycles: ";
 
-        public TestShowButtonsVehicleScreen()
+        public ShowParkingLotOverviewScreen()
         {
             // CreateVehicleInformationButton();
             InitializeComponent();

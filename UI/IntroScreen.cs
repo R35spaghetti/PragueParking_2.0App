@@ -15,14 +15,7 @@ namespace UI
             InitializeComponent();
         }
 
-    
-        private void UpdatePrice_Click(object sender, EventArgs e)
-        {
-            ChangeRentalPricesScreen rentalPricesScreen = new();
-
-            this.Hide(); //hide previous window
-         rentalPricesScreen.Show(this);
-        }
+   
 
         private void LimitationValuesWindow_Load(object sender, EventArgs e)
         {
@@ -40,7 +33,7 @@ namespace UI
 
         private void ParkingGarageLimitationValuesButton_Click(object sender, EventArgs e)
         {
-            ChangeParkingSpacesScreen changeParkingSpacesScreen = new();
+            ChangeParkingLimitationsScreen changeParkingSpacesScreen = new();
             this.Hide();
             changeParkingSpacesScreen.Show(this);
         }
@@ -54,7 +47,7 @@ namespace UI
 
         private void ParkedVehiclesButton_Click(object sender, EventArgs e)
         {
-            TestShowButtonsVehicleScreen testShowButtonsVehicleScreen = new TestShowButtonsVehicleScreen();
+            ShowParkingLotOverviewScreen testShowButtonsVehicleScreen = new ShowParkingLotOverviewScreen();
             testShowButtonsVehicleScreen.Show(this);
 
 
