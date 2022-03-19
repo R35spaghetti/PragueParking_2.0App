@@ -57,10 +57,10 @@ namespace UI
             ParkingGarageLogic logic = new();
             int parkingSpotsInTheGarage = parkingGarageLimitations.GetOneIntValueFromJsonFile(3);
 
-
+            //TODO låta användaren lösa detta problem
             //Antalet platser beroende på maximala antalet parkeringsplatser
-            var rows = parkingSpotsInTheGarage / 10;
-            var columns = parkingSpotsInTheGarage / 10;
+            int rows = parkingSpotsInTheGarage / 10;
+            int columns = parkingSpotsInTheGarage / 10;
 
             
             int counter = 0; //för att visa knapparna som "1" "2" "3"...osv
@@ -83,14 +83,14 @@ namespace UI
             this.VehicleTableLayoutPanel.RowStyles.Clear();
 
 
-            //Storleken på knapparna i pixlar
+            //Storleken på knapparna i pixlar i TableLayoutPanelen
             for (int i = 0; i < columns; i++)
             {
-                this.VehicleTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100));
+                this.VehicleTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25));
             }
             for (int i = 0; i < rows; i++)
             {
-                this.VehicleTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100));
+                this.VehicleTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25));
             }
 
             //Två loopar för att skriva ut vardera knapp, lodrätt och vågrätt
