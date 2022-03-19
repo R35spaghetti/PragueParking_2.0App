@@ -11,6 +11,7 @@ namespace Core.ParkingGarage
     public class HandleParkingGarage
     {
         //public DateTime TimeStamp { get; set; }
+        ParkingGarageLimitations parkingGarageLimitations = new(); //kanske flyttar ut dessa och dylika metoder till logic
 
         VehicleContext context = new();
 
@@ -156,6 +157,7 @@ namespace Core.ParkingGarage
 
                         var numberPlate = foundVehicle.NumberPlate;
                         var parkingSpot = foundVehicle.ParkingSpot;
+                        var TimeStampDate = foundVehicle.CheckInTimeStamp;
 
                         if (numberPlate == null)
                         { }
@@ -163,6 +165,7 @@ namespace Core.ParkingGarage
                         {
                             vehicle.Add(numberPlate);
                             vehicle.Add(parkingSpot);
+                            vehicle.Add(TimeStampDate); 
                         }
                     }
                 }
@@ -192,6 +195,105 @@ namespace Core.ParkingGarage
             }
 
             return result;
+        }
+
+        //Plocka ut alla fordonstyper från den valda parkeringsplatsen
+        public List<string> CountEachVehicleTypeInSelectedParkingSpot(int currentParkingSpot)
+        {
+            List<string> amountOfVehicleTypes = new();
+
+            using var context = new VehicleContext();
+            {
+                foreach (var vehiclesParkingSpot in context.Garage)
+                {
+                    var selectedParkingSpot = vehiclesParkingSpot.ParkingSpot;
+
+                    if (selectedParkingSpot == currentParkingSpot)
+                    {
+
+                        var vehicleType = vehiclesParkingSpot.VehicleType;
+
+                        if (vehicleType == null)
+                        { }
+                        else
+                        {
+                            amountOfVehicleTypes.Add(vehicleType);
+                        }
+                    }
+                }
+
+                return amountOfVehicleTypes;
+            }
+
+        }
+       public int UsedSpaceInSelectParkingSpot(List<string> collectedVehicleTypes)
+        {
+            int result = 0;
+            int sizeOfCar = parkingGarageLimitations.GetOneIntValueFromJsonFile(6);
+            int sizeOfMotorcycle = parkingGarageLimitations.GetOneIntValueFromJsonFile(7);
+            string car = parkingGarageLimitations.GetOneStringValueFromJsonFile(4);
+            string motorcycle = parkingGarageLimitations.GetOneStringValueFromJsonFile(5);
+
+            foreach (var items in collectedVehicleTypes)
+            {
+                if(items.Equals(car))
+                {
+                    result += sizeOfCar;
+                }
+               else if(items.StartsWith(motorcycle))
+                {
+                    result += sizeOfMotorcycle;
+                }
+            }
+
+            return result;
+        }
+    
+       /* item1 - håller i typ av fordon (byts alltid ut om flera typer av fordon finns)
+          item2 - håller i antalet unika fordonstyper på vald parkeringsplats
+          item3 - håller i den genomsökta parkeringsplatsens plats */
+        public (string, int, int) WhatKindOfVehiclesInSelectedParkingSpot((string,int, int) holdVehicleTypeAndAmountOfVehicles)
+        {
+            int countVehicleTypes = 0;
+            var previousVehicleType = "";
+
+            using var context = new VehicleContext();
+            {
+                foreach (var foundVehicle in context.Garage)
+
+
+
+                {
+                    var currentParkingSpot = foundVehicle.ParkingSpot;
+
+                    if (currentParkingSpot == holdVehicleTypeAndAmountOfVehicles.Item3)
+                    {
+                        var vehicleType = foundVehicle.VehicleType; 
+                        
+
+                        if (vehicleType == null || vehicleType == null)
+                        { }
+
+                     else if(vehicleType != previousVehicleType)
+                        {
+                            countVehicleTypes++;
+
+                        }
+                      
+                            holdVehicleTypeAndAmountOfVehicles.Item1 = vehicleType;
+                            holdVehicleTypeAndAmountOfVehicles.Item2 = countVehicleTypes;
+                        
+
+
+                        previousVehicleType = vehicleType;
+
+                    }
+
+                }
+                return holdVehicleTypeAndAmountOfVehicles;
+
+
+            }
         }
     }
 }
