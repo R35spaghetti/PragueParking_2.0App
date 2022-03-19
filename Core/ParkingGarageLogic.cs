@@ -111,7 +111,8 @@ namespace Core
                         var parkingSpot = foundVehicles.ParkingSpot;
                         var TimeStampDate = foundVehicles.CheckInTimeStamp;
 
-                        result += $"Number plate: {numberPlate} - parking spot: {parkingSpot} - checked in: {TimeStampDate} \n";
+                        result += $" At parking spot {parkingSpot}\n " +
+                            $"Number plate: {numberPlate}. checked in: {TimeStampDate} \n";
                     }
                 }
             }
