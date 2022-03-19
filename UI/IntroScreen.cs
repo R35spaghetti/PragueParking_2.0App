@@ -26,8 +26,7 @@ namespace UI
 
         private void PriceWindow_Load(object sender, EventArgs e)
         {
-            TestShowButtonsVehicleScreen testShowButtonsVehicleScreen = new TestShowButtonsVehicleScreen();
-            testShowButtonsVehicleScreen.Show(this);
+      
 
 
             ParkingGarageLimitations parkingGarageLimitations = new();
@@ -55,11 +54,11 @@ namespace UI
 
         private void ParkedVehiclesButton_Click(object sender, EventArgs e)
         {
-            LoadingScreen loadingScreen = new();
-            loadingScreen.Show(this);
-           
-     
-            
+            TestShowButtonsVehicleScreen testShowButtonsVehicleScreen = new TestShowButtonsVehicleScreen();
+            testShowButtonsVehicleScreen.Show(this);
+
+
+
         }
 
         private void IntroScreen_FormClosing(object sender, FormClosingEventArgs e)
