@@ -62,7 +62,7 @@ namespace Core.ParkingGarage
                 .ToList();
             return vehicleSize[0];
         }
-
+        //TODO används inte
         public string GetVehicleType(string numberPlate)
         {
             var vehicleType = context.Garage

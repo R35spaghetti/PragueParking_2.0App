@@ -34,22 +34,75 @@ namespace UI
         private void AddVehicleToDbButton_Click(object sender, EventArgs e)
         {
 
+        
+            int parkingSpot = int.Parse(ParkingSpotTextBox.Text);
+            int currentParkingSpotSize = jsonValues.GetOneIntValueFromJsonFile(8);
+            int amountOfParkingSpots = jsonValues.GetOneIntValueFromJsonFile(3);
+            int currentSizeAmountForCar = jsonValues.GetOneIntValueFromJsonFile(6);
+            int currentSizeAmountForMC = jsonValues.GetOneIntValueFromJsonFile(7);
 
-            if (NumberPlateTextBox.Text == "" || ParkingSpotTextBox.Text == "")
+            int spaceLeftInParkingSpot = 0;
+            int usedParkingSpotSpace = 0;
+            bool vehicleAlreadyExist = false;
+            List<string> allVehicleTypesInCurrentParkingSpot = new List<string>();
+
+            //Check how much space is left in the parking spot
+            allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
+            usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
+
+
+            vehicleAlreadyExist = handleParkingGarage.SearchVehicle(NumberPlateTextBox.Text);
+
+            if (vehicleAlreadyExist)
             {
-                InfoRichTextBox.Text = "Invalid value at Number Plate field or Parking Spot field";
+                InfoRichTextBox.Text = "That number plate already exists in the parking lot!";
+            }
+            if (NumberPlateTextBox.Text == "" || ParkingSpotTextBox.Text == "" || VehicleTypeListBox.Text =="")
+            {
+                InfoRichTextBox.Text = "Invalid value at Number Plate field, choice of vehicle or Parking spot field";
+            }
+            
+            if (usedParkingSpotSpace == currentParkingSpotSize)
+            {
+                InfoRichTextBox.Text = $"The selected parking spot is full!";
             }
 
-            else if (VehicleTypeListBox.Text.Equals(("Car")))
+            if (parkingSpot > amountOfParkingSpots)
             {
-                parkingGarageLogic.ParkingGarageOptions(1, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
+                InfoRichTextBox.Text = $"Incorrect value! Current max value of parking spots are {amountOfParkingSpots}";
             }
 
-           else if(VehicleTypeListBox.Text.Equals(("Motorcycle")))
+            else if (VehicleTypeListBox.Text.Equals(("Car")) && vehicleAlreadyExist==false)
             {
+                
+                    //Check how much space is left in the parking spot, again
+                    allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
+                    usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
+
+                //Den räknar inte minus först?
+                    spaceLeftInParkingSpot = currentParkingSpotSize - usedParkingSpotSpace - currentSizeAmountForCar;
+
+                    parkingGarageLogic.ParkingGarageOptions(1, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
+                    InfoRichTextBox.Text = $"Car {NumberPlateTextBox.Text} was parked at parking spot: {ParkingSpotTextBox.Text}, space left: {spaceLeftInParkingSpot}";
+                
+            }
+
+           else if(VehicleTypeListBox.Text.Equals(("Motorcycle")) && vehicleAlreadyExist == false)
+            {
+                //Check how much space is left in the parking spot, again
+                allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
+                usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
+
+                spaceLeftInParkingSpot = currentParkingSpotSize - usedParkingSpotSpace - currentSizeAmountForMC;
+
+               
+
                 parkingGarageLogic.ParkingGarageOptions(2, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
+                InfoRichTextBox.Text = $"Motorcycle {NumberPlateTextBox.Text} was parked at parking spot: {ParkingSpotTextBox.Text},  space left: {spaceLeftInParkingSpot}";
 
             }
+
+        
         }
 
         private void MoveVehicleButton_Click(object sender, EventArgs e)
@@ -67,7 +120,7 @@ namespace UI
 
             if (NumberPlateTextBox.Text == "" || ParkingSpotTextBox.Text == "")
             { 
-                InfoRichTextBox.Text = "Invalid value at Number Plate field or Parking Spot field";
+                InfoRichTextBox.Text = "Invalid value at Number Plate field or Parking spot field";
             }
 
             //TODO säger inget om man försöker parkera med samma fordon, men resultatet blir detsamma
@@ -85,9 +138,9 @@ namespace UI
                 try
                 { 
                 parkingGarageLogic.ParkingGarageOptions(3, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
-                
-                //Check the values again
-                allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
+
+                    //Check how much space is left in the parking spot, again
+                 allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
                 usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
 
                 spaceLeftInParkingSpot = currentParkingSpotSize - usedParkingSpotSpace;
@@ -95,6 +148,8 @@ namespace UI
                 InfoRichTextBox.Text = $"Parked {NumberPlateTextBox.Text} at parking spot {ParkingSpotTextBox.Text}\n" +
                 $"space left: {spaceLeftInParkingSpot}";
                 }
+
+                //Vid felaktig inmatning av nummerplåt som inte existerar
                 catch (ArgumentOutOfRangeException)
                 {
                     InfoRichTextBox.Text = $"This number plate doesn't exist!";

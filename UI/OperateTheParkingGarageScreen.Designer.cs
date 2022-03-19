@@ -183,7 +183,7 @@
             // 
             this.InfoRichTextBox.Location = new System.Drawing.Point(488, 131);
             this.InfoRichTextBox.Name = "InfoRichTextBox";
-            this.InfoRichTextBox.Size = new System.Drawing.Size(125, 120);
+            this.InfoRichTextBox.Size = new System.Drawing.Size(142, 120);
             this.InfoRichTextBox.TabIndex = 25;
             this.InfoRichTextBox.Text = "";
             // 
@@ -191,7 +191,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(638, 285);
+            this.ClientSize = new System.Drawing.Size(664, 285);
             this.Controls.Add(this.InfoRichTextBox);
             this.Controls.Add(this.RemoveVehicleRadioButton);
             this.Controls.Add(this.MoveVehicleRadioButton);
