@@ -31,7 +31,7 @@ namespace Core
         public void ParkingGarageOptions(int choice, string NumberPlate, string placementForVehicle)
         {
             //Hämtar json-värdet på parkeringsplatsen
-            ParkingGarageLimitations limitations = new ParkingGarageLimitations();
+            ParkingGarageLimitations limitations = new();
            int maximalParkingSpots = limitations.GetOneIntValueFromJsonFile(3);
 
 
@@ -91,7 +91,7 @@ namespace Core
 
             }
         }
-
+        //TODO gör om, att den presenterar alla fordon i parkeringshuset
         //Hämta regnummer och parkeringsplats, slå sedan ihop båda två till en sträng
         public string PresentVehicles(string numberPlateWithParkingSpot, int parkingSpot, string vehicle, DateTime timeStamp)
         {

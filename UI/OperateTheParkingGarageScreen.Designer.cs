@@ -183,6 +183,7 @@
             // 
             this.InfoRichTextBox.Location = new System.Drawing.Point(488, 131);
             this.InfoRichTextBox.Name = "InfoRichTextBox";
+            this.InfoRichTextBox.ReadOnly = true;
             this.InfoRichTextBox.Size = new System.Drawing.Size(142, 120);
             this.InfoRichTextBox.TabIndex = 25;
             this.InfoRichTextBox.Text = "";

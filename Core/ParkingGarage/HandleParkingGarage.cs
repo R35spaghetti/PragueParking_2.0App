@@ -11,9 +11,9 @@ namespace Core.ParkingGarage
     public class HandleParkingGarage
     {
         //public DateTime TimeStamp { get; set; }
-        ParkingGarageLimitations parkingGarageLimitations = new(); //kanske flyttar ut dessa och dylika metoder till logic
+       readonly ParkingGarageLimitations parkingGarageLimitations = new(); //kanske flyttar ut dessa och dylika metoder till logic
 
-        VehicleContext context = new();
+        readonly VehicleContext context = new();
 
         #region ConditionAndData
         public bool CheckNumberSpot(int parkingSpotMax, int userInput)
@@ -138,7 +138,7 @@ namespace Core.ParkingGarage
             return price;
         }
 
-        //Tar ut både parkeringsplatsen och nummerplåten i en objektlista
+        //Tar ut både parkeringsplatsen, tiden nummerplåten i en objektlista
         public List<object> PresentVehicle(string vehicleType)
         {
             List<object> vehicle = new();

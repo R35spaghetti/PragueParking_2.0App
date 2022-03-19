@@ -47,7 +47,7 @@ namespace UI
 
         private void ParkedVehiclesButton_Click(object sender, EventArgs e)
         {
-            ShowParkingLotOverviewScreen testShowButtonsVehicleScreen = new ShowParkingLotOverviewScreen();
+            ShowParkingLotOverviewScreen testShowButtonsVehicleScreen = new();
             testShowButtonsVehicleScreen.Show(this);
 
 
@@ -63,7 +63,7 @@ namespace UI
 
         private void TestDataButton_Click(object sender, EventArgs e)
         {
-            ParkingGarageLogic logic = new ParkingGarageLogic();
+            ParkingGarageLogic logic = new();
             logic.CreateTheDB();
         }
     }

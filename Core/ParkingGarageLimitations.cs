@@ -22,7 +22,6 @@ namespace Core
 
         (int, int, int, string, string, int, int, int) rentalPricesAndLimitations = (0, 0, 0, "", "", 0, 0, 0);
 
-        //Gets current car and mc price into a string //TODO:ändra?
         public string GetJsonValuesToPresent(string values)
         {
             //Get the current values from the ParkingLotLimitationValues-jsonfile

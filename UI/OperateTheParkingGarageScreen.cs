@@ -40,18 +40,14 @@ namespace UI
             int amountOfParkingSpots = jsonValues.GetOneIntValueFromJsonFile(3);
             int currentSizeAmountForCar = jsonValues.GetOneIntValueFromJsonFile(6);
             int currentSizeAmountForMC = jsonValues.GetOneIntValueFromJsonFile(7);
-
-            int spaceLeftInParkingSpot = 0;
-            int usedParkingSpotSpace = 0;
-            bool vehicleAlreadyExist = false;
-            List<string> allVehicleTypesInCurrentParkingSpot = new List<string>();
+            List<string> allVehicleTypesInCurrentParkingSpot = new();
 
             //Check how much space is left in the parking spot
             allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
-            usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
+            int usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
 
 
-            vehicleAlreadyExist = handleParkingGarage.SearchVehicle(NumberPlateTextBox.Text);
+            bool vehicleAlreadyExist = handleParkingGarage.SearchVehicle(NumberPlateTextBox.Text);
 
             if (vehicleAlreadyExist)
             {
@@ -67,27 +63,29 @@ namespace UI
                 InfoRichTextBox.Text = $"The selected parking spot is full!";
             }
 
+
+            int spaceLeftInParkingSpot;
             if (parkingSpot > amountOfParkingSpots)
             {
                 InfoRichTextBox.Text = $"Incorrect value! Current max value of parking spots are {amountOfParkingSpots}";
             }
 
-            else if (VehicleTypeListBox.Text.Equals(("Car")) && vehicleAlreadyExist==false)
+            else if (VehicleTypeListBox.Text.Equals(("Car")) && vehicleAlreadyExist == false)
             {
-                
-                    //Check how much space is left in the parking spot, again
-                    allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
-                    usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
+
+                //Check how much space is left in the parking spot, again
+                allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
+                usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
 
                 //Den räknar inte minus först?
-                    spaceLeftInParkingSpot = currentParkingSpotSize - usedParkingSpotSpace - currentSizeAmountForCar;
+                spaceLeftInParkingSpot = currentParkingSpotSize - usedParkingSpotSpace - currentSizeAmountForCar;
 
-                    parkingGarageLogic.ParkingGarageOptions(1, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
-                    InfoRichTextBox.Text = $"Car {NumberPlateTextBox.Text} was parked at parking spot: {ParkingSpotTextBox.Text}, space left: {spaceLeftInParkingSpot}";
-                
+                parkingGarageLogic.ParkingGarageOptions(1, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
+                InfoRichTextBox.Text = $"Car {NumberPlateTextBox.Text} was parked at parking spot: {ParkingSpotTextBox.Text}, space left: {spaceLeftInParkingSpot}";
+
             }
 
-           else if(VehicleTypeListBox.Text.Equals(("Motorcycle")) && vehicleAlreadyExist == false)
+            else if (VehicleTypeListBox.Text.Equals(("Motorcycle")) && vehicleAlreadyExist == false)
             {
                 //Check how much space is left in the parking spot, again
                 allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
@@ -95,14 +93,14 @@ namespace UI
 
                 spaceLeftInParkingSpot = currentParkingSpotSize - usedParkingSpotSpace - currentSizeAmountForMC;
 
-               
+
 
                 parkingGarageLogic.ParkingGarageOptions(2, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
                 InfoRichTextBox.Text = $"Motorcycle {NumberPlateTextBox.Text} was parked at parking spot: {ParkingSpotTextBox.Text},  space left: {spaceLeftInParkingSpot}";
 
             }
 
-        
+
         }
 
         private void MoveVehicleButton_Click(object sender, EventArgs e)
@@ -110,12 +108,10 @@ namespace UI
             int parkingSpot = int.Parse(ParkingSpotTextBox.Text);
             int currentParkingSpotSize = jsonValues.GetOneIntValueFromJsonFile(8);
             int amountOfParkingSpots = jsonValues.GetOneIntValueFromJsonFile(3);
-            int spaceLeftInParkingSpot = 0;
-            int usedParkingSpotSpace = 0;
-            List<string> allVehicleTypesInCurrentParkingSpot = new List<string>();
+            List<string> allVehicleTypesInCurrentParkingSpot = new();
 
              allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
-            usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
+            int usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
 
 
             if (NumberPlateTextBox.Text == "" || ParkingSpotTextBox.Text == "")
@@ -143,9 +139,9 @@ namespace UI
                  allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
                 usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
 
-                spaceLeftInParkingSpot = currentParkingSpotSize - usedParkingSpotSpace;
+                    int spaceLeftInParkingSpot = currentParkingSpotSize - usedParkingSpotSpace;
 
-                InfoRichTextBox.Text = $"Parked {NumberPlateTextBox.Text} at parking spot {ParkingSpotTextBox.Text}\n" +
+                    InfoRichTextBox.Text = $"Parked {NumberPlateTextBox.Text} at parking spot {ParkingSpotTextBox.Text}\n" +
                 $"space left: {spaceLeftInParkingSpot}";
                 }
 
@@ -160,17 +156,13 @@ namespace UI
         private void RemoveVehicleButton_Click(object sender, EventArgs e)
         {
             TimeSpan checkoutPrice = new();
-            double price = 0;
-            string currentVehicleType = "";
-
             checkoutPrice = handleParkingGarage.AmountOfTime(NumberPlateTextBox.Text);
-            currentVehicleType = handleParkingGarage.GetNumberPlateVehicleType(NumberPlateTextBox.Text);
-
-            price = handleParkingGarage.HandlePrice(checkoutPrice, currentVehicleType);
+            string currentVehicleType = handleParkingGarage.GetNumberPlateVehicleType(NumberPlateTextBox.Text);
+            double price = handleParkingGarage.HandlePrice(checkoutPrice, currentVehicleType);
 
             if (price > 0)
             {
-                InfoRichTextBox.Text = $"Current rental price for {NumberPlateTextBox.Text} is {price.ToString()}";
+                InfoRichTextBox.Text = $"Current rental price for {NumberPlateTextBox.Text} is {price}";
             }
             else
             {

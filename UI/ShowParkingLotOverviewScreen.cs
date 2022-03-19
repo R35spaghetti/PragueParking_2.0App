@@ -16,10 +16,11 @@ namespace UI
     {
 
   
-        ParkingGarageLimitations parkingGarageLimitations = new();
+       readonly ParkingGarageLimitations parkingGarageLimitations = new();
         readonly HandleParkingGarage handleParkingGarage = new();
-        private object longStringWithCars = "Cars: ";
-        private object longStringWithMCS = "Motorcycles: ";
+        readonly ParkingGarageLogic logic = new();
+       readonly private object longStringWithCars = "Cars: ";
+        readonly private object longStringWithMCS = "Motorcycles: ";
 
         public ShowParkingLotOverviewScreen()
         {
@@ -32,7 +33,7 @@ namespace UI
         / visas allt som är parkerat - redundant?*/
         private void CreateVehicleInformationButton()
         {
-            Button VehicleButton = new Button();
+            Button VehicleButton = new();
             VehicleButton.Height = 200;
             VehicleButton.Width = 200;
 
@@ -47,14 +48,15 @@ namespace UI
         {
 
 
+            PrintInfoRichTextBox();
             //Presenterar alla nummerplåtar och parkeringsplatsen genom en sträng
-            ShowVehiclesRichTextBox.Text = $"{longStringWithCars} \n {longStringWithMCS}";
 
         }
 
         //skapar knapp
         private void TestShowButtonsVehicleScreen_Load(object sender, EventArgs e)
         {
+
             int currentParkingSpotSize = parkingGarageLimitations.GetOneIntValueFromJsonFile(8);
             int usedParkingSpotSpace = 0;
             int numberForButton = 0; //för att visa knapparna som "1" "2" "3"...osv
@@ -171,13 +173,22 @@ namespace UI
                         this.VehicleTableLayoutPanel.Controls.Add(CreateVehicleButton);
                     }
 
-
+                 //   logic.PresentVehicles();
 
                 }
 
 
 
             }
+        }
+
+        private void PrintInfoRichTextBox()
+        {
+            ShowVehiclesRichTextBox.Text = $"{longStringWithCars} \n {longStringWithMCS}";
+
+       //     ShowVehiclesRichTextBox.Text = 
+
+
         }
     }
 }

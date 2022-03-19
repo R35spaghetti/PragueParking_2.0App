@@ -9,16 +9,16 @@ namespace Core.HandlingParkingSpot
 {
     public class ParkingSpot
     {
-        ParkingGarageLimitations parkingGarageLimitations = new();
-        public int numberOfP_spot { get; set; }
+       readonly ParkingGarageLimitations parkingGarageLimitations = new();
+        public int NumberOfP_spot { get; set; }
         public int P_SpotSize { get; set; }
         public ParkingSpot()// CTOR
         {
-            this.numberOfP_spot = GarageSize();
+            this.NumberOfP_spot = GarageSize();
             this.P_SpotSize = ParkingSpotSize(); 
         }
 
-        VehicleContext context = new();
+       readonly VehicleContext context = new();
 
         #region Settings
         public int ParkingSpotSize()
@@ -50,7 +50,7 @@ namespace Core.HandlingParkingSpot
         }
         public int GarageMaxCapacity()
         {
-            int totalAvailable = this.numberOfP_spot * this.P_SpotSize;
+            int totalAvailable = this.NumberOfP_spot * this.P_SpotSize;
             return totalAvailable;
         }
         public bool GarageCapacity(int allOccupiedPSpace, int garageMaxCapacity)
