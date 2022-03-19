@@ -226,7 +226,7 @@ namespace Core.ParkingGarage
             }
 
         }
-       public int UsedSpaceInSelectParkingSpot(List<string> collectedVehicleTypes)
+       public int UsedSpaceInSelectedParkingSpot(List<string> collectedVehicleTypes)
         {
             int result = 0;
             int sizeOfCar = parkingGarageLimitations.GetOneIntValueFromJsonFile(6);

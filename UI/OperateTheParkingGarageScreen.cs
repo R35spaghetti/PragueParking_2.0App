@@ -18,6 +18,7 @@ namespace UI
         readonly IntroScreen introScreen = new();
         readonly ParkingGarageLogic parkingGarageLogic = new();
         readonly HandleParkingGarage handleParkingGarage = new();
+        readonly ParkingGarageLimitations jsonValues = new();
         public OperateTheParkingGarageScreen()
         {
             InitializeComponent();
@@ -51,11 +52,47 @@ namespace UI
 
         private void MoveVehicleButton_Click(object sender, EventArgs e)
         {
+            int parkingSpot = int.Parse(ParkingSpotTextBox.Text);
+            int currentParkingSpotSize = jsonValues.GetOneIntValueFromJsonFile(8);
+            int amountOfParkingSpots = jsonValues.GetOneIntValueFromJsonFile(3);
+            int spaceLeftInParkingSpot = 0;
+            int usedParkingSpotSpace = 0;
+
+
+
             if (NumberPlateTextBox.Text == "" || ParkingSpotTextBox.Text == "")
-            { }
+            { 
+                InfoRichTextBox.Text = "Invalid value at Number Plate field or Parking Spot field";
+            }
+
+            //TODO säger inget om man försöker parkera med samma fordon, men resultatet blir detsamma
+            else if(usedParkingSpotSpace == 0)
+            {
+                InfoRichTextBox.Text = $"The selected parking spot is full!";
+            }
+            else if(parkingSpot > amountOfParkingSpots)
+            {
+                InfoRichTextBox.Text = $"Incorrect value! Current max value of parking spots are {amountOfParkingSpots}";
+            }
+           
             else
             {
+                try
+                { 
                 parkingGarageLogic.ParkingGarageOptions(3, NumberPlateTextBox.Text, ParkingSpotTextBox.Text);
+
+                List<string> allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
+                usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
+
+                spaceLeftInParkingSpot = currentParkingSpotSize - usedParkingSpotSpace;
+
+                InfoRichTextBox.Text = $"Parked {NumberPlateTextBox.Text} at parking spot {ParkingSpotTextBox.Text}\n" +
+                $"space left: {spaceLeftInParkingSpot}";
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    InfoRichTextBox.Text = $"This number plate doesn't exist!";
+                }
             }
         }
 

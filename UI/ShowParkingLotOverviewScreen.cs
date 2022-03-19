@@ -117,7 +117,7 @@ namespace UI
                     /*Räkna antalet fordonstyper med hjälp av json-värdet, räkna sedan ut om parkeringsplatsen är full.
                      etc: car(4)+car(4)=plats(8) 8=full */
                     allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(numberForButton);
-                    usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectParkingSpot(allVehicleTypesInCurrentParkingSpot);
+                    usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
                     HoldVehicleTypeAndAmountOfVehicles = handleParkingGarage.WhatKindOfVehiclesInSelectedParkingSpot(HoldVehicleTypeAndAmountOfVehicles);
 
 
