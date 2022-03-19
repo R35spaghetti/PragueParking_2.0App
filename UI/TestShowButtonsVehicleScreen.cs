@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.ParkingGarage;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ namespace UI
         //        //4. jämför dessa parkeringsplatser med tabellen
         //        //5. om samma, byt ut
         ParkingGarageLimitations parkingGarageLimitations = new();
+        readonly HandleParkingGarage handleParkingGarage = new();
         private object longStringWithCars = "Cars: ";
         private object longStringWithMCS = "Motorcycles: ";
 
@@ -48,6 +50,8 @@ namespace UI
 
         private void CreateVehicleInformationButton_Click(object? sender, EventArgs e)
         {
+
+
             //Presenterar alla nummerplåtar och parkeringsplatsen genom en sträng
             ShowVehiclesRichTextBox.Text = $"{longStringWithCars} \n {longStringWithMCS}";
 
@@ -56,12 +60,15 @@ namespace UI
         //skapar knapp
         private void TestShowButtonsVehicleScreen_Load(object sender, EventArgs e)
         {
+            int currentParkingSpotSize = parkingGarageLimitations.GetOneIntValueFromJsonFile(8);
+            int usedParkingSpotSpace = 0;
 
             List<string> splitGetAffectedParkinglots = new();
+            List<string> allVehicleTypesInCurrentParkingSpot = new();
 
             int parkingSpotsInTheGarage = parkingGarageLimitations.GetOneIntValueFromJsonFile(3);
 
-            splitGetAffectedParkinglots = GetAllAffectedParkingLots(splitGetAffectedParkinglots, parkingSpotsInTheGarage);
+           // splitGetAffectedParkinglots = GetAllAffectedParkingLots(splitGetAffectedParkinglots, parkingSpotsInTheGarage);
             splitGetAffectedParkinglots.Sort();
 
             //TODO låta användaren lösa detta problem
@@ -103,9 +110,14 @@ namespace UI
 
                 for (int j = 0; j < columns; j++)
                 {
-                    
+
+
+
 
                     numberForButton++;
+                    allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(numberForButton);
+
+                    usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectParkingSpot(allVehicleTypesInCurrentParkingSpot);
 
                     //En ny knapp vid varje ny position
                     var CreateVehicleButton = new Button();
@@ -120,7 +132,15 @@ namespace UI
                     this.VehicleTableLayoutPanel.Controls.Add(CreateVehicleButton, j, i);
                     CreateVehicleButton.Dock = DockStyle.Fill;
 
+                    //Målas gul om det är fullt
+                    if (usedParkingSpotSpace.Equals(currentParkingSpotSize))
+                    {
+                        CreateVehicleButton.BackColor = Color.Yellow;
+                        CreateVehicleButton.Click += new EventHandler(CreateVehicleInformationButton_Click);
+                        this.VehicleTableLayoutPanel.Controls.Add(CreateVehicleButton);
+                    }
 
+                    //Jämför fordonets parkeringsplats med skaparen av knappar-räknaren
                     foreach (var items in splitGetAffectedParkinglots)
                     {
 
@@ -139,6 +159,7 @@ namespace UI
 
             }
         }
+        //TODO säkert att denna inte behövs
         //Hämta alla parkeringsplatser med minst ett fordon i
         private List<string> GetAllAffectedParkingLots(List<string> splitGetAffectedParkinglots, int parkingSpotsInTheGarage)
         {

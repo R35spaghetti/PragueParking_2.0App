@@ -34,9 +34,10 @@
             // 
             // ShowVehiclesRichTextBox
             // 
+            this.ShowVehiclesRichTextBox.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ShowVehiclesRichTextBox.Location = new System.Drawing.Point(1101, 12);
             this.ShowVehiclesRichTextBox.Name = "ShowVehiclesRichTextBox";
-            this.ShowVehiclesRichTextBox.Size = new System.Drawing.Size(227, 585);
+            this.ShowVehiclesRichTextBox.Size = new System.Drawing.Size(307, 738);
             this.ShowVehiclesRichTextBox.TabIndex = 7;
             this.ShowVehiclesRichTextBox.Text = "";
             // 

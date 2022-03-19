@@ -11,6 +11,7 @@ namespace Core.ParkingGarage
     public class HandleParkingGarage
     {
         //public DateTime TimeStamp { get; set; }
+        ParkingGarageLimitations parkingGarageLimitations = new(); //kanske flyttar ut dessa och dylika metoder till logic
 
         VehicleContext context = new();
 
@@ -196,5 +197,59 @@ namespace Core.ParkingGarage
             return result;
         }
 
+        //Plocka ut alla fordonstyper från den valda parkeringsplatsen
+        public List<string> CountEachVehicleTypeInSelectedParkingSpot(int currentParkingSpot)
+        {
+            List<string> amountOfVehicleTypes = new();
+
+            using var context = new VehicleContext();
+            {
+                foreach (var vehiclesParkingSpot in context.Garage)
+                {
+                    var selectedParkingSpot = vehiclesParkingSpot.ParkingSpot;
+
+                    if (selectedParkingSpot == currentParkingSpot)
+                    {
+
+                        var vehicleType = vehiclesParkingSpot.VehicleType;
+
+                        if (vehicleType == null)
+                        { }
+                        else
+                        {
+                            amountOfVehicleTypes.Add(vehicleType);
+                        }
+                    }
+                }
+
+                return amountOfVehicleTypes;
+            }
+
+        }
+       public int UsedSpaceInSelectParkingSpot(List<string> collectedVehicleTypes)
+        {
+            int result = 0;
+            int sizeOfCar = parkingGarageLimitations.GetOneIntValueFromJsonFile(6);
+            int sizeOfMotorcycle = parkingGarageLimitations.GetOneIntValueFromJsonFile(7);
+            string car = parkingGarageLimitations.GetOneStringValueFromJsonFile(4);
+            string motorcycle = parkingGarageLimitations.GetOneStringValueFromJsonFile(5);
+
+            foreach (var items in collectedVehicleTypes)
+            {
+                if(items.Equals(car))
+                {
+                    result += sizeOfCar;
+                }
+               else if(items.StartsWith(motorcycle))
+                {
+                    result += sizeOfMotorcycle;
+                }
+            }
+
+           // result = sizeOfCar+ sizeOfMotorcycle;
+
+            return result;
+        }
+    
     }
 }

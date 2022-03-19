@@ -123,6 +123,7 @@ namespace Core
             return numberPlateWithParkingSpot;
 
         }
+
     }
 }
 
