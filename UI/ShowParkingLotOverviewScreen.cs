@@ -34,8 +34,8 @@ namespace UI
         private void CreateVehicleInformationButton()
         {
             Button VehicleButton = new();
-            VehicleButton.Height = 200;
-            VehicleButton.Width = 200;
+            //VehicleButton.Height = 200;
+            //VehicleButton.Width = 200;
 
 
 
