@@ -23,17 +23,31 @@ namespace Core
         (int, int, int, string, string, int, int, int) rentalPricesAndLimitations = (0, 0, 0, "", "", 0, 0, 0);
 
         //Gets current car and mc price into a string //TODO:ändra?
-        public string GetRentalPrices(string prices)
+        public string GetJsonValuesToPresent(string values)
         {
             //Get the current values from the ParkingLotLimitationValues-jsonfile
             rentalPricesAndLimitations = VehicleContext.GiveParkGarageValuesFromJsonFile(rentalPricesAndLimitations);
 
-            
 
-            prices += "Car rental price:" + " " + rentalPricesAndLimitations.Item1.ToString()+" ";
-            prices += "\nMC rental price:" + " " + rentalPricesAndLimitations.Item2.ToString();
+            int carPrice = rentalPricesAndLimitations.Item1;
+            int mcPrice = rentalPricesAndLimitations.Item2;
+            int currentParkingSpots = rentalPricesAndLimitations.Item3;
+            string vehicleTypeCar = rentalPricesAndLimitations.Item4;
+            string vehicleTypeMC = rentalPricesAndLimitations.Item5;
+            int sizeCar = rentalPricesAndLimitations.Item6;
+            int sizeMC = rentalPricesAndLimitations.Item7;
+            int parkingSpotSpace = rentalPricesAndLimitations.Item8;
 
-            return prices;
+
+            values = $"Current rental price for car: {carPrice}\n" +
+                    $"Current rental price for motorcycle: {mcPrice}.\n" +
+                    $"Current amount of parking spots in the garage: {currentParkingSpots}.\n" +
+                    $"Current vehicles allowed: {vehicleTypeCar} & {vehicleTypeMC}.\n" +
+                    $"Current size of cars: {sizeCar}\n" +
+                    $"Current size of motorcycles: {sizeMC}\n" +
+                    $"Current size of parking lots: {parkingSpotSpace}";
+
+            return values;
         }
 
         //Gets one value from the json-file based on row
