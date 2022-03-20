@@ -130,7 +130,6 @@ namespace UI
                 InfoRichTextBox.Text = "Invalid value at Number Plate field or Parking spot field";
             }
 
-            //TODO säger inget om man försöker parkera med samma fordon, men resultatet blir detsamma
             else if(usedParkingSpotSpace == currentParkingSpotSize)
             {
                 InfoRichTextBox.Text = $"The selected parking spot is full!";
@@ -181,7 +180,7 @@ namespace UI
             {
                 InfoRichTextBox.Text = $"Vehicle doesn't exist!";
             }
-            else
+            else if (price < 0)
             {
                 InfoRichTextBox.Text = $"Parking was free!";
             }
