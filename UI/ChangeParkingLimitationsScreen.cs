@@ -66,6 +66,20 @@ namespace UI
             introScreen.Show();
         }
 
-      
+        private void InfoButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"The Parking lot will be presented in a quadrat\n" +
+                $"y\n" +
+                $"|\n" +
+                $"|\n" +
+                $"|\n" +
+                $"|\n" +
+                $"L_________x\n" +
+                $"How many parking spots can be shown? \n" +
+                $"y = √your parking spots. \n" +
+                $"x = your parking spots / y. \n" +
+                $"x*y=total parking spots presented.");
+
+        }
     }
 }

@@ -59,7 +59,7 @@ namespace UI
             this.VehicleTableLayoutPanel.ColumnCount = columns;
             this.VehicleTableLayoutPanel.RowCount = rows;
 
-          
+
 
             //Storleken på knapparna i %, i TableLayoutPanelen
             for (int i = 0; i < columns; i++)
@@ -101,7 +101,7 @@ namespace UI
                         //Lägger till siffror, som 1,2,3,4,5 osv till de genererade knapparna
                         Text = string.Format("{0}", numberForButton),
 
-                        //Namnger knapparna, för att senare kunna lägga till popup-text innehåll
+                        //Namnger knapparna, för att senare kunna lägga till popup-textinnehåll
                         Name = string.Format("{0}", numberForButton)
                     };
 
@@ -154,7 +154,7 @@ namespace UI
 
             }
         }
-
+        //Räknar antingen för mycket eller för lite på vissa tal.
         private (int rows, int columns) CalculateHowManyButtonsToPrint(int rows, int columns)
         {
             int totalButtons = parkingGarageLimitations.GetOneIntValueFromJsonFile(3);
@@ -162,6 +162,7 @@ namespace UI
              columns = (int)Math.Sqrt(totalButtons);
               rows = (totalButtons / columns);
 
+         
 
             return (rows,columns);
         }

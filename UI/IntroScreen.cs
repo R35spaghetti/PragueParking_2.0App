@@ -77,7 +77,8 @@ namespace UI
 
         private void InfoButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"You only need to press the 'Get test data' button once (while the database is empty), several more clicks is only for you own amusement.");
+            MessageBox.Show($"You only need to press the 'Get test data' button once (while the database is empty), several more clicks is only for you own amusement. \n" +
+                $"DISCLAIMER: This particular software is NOT suited for all forms of parking garages! By using this software you agree to adapt to the upcoming problems");
         }
     }
 }

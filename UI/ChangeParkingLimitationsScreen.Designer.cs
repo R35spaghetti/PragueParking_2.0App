@@ -43,6 +43,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.MCRentalPriceTextbox = new System.Windows.Forms.TextBox();
             this.CarRentalPriceTextbox = new System.Windows.Forms.TextBox();
+            this.InfoButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SubmitParkingSpotLimitationValuesButton
@@ -161,11 +162,23 @@
             this.CarRentalPriceTextbox.Size = new System.Drawing.Size(141, 27);
             this.CarRentalPriceTextbox.TabIndex = 1;
             // 
+            // InfoButton
+            // 
+            this.InfoButton.BackColor = System.Drawing.Color.IndianRed;
+            this.InfoButton.Location = new System.Drawing.Point(346, 160);
+            this.InfoButton.Name = "InfoButton";
+            this.InfoButton.Size = new System.Drawing.Size(35, 29);
+            this.InfoButton.TabIndex = 14;
+            this.InfoButton.Text = "?";
+            this.InfoButton.UseVisualStyleBackColor = false;
+            this.InfoButton.Click += new System.EventHandler(this.InfoButton_Click);
+            // 
             // ChangeParkingLimitationsScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(579, 389);
+            this.Controls.Add(this.InfoButton);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.MCRentalPriceTextbox);
@@ -204,5 +217,6 @@
         private Label label7;
         private TextBox MCRentalPriceTextbox;
         private TextBox CarRentalPriceTextbox;
+        private Button InfoButton;
     }
 }
