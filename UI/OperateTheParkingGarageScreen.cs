@@ -48,7 +48,7 @@ namespace UI
             allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
             int usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
 
-
+            bool parkingLotIsFull = false;
             bool vehicleAlreadyExist = handleParkingGarage.SearchVehicle(NumberPlateTextBox.Text);
             bool numberPlateFormatAllowed = handleParkingGarage.CheckIfNumberPlateIsCorrect(NumberPlateTextBox.Text);
 
@@ -70,6 +70,7 @@ namespace UI
             if (usedParkingSpotSpace == currentParkingSpotSize)
             {
                 InfoRichTextBox.Text = $"The selected parking spot is full!";
+                parkingLotIsFull = true;
             }
 
 
@@ -80,7 +81,7 @@ namespace UI
                 InfoRichTextBox.Text = $"Incorrect value! Current max value of parking spots are {amountOfParkingSpots}";
             }
 
-            else if (VehicleTypeListBox.Text.Equals(("Car")) && vehicleAlreadyExist == false && numberPlateFormatAllowed == true)
+            else if (VehicleTypeListBox.Text.Equals(("Car")) && vehicleAlreadyExist == false && numberPlateFormatAllowed == true && parkingLotIsFull == false)
             {
 
                 //Check how much space is left in the parking spot, again
@@ -95,7 +96,7 @@ namespace UI
 
             }
 
-            else if (VehicleTypeListBox.Text.Equals(("Motorcycle")) && vehicleAlreadyExist == false && numberPlateFormatAllowed == true)
+            else if (VehicleTypeListBox.Text.Equals(("Motorcycle")) && vehicleAlreadyExist == false && numberPlateFormatAllowed == true && parkingLotIsFull == false)
             {
                 //Check how much space is left in the parking spot, again
                 allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
