@@ -8,8 +8,8 @@ namespace Core.Vehicles
 
         public Motorcycle(string regnr)
         {
-            this.VehicleSize = ParkingGarageLimitations.GetOneIntValueFromJsonFile(7); // här ska det länkas mot json
-            this.VehicleType = ParkingGarageLimitations.GetOneStringValueFromJsonFile(5); // samma här
+            this.VehicleSize = ParkingGarageLimitations.GetOneIntValueFromJsonFile(7); 
+            this.VehicleType = ParkingGarageLimitations.GetOneStringValueFromJsonFile(5); 
             this.Regnumber = regnr;
         }
     }

@@ -5,7 +5,7 @@ namespace Core.ParkingGarage
 {
     public class HandleParkingGarage
     {
-        readonly ParkingGarageLimitations parkingGarageLimitations = new(); //kanske flyttar ut dessa och dylika metoder till logic
+        readonly ParkingGarageLimitations parkingGarageLimitations = new(); 
 
         readonly VehicleContext context = new();
 
@@ -93,7 +93,6 @@ namespace Core.ParkingGarage
         }
         #endregion
 
-        // Json
         public TimeSpan AmountOfTime(string numberPlate)
         {
             var checkOut = DateTime.Now.AddMinutes(-10);
@@ -126,11 +125,11 @@ namespace Core.ParkingGarage
             double price = 0;
             if (vehicleType == "Car")
             {
-                price = Math.Round(((double)amountOfTime.TotalHours * carRentalPrice), 2); // json
+                price = Math.Round(((double)amountOfTime.TotalHours * carRentalPrice), 2); 
             }
             else if (vehicleType == "Motorcycle")
             {
-                price = Math.Round(((double)amountOfTime.TotalHours * mcRentalPrice), 2);// json
+                price = Math.Round(((double)amountOfTime.TotalHours * mcRentalPrice), 2);
             }
             return price;
         }

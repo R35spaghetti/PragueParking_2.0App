@@ -8,7 +8,7 @@ namespace Core.HandlingParkingSpot
        readonly ParkingGarageLimitations parkingGarageLimitations = new();
         public int NumberOfP_spot { get; set; }
         public int P_SpotSize { get; set; }
-        public ParkingSpot()// CTOR
+        public ParkingSpot()
         {
             this.NumberOfP_spot = GarageSize();
             this.P_SpotSize = ParkingSpotSize(); 
@@ -21,12 +21,12 @@ namespace Core.HandlingParkingSpot
         {
 
             //json
-            var pSizeConfig = parkingGarageLimitations.GetOneIntValueFromJsonFile(8); // Json
+            var pSizeConfig = parkingGarageLimitations.GetOneIntValueFromJsonFile(8); 
             return pSizeConfig;
         }
         public int GarageSize()
         {
-            var GarageSizeConfig = parkingGarageLimitations.GetOneIntValueFromJsonFile(3); // Json
+            var GarageSizeConfig = parkingGarageLimitations.GetOneIntValueFromJsonFile(3); 
             return GarageSizeConfig;
         }
         #endregion
@@ -36,12 +36,12 @@ namespace Core.HandlingParkingSpot
         {
             var occupied = context.Garage
                 .Where(condition => condition.ParkingSpot == parkspot)
-                .Sum(totalSum => totalSum.VehicleSize);// <= ändra här till VehicleSize 
+                .Sum(totalSum => totalSum.VehicleSize);
             return occupied;
         }
         public int AllOccupiedPSpace()
         {
-            var totalUsedPSpot = context.Garage.Sum(sumOf => sumOf.VehicleSize);// <= ändra här till VehicleSize 
+            var totalUsedPSpot = context.Garage.Sum(sumOf => sumOf.VehicleSize); 
             return totalUsedPSpot;
         }
         public int GarageMaxCapacity()
