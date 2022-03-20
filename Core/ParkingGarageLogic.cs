@@ -19,7 +19,7 @@ namespace Core
             //Hämtar json-värdet på parkeringsplatsen
             ParkingGarageLimitations limitations = new();
            int maximalParkingSpots = limitations.GetOneIntValueFromJsonFile(3);
-
+       
 
             switch (choice)
             {

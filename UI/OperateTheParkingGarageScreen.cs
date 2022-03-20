@@ -19,9 +19,12 @@ namespace UI
         readonly ParkingGarageLogic parkingGarageLogic = new();
         readonly HandleParkingGarage handleParkingGarage = new();
         readonly ParkingGarageLimitations jsonValues = new();
+        TestDataLogic testData = new();
+
         public OperateTheParkingGarageScreen()
         {
             InitializeComponent();
+
         }
 
 
@@ -33,7 +36,7 @@ namespace UI
 
         private void AddVehicleToDbButton_Click(object sender, EventArgs e)
         {
-
+            testData.EnsureCreatedDB(); //Om användaren bara vill ha en tom databas
             int parkingSpot = int.Parse(ParkingSpotTextBox.Text);
             int currentParkingSpotSize = jsonValues.GetOneIntValueFromJsonFile(8);
             int amountOfParkingSpots = jsonValues.GetOneIntValueFromJsonFile(3);
@@ -112,6 +115,7 @@ namespace UI
 
         private void MoveVehicleButton_Click(object sender, EventArgs e)
         {
+            testData.EnsureCreatedDB(); //Om användaren bara vill ha en tom databas
             int parkingSpot = int.Parse(ParkingSpotTextBox.Text);
             int currentParkingSpotSize = jsonValues.GetOneIntValueFromJsonFile(8);
             int amountOfParkingSpots = jsonValues.GetOneIntValueFromJsonFile(3);
@@ -162,14 +166,20 @@ namespace UI
 
         private void RemoveVehicleButton_Click(object sender, EventArgs e)
         {
+            testData.EnsureCreatedDB(); //Om användaren bara vill ha en tom databas
             TimeSpan checkoutPrice = new();
             checkoutPrice = handleParkingGarage.AmountOfTime(NumberPlateTextBox.Text);
             string currentVehicleType = handleParkingGarage.GetNumberPlateVehicleType(NumberPlateTextBox.Text);
             double price = handleParkingGarage.HandlePrice(checkoutPrice, currentVehicleType);
+            bool vehicleAlreadyExist = handleParkingGarage.SearchVehicle(NumberPlateTextBox.Text);
 
             if (price > 0)
             {
                 InfoRichTextBox.Text = $"Current rental price for {NumberPlateTextBox.Text} is {price}";
+            }
+            if(!vehicleAlreadyExist)
+            {
+                InfoRichTextBox.Text = $"Vehicle doesn't exist!";
             }
             else
             {
