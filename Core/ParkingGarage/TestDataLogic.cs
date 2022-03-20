@@ -10,7 +10,7 @@ namespace Core.ParkingGarage
     public class TestDataLogic
     {
 
-        VehicleContext InitializeTestDataDB = new();
+        readonly VehicleContext InitializeTestDataDB = new();
 
         public void CreateTheDB()
         {

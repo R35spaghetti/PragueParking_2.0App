@@ -59,8 +59,9 @@
   </resheader>
   <data name="label4.Text" xml:space="preserve">
     <value>Here you can do the following:
--Limit the size of vehicles and parking spot
+-Limit the size of vehicles
 -Limit the amount of parking spots in the parking garage
+-Rental prices
 -Fields can be left blank if you don't want to change that value
 
 </value>

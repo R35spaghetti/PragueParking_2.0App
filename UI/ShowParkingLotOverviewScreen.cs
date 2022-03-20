@@ -18,8 +18,7 @@ namespace UI
        readonly ParkingGarageLimitations parkingGarageLimitations = new();
         readonly HandleParkingGarage handleParkingGarage = new();
         readonly ParkingGarageLogic logic = new();
-       readonly private object longStringWithCars = "Cars: ";
-        readonly private object longStringWithMCS = "Motorcycles: ";
+    
 
         public ShowParkingLotOverviewScreen()
         {
@@ -30,16 +29,15 @@ namespace UI
         //Den skapade knappen ska kunna visa parkeringsplatsens innehåll
         private void CreateParkingLotInformationButton_Click(object sender, EventArgs e)
         {
-            string textForClickableButton = "";
-            Button? vehicleButton = sender as Button;
+            if (sender is Button vehicleButton)
+            {
 
-            //Visar knappens textinnehåll
-           int buttonNameAsNumber = int.Parse(vehicleButton.Name);
-            textForClickableButton = logic.ShowParkingLotInformation(buttonNameAsNumber);
-            MessageBox.Show(textForClickableButton);
+                //Visar knappens textinnehåll
+                int buttonNameAsNumber = int.Parse(vehicleButton.Name);
+                string textForClickableButton = logic.ShowParkingLotInformation(buttonNameAsNumber);
+                MessageBox.Show(textForClickableButton);
+            }
 
-
-     
         }
 
         private void ShowButtonsVehicleScreen_Load(object sender, EventArgs e)
@@ -111,13 +109,15 @@ namespace UI
 
 
                     //En ny knapp vid varje ny position
-                    var CreateParkingLotInformationButton = new Button();
+                    var CreateParkingLotInformationButton = new Button
+                    {
 
-                    //Lägger till siffror, som 1,2,3,4,5 osv till de genererade knapparna
-                    CreateParkingLotInformationButton.Text = string.Format("{0}", numberForButton);
+                        //Lägger till siffror, som 1,2,3,4,5 osv till de genererade knapparna
+                        Text = string.Format("{0}", numberForButton),
 
-                    //Namnger knapparna, för att senare kunna lägga till popup-text innehåll
-                    CreateParkingLotInformationButton.Name = string.Format("{0}", numberForButton);
+                        //Namnger knapparna, för att senare kunna lägga till popup-text innehåll
+                        Name = string.Format("{0}", numberForButton)
+                    };
 
 
                     //Lägger till knappen vid rad "x" och kolumn "y" i rutnätet.
@@ -169,7 +169,7 @@ namespace UI
             }
         }
 
-    
+
         private void InfoButton_Click(object sender, EventArgs e)
         {
             InfoParkingLotColoursScreen infoParkingLot = new();
