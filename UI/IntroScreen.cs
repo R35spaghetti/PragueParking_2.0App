@@ -82,7 +82,7 @@ namespace UI
         {
             MessageBox.Show($"You only need to press the 'Get test data' button once (while the database is empty), several more clicks is only for you own amusement. \n" +
                 $"DISCLAIMER: This particular software is NOT suited for all forms of parking garages! By using this software you agree to adapt to the upcoming problems.\n" +
-                $"Any action perfomed within this software creates a FREE database on your computer.");
+                $"Any action performed within this software creates a FREE database on your computer.");
         }
     }
 }

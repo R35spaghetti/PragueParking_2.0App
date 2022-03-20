@@ -3,7 +3,6 @@ using Core;
 namespace UI
 {
     
-//TODO: att användaren själv kan bestämma x- och y-axeln
     internal static class Program
     {
         /// <summary>
