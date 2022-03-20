@@ -7,16 +7,32 @@ using GhostSheriffsDatabaseAccess;
 
 namespace Core.ParkingGarage
 {
-    public class CreateDb
+    public class TestDataLogic
     {
-        public void EnsureCreatedDb()
+
+        VehicleContext InitializeTestDataDB = new();
+
+        public void CreateTheDB()
         {
-            VehicleContext buildDb = new();
-            buildDb.Database.EnsureCreated();
+
+            EnsureCreatedDB();
+            var isDbEmpty = InitializeTestDataDB.Garage.Where(x => x.Id == 1);
+            if (!isDbEmpty.Any())
+            {
+                GetTestDataForDB();
+            }
         }
-        public void InitializeDb()
+
+
+        public void EnsureCreatedDB()
         {
-            VehicleContext context = new();
+            InitializeTestDataDB.Database.EnsureCreated();
+
+
+
+        }
+        public void GetTestDataForDB()
+        {
             HandleParkingGarage handleParkingGarage = new();
             string path = @"Initialize.csv";
             string[] listOfVehicles = System.IO.File.ReadAllLines(path);
@@ -26,7 +42,7 @@ namespace Core.ParkingGarage
             {
                 string[] columns = item.Split(',');
 
-                context.Garage.Add(new VehiclesDB()
+                InitializeTestDataDB.Garage.Add(new VehiclesDB()
                 {
                     NumberPlate = columns[0],
                     CheckInTimeStamp = DateTime.Parse(columns[1]),
@@ -34,7 +50,7 @@ namespace Core.ParkingGarage
                     VehicleType = columns[3],
                     VehicleSize = int.Parse(columns[4]) 
                 });
-                context.SaveChanges();
+                InitializeTestDataDB.SaveChanges();
             }
         }
     }

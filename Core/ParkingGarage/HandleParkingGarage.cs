@@ -10,7 +10,6 @@ namespace Core.ParkingGarage
 {
     public class HandleParkingGarage
     {
-        //public DateTime TimeStamp { get; set; }
        readonly ParkingGarageLimitations parkingGarageLimitations = new(); //kanske flyttar ut dessa och dylika metoder till logic
 
         readonly VehicleContext context = new();
@@ -69,6 +68,9 @@ namespace Core.ParkingGarage
                .Where(condition => condition.NumberPlate == numberPlate)
                .Select(select => select.VehicleType)
                .ToList();
+
+
+
             return vehicleType[0];
         }
         #endregion
@@ -118,6 +120,17 @@ namespace Core.ParkingGarage
                 .FirstOrDefault();
 
             var result = checkOut - checkIn;
+
+            if (result == null)
+            {
+                result = TimeSpan.MinValue;
+            }
+            else
+            {
+
+            }
+
+
             return (TimeSpan)result;
         }
         public double HandlePrice(TimeSpan amountOfTime, string vehicleType) // hantera pris, första 10 min är gratis
@@ -191,9 +204,11 @@ namespace Core.ParkingGarage
             }
 
         }
+
+        //Beräknar utrymmet som finns kvar på vald parkeringsplats
        public int UsedSpaceInSelectedParkingSpot(List<string> collectedVehicleTypes)
         {
-            int result = 0;
+            int parkingSpaceLeft = 0;
             int sizeOfCar = parkingGarageLimitations.GetOneIntValueFromJsonFile(6);
             int sizeOfMotorcycle = parkingGarageLimitations.GetOneIntValueFromJsonFile(7);
             string car = parkingGarageLimitations.GetOneStringValueFromJsonFile(4);
@@ -203,15 +218,15 @@ namespace Core.ParkingGarage
             {
                 if(items.Equals(car))
                 {
-                    result += sizeOfCar;
+                    parkingSpaceLeft += sizeOfCar;
                 }
                else if(items.StartsWith(motorcycle))
                 {
-                    result += sizeOfMotorcycle;
+                    parkingSpaceLeft += sizeOfMotorcycle;
                 }
             }
 
-            return result;
+            return parkingSpaceLeft;
         }
 
         /* item1 - håller i typ av fordon (byts alltid ut om flera typer av fordon finns)
@@ -237,7 +252,10 @@ namespace Core.ParkingGarage
 
 
                         if (vehicleType == null || vehicleType == null)
-                        { }
+                        {
+                            vehicleType = "";
+                        
+                        }
 
                         else if (vehicleType != previousVehicleType)
                         {
@@ -246,6 +264,8 @@ namespace Core.ParkingGarage
                         }
 
                         holdVehicleTypeAndAmountOfVehicles.Item1 = vehicleType;
+
+
                         holdVehicleTypeAndAmountOfVehicles.Item2 = countVehicleTypes;
 
 

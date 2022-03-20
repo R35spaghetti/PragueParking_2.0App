@@ -65,7 +65,7 @@
             this.Controls.Add(this.VehicleTableLayoutPanel);
             this.Name = "ShowParkingLotOverviewScreen";
             this.Text = "TestShowButtonsVehicleScreen";
-            this.Load += new System.EventHandler(this.TestShowButtonsVehicleScreen_Load);
+            this.Load += new System.EventHandler(this.ShowButtonsVehicleScreen_Load);
             this.ResumeLayout(false);
 
         }

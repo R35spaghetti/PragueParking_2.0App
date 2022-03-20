@@ -48,9 +48,11 @@ namespace UI
 
         private void ParkedVehiclesButton_Click(object sender, EventArgs e)
         {
-            ShowParkingLotOverviewScreen testShowButtonsVehicleScreen = new();
-            testShowButtonsVehicleScreen.Show(this);
-
+           
+                ShowParkingLotOverviewScreen ShowButtonsVehicleScreen = new();
+                ShowButtonsVehicleScreen.Show(this);
+            
+        
 
 
         }
@@ -67,8 +69,8 @@ namespace UI
             
         
           
-                ParkingGarageLogic logic = new();
-                logic.CreateTheDB();
+                TestDataLogic ImplementTestData = new();
+                ImplementTestData.CreateTheDB();
                 TestDataButton.Text = "DONE!";
                 TestDataButton.BackColor = Color.Green;
             }

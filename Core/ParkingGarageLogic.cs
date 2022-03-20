@@ -7,21 +7,22 @@ namespace Core
 {
     public class ParkingGarageLogic
     {
-        readonly CreateDb createDb = new();
+        readonly TestDataLogic createDb = new();
         readonly HandleParkingGarage Garage = new();
         readonly ParkingSpot parking = new();
 
+        //TODO ta bort mig
+        //public void CreateTheDB()
+        //{
 
-        public void CreateTheDB()
-        {
-            VehicleContext vehicleContext = new();
-            createDb.EnsureCreatedDb();
-            var isDbEmpty = vehicleContext.Garage.Where(x => x.Id == 1);
-            if (!isDbEmpty.Any())
-            {
-                createDb.InitializeDb();
-            }
-        }
+        //    VehicleContext vehicleContext = new();
+        //    createDb.EnsureCreatedDb();
+        //    var isDbEmpty = vehicleContext.Garage.Where(x => x.Id == 1);
+        //    if (!isDbEmpty.Any())
+        //    {
+        //        createDb.InitializeDb();
+        //    }
+        //}
 
 
 

@@ -15,7 +15,6 @@ namespace UI
     public partial class ShowParkingLotOverviewScreen : Form
     {
 
-  
        readonly ParkingGarageLimitations parkingGarageLimitations = new();
         readonly HandleParkingGarage handleParkingGarage = new();
         readonly ParkingGarageLogic logic = new();
@@ -24,32 +23,18 @@ namespace UI
 
         public ShowParkingLotOverviewScreen()
         {
-            // CreateVehicleInformationButton();
             InitializeComponent();
 
         }
 
-        /*Knapp som genereras, blir grön om ett fordon har parkerats. Vid ett tryck på knappen -
-        / visas allt som är parkerat - redundant?*/
-        private void CreateVehicleInformationButton()
-        {
-            Button VehicleButton = new();
-            //VehicleButton.Height = 200;
-            //VehicleButton.Width = 200;
-
-
-
-            VehicleButton.Click += new EventHandler(CreateVehicleInformationButton_Click);
-            Controls.Add(VehicleButton);
-
-        }
-
-        private void CreateVehicleInformationButton_Click(object sender, EventArgs e)
+        //Den skapade knappen ska kunna visa parkeringsplatsens innehåll
+        private void CreateParkingLotInformationButton_Click(object sender, EventArgs e)
         {
             string textForClickableButton = "";
-            //Kan nu få klickbara knappar
-            Button vehicleButton = sender as Button;
-          int buttonNameAsNumber = int.Parse(vehicleButton.Name);
+            Button? vehicleButton = sender as Button;
+
+            //Visar knappens textinnehåll
+           int buttonNameAsNumber = int.Parse(vehicleButton.Name);
             textForClickableButton = logic.ShowParkingLotInformation(buttonNameAsNumber);
             MessageBox.Show(textForClickableButton);
 
@@ -57,23 +42,18 @@ namespace UI
      
         }
 
-        //skapar knapp
-        private void TestShowButtonsVehicleScreen_Load(object sender, EventArgs e)
+        private void ShowButtonsVehicleScreen_Load(object sender, EventArgs e)
         {
 
             int currentParkingSpotSize = parkingGarageLimitations.GetOneIntValueFromJsonFile(8);
             int usedParkingSpotSpace = 0;
-            int numberForButton = 0; //för att visa knapparna som "1" "2" "3"...osv
+            int numberForButton = 0; 
 
-
-
-            List<string> splitGetAffectedParkinglots = new();
             List<string> allVehicleTypesInCurrentParkingSpot = new();
 
             int parkingSpotsInTheGarage = parkingGarageLimitations.GetOneIntValueFromJsonFile(3);
 
-            // splitGetAffectedParkinglots = GetAllAffectedParkingLots(splitGetAffectedParkinglots, parkingSpotsInTheGarage);
-            //  splitGetAffectedParkinglots.Sort();
+        
 
             //TODO låta användaren lösa detta problem
             //Antalet platser beroende på maximala antalet parkeringsplatser
@@ -97,7 +77,7 @@ namespace UI
 
 
 
-            //Storleken på knapparna i % i TableLayoutPanelen
+            //Storleken på knapparna i %, i TableLayoutPanelen
             for (int i = 0; i < columns; i++)
             {
                 this.VehicleTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50));
@@ -117,11 +97,12 @@ namespace UI
 
 
 
-                    numberForButton++;
+                    numberForButton++; //för att visa knapparna som "1" "2" "3"...osv
+
                     (string, int, int) HoldVehicleTypeAndAmountOfVehicles = ("", 0, numberForButton);
 
                     /*Räkna antalet fordonstyper med hjälp av json-värdet, räkna sedan ut om parkeringsplatsen är full.
-                     etc: car(4)+car(4)=plats(8) 8=full */
+                     etc: car(4)+car(4)=plats(8) 8=full parkering*/
                     allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(numberForButton);
                     usedParkingSpotSpace = handleParkingGarage.UsedSpaceInSelectedParkingSpot(allVehicleTypesInCurrentParkingSpot);
                     HoldVehicleTypeAndAmountOfVehicles = handleParkingGarage.WhatKindOfVehiclesInSelectedParkingSpot(HoldVehicleTypeAndAmountOfVehicles);
@@ -130,44 +111,44 @@ namespace UI
 
 
                     //En ny knapp vid varje ny position
-                    var CreateVehicleButton = new Button();
-                    CreateVehicleInformationButton();
+                    var CreateParkingLotInformationButton = new Button();
 
                     //Lägger till siffror, som 1,2,3,4,5 osv till de genererade knapparna
-                    CreateVehicleButton.Text = string.Format("{0}", numberForButton);
+                    CreateParkingLotInformationButton.Text = string.Format("{0}", numberForButton);
 
-                    //Namnger kontrollerna
-                    CreateVehicleButton.Name = string.Format("{0}", numberForButton);
+                    //Namnger knapparna, för att senare kunna lägga till popup-text innehåll
+                    CreateParkingLotInformationButton.Name = string.Format("{0}", numberForButton);
 
 
                     //Lägger till knappen vid rad "x" och kolumn "y" i rutnätet.
-                    this.VehicleTableLayoutPanel.Controls.Add(CreateVehicleButton, j, i);
-                    CreateVehicleButton.Dock = DockStyle.Fill;
+                    this.VehicleTableLayoutPanel.Controls.Add(CreateParkingLotInformationButton, j, i);
+                    CreateParkingLotInformationButton.Dock = DockStyle.Fill;
 
-                    //Rosa om full
+                    //Rosa knapp om full parkering
                     if (usedParkingSpotSpace.Equals(currentParkingSpotSize))
                     {
-                        CreateVehicleButton.BackColor = Color.DeepPink;
-                        CreateVehicleButton.Click += new EventHandler(CreateVehicleInformationButton_Click);
-                        this.VehicleTableLayoutPanel.Controls.Add(CreateVehicleButton);
+                        CreateParkingLotInformationButton.BackColor = Color.DeepPink;
+                        CreateParkingLotInformationButton.Click += new EventHandler(CreateParkingLotInformationButton_Click);
+                        this.VehicleTableLayoutPanel.Controls.Add(CreateParkingLotInformationButton);
                     }
-                    //Om en fordonstyp
+                    //Om endast en fordonstyp på parkeringen
                     else if (HoldVehicleTypeAndAmountOfVehicles.Item2 == 1)
                     {
-                        //Om bil måla gul
+                        //Om bil måla knappen gul
                         if (HoldVehicleTypeAndAmountOfVehicles.Item1 == parkingGarageLimitations.GetOneStringValueFromJsonFile(4))
                         {
-                            CreateVehicleButton.BackColor = Color.Yellow;
-                            CreateVehicleButton.Click += new EventHandler(CreateVehicleInformationButton_Click);
-                            this.VehicleTableLayoutPanel.Controls.Add(CreateVehicleButton);
+                            CreateParkingLotInformationButton.BackColor = Color.Yellow;
+
+                            CreateParkingLotInformationButton.Click += new EventHandler(CreateParkingLotInformationButton_Click);
+                            this.VehicleTableLayoutPanel.Controls.Add(CreateParkingLotInformationButton);
                         }
 
-                        //Om motorcykel måla röd
+                        //Om motorcykel måla knappen röd
                         else if (HoldVehicleTypeAndAmountOfVehicles.Item1 == parkingGarageLimitations.GetOneStringValueFromJsonFile(5))
                         {
-                            CreateVehicleButton.BackColor = Color.Red;
-                            CreateVehicleButton.Click += new EventHandler(CreateVehicleInformationButton_Click);
-                            this.VehicleTableLayoutPanel.Controls.Add(CreateVehicleButton);
+                            CreateParkingLotInformationButton.BackColor = Color.Red;
+                            CreateParkingLotInformationButton.Click += new EventHandler(CreateParkingLotInformationButton_Click);
+                            this.VehicleTableLayoutPanel.Controls.Add(CreateParkingLotInformationButton);
                         }
                     }
 
@@ -175,12 +156,11 @@ namespace UI
                     //För att rött och gult blir orange 8)
                     else if (HoldVehicleTypeAndAmountOfVehicles.Item2 >= 2)
                     {
-                        CreateVehicleButton.BackColor = Color.Orange;
-                        CreateVehicleButton.Click += new EventHandler(CreateVehicleInformationButton_Click);
-                        this.VehicleTableLayoutPanel.Controls.Add(CreateVehicleButton);
+                        CreateParkingLotInformationButton.BackColor = Color.Orange;
+                        CreateParkingLotInformationButton.Click += new EventHandler(CreateParkingLotInformationButton_Click);
+                        this.VehicleTableLayoutPanel.Controls.Add(CreateParkingLotInformationButton);
                     }
 
-                 //   logic.PresentVehicles();
 
                 }
 
