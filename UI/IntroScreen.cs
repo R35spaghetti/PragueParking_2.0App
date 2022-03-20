@@ -74,6 +74,10 @@ namespace UI
                 TestDataButton.Text = "DONE!";
                 TestDataButton.BackColor = Color.Green;
             }
-        
+
+        private void InfoButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"You only need to press the 'Get test data' button once (while the database is empty), several more clicks is only for you own amusement.");
+        }
     }
 }

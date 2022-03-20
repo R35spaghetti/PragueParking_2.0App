@@ -35,6 +35,7 @@
             this.ParkedvehiclesButton = new System.Windows.Forms.Button();
             this.TestDataButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.InfoButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rentalPricesLabel
@@ -109,11 +110,23 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Edition: Bleeding Edge";
             // 
+            // InfoButton
+            // 
+            this.InfoButton.BackColor = System.Drawing.Color.IndianRed;
+            this.InfoButton.Location = new System.Drawing.Point(852, 565);
+            this.InfoButton.Name = "InfoButton";
+            this.InfoButton.Size = new System.Drawing.Size(35, 29);
+            this.InfoButton.TabIndex = 6;
+            this.InfoButton.Text = "?";
+            this.InfoButton.UseVisualStyleBackColor = false;
+            this.InfoButton.Click += new System.EventHandler(this.InfoButton_Click);
+            // 
             // IntroScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 727);
+            this.Controls.Add(this.InfoButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TestDataButton);
             this.Controls.Add(this.ParkedvehiclesButton);
@@ -138,5 +151,6 @@
         private Button ParkedvehiclesButton;
         private Button TestDataButton;
         private Label label1;
+        private Button InfoButton;
     }
 }
