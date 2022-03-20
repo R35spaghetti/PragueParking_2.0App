@@ -125,11 +125,11 @@ namespace Core
 
 
         
-        public void SwitchMenuOptionsForLimitationValues(string value, int switchValue)
+        public void EditOneValueInLimitationJson(string value, int switchValue)
 
         {
             
-           newConfigFileValue = GetNewIntValue(value);
+           newConfigFileValue = GetNewIntValueFromString(value);
 
             //Get the current values from the ParkingLotLimitationValues-jsonfile
             rentalPricesAndLimitations = VehicleContext.GiveParkGarageValuesFromJsonFile(rentalPricesAndLimitations);
@@ -242,7 +242,7 @@ namespace Core
             }
         }
 
-       static int GetNewIntValue(string value)
+    public int GetNewIntValueFromString(string value)
         {
 
           int configFileValue = ParseIntValue(value);

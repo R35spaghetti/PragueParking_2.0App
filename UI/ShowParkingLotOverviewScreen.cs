@@ -18,6 +18,10 @@ namespace UI
        readonly ParkingGarageLimitations parkingGarageLimitations = new();
         readonly HandleParkingGarage handleParkingGarage = new();
         readonly ParkingGarageLogic logic = new();
+
+    
+
+
     
 
         public ShowParkingLotOverviewScreen()
@@ -45,35 +49,25 @@ namespace UI
 
             int currentParkingSpotSize = parkingGarageLimitations.GetOneIntValueFromJsonFile(8);
             int usedParkingSpotSpace = 0;
-            int numberForButton = 0; 
+            int numberForButton = 0;
+            int rows = 0;
+            int columns = 0;
+
+            //För tabellen - räknar inte helt rätt på vissa tal
+         (rows,columns) = CalculateHowManyButtonsToPrint(rows,columns);
+            
+           
+
+         
 
             List<string> allVehicleTypesInCurrentParkingSpot = new();
 
             int parkingSpotsInTheGarage = parkingGarageLimitations.GetOneIntValueFromJsonFile(3);
 
-        
-
-            //TODO låta användaren lösa detta problem
-            //Antalet platser beroende på maximala antalet parkeringsplatser
-            int rows = parkingSpotsInTheGarage / 10;
-            int columns = parkingSpotsInTheGarage / 10;
-
-
-
-
-
-
-
-
-
             this.VehicleTableLayoutPanel.ColumnCount = columns;
             this.VehicleTableLayoutPanel.RowCount = rows;
 
-            //Rensa standardvärden, är skumt utan dessa
-            this.VehicleTableLayoutPanel.ColumnStyles.Clear();
-            this.VehicleTableLayoutPanel.RowStyles.Clear();
-
-
+          
 
             //Storleken på knapparna i %, i TableLayoutPanelen
             for (int i = 0; i < columns; i++)
@@ -169,11 +163,31 @@ namespace UI
             }
         }
 
+        private (int rows, int columns) CalculateHowManyButtonsToPrint(int rows, int columns)
+        {
+            int totalButtons = parkingGarageLimitations.GetOneIntValueFromJsonFile(3);
+
+             columns = (int)Math.Sqrt(totalButtons);
+              rows = (totalButtons / columns);
+
+            return (rows,columns);
+        }
 
         private void InfoButton_Click(object sender, EventArgs e)
         {
             InfoParkingLotColoursScreen infoParkingLot = new();
             infoParkingLot.Show(this);
+        }
+
+        private void UpdateTableButton_Click(object sender, EventArgs e)
+        {
+            string rowValue = EditRowsTextBox.Text;
+            string columnValue = EditColumnsTextBox.Text;
+
+     
+            this.Hide();
+            this.Show();
+
         }
     }
 }

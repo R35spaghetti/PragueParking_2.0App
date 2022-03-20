@@ -4,7 +4,7 @@ namespace Core.ParkingGarage
 {
     public class HandleParkingGarage
     {
-       readonly ParkingGarageLimitations parkingGarageLimitations = new(); //kanske flyttar ut dessa och dylika metoder till logic
+        readonly ParkingGarageLimitations parkingGarageLimitations = new(); //kanske flyttar ut dessa och dylika metoder till logic
 
         readonly VehicleContext context = new();
 
@@ -145,10 +145,10 @@ namespace Core.ParkingGarage
              .FirstOrDefault();
 
             var result = getVehicleType?.ToString();
-          
+
             if (result == null)
-            { 
-             result = ""; 
+            {
+                result = "";
             }
             else
             {
@@ -189,7 +189,7 @@ namespace Core.ParkingGarage
         }
 
         //Beräknar utrymmet som finns kvar på vald parkeringsplats
-       public int UsedSpaceInSelectedParkingSpot(List<string> collectedVehicleTypes)
+        public int UsedSpaceInSelectedParkingSpot(List<string> collectedVehicleTypes)
         {
             int parkingSpaceLeft = 0;
             int sizeOfCar = parkingGarageLimitations.GetOneIntValueFromJsonFile(6);
@@ -199,11 +199,11 @@ namespace Core.ParkingGarage
 
             foreach (var items in collectedVehicleTypes)
             {
-                if(items.Equals(car))
+                if (items.Equals(car))
                 {
                     parkingSpaceLeft += sizeOfCar;
                 }
-               else if(items.StartsWith(motorcycle))
+                else if (items.StartsWith(motorcycle))
                 {
                     parkingSpaceLeft += sizeOfMotorcycle;
                 }
@@ -237,7 +237,7 @@ namespace Core.ParkingGarage
                         if (vehicleType == null || vehicleType == null)
                         {
                             vehicleType = "";
-                        
+
                         }
 
                         else if (vehicleType != previousVehicleType)
@@ -263,7 +263,7 @@ namespace Core.ParkingGarage
 
             }
         }
-   
-        }
+
     }
+}
 

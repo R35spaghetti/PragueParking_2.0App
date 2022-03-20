@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InfoParkingLotColoursScreen));
             this.InfoAboutOverViewRichTextBox = new System.Windows.Forms.RichTextBox();
             this.OkCloseMeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -39,17 +40,16 @@
             this.InfoAboutOverViewRichTextBox.ForeColor = System.Drawing.Color.Black;
             this.InfoAboutOverViewRichTextBox.Location = new System.Drawing.Point(30, 21);
             this.InfoAboutOverViewRichTextBox.Name = "InfoAboutOverViewRichTextBox";
-            this.InfoAboutOverViewRichTextBox.Size = new System.Drawing.Size(641, 205);
+            this.InfoAboutOverViewRichTextBox.Size = new System.Drawing.Size(1243, 303);
             this.InfoAboutOverViewRichTextBox.TabIndex = 10;
-            this.InfoAboutOverViewRichTextBox.Text = "Yellow: Cars \nRed: Motorcycles\nOrange: Both cars and motorcycles\nPink: Parking lo" +
-    "t is full\nGray: Empty parking lot";
+            this.InfoAboutOverViewRichTextBox.Text = resources.GetString("InfoAboutOverViewRichTextBox.Text");
             // 
             // OkCloseMeButton
             // 
-            this.OkCloseMeButton.Location = new System.Drawing.Point(30, 242);
+            this.OkCloseMeButton.Location = new System.Drawing.Point(597, 339);
             this.OkCloseMeButton.Name = "OkCloseMeButton";
             this.OkCloseMeButton.Size = new System.Drawing.Size(116, 34);
-            this.OkCloseMeButton.TabIndex = 11;
+            this.OkCloseMeButton.TabIndex = 1;
             this.OkCloseMeButton.Text = "OK";
             this.OkCloseMeButton.UseVisualStyleBackColor = true;
             this.OkCloseMeButton.Click += new System.EventHandler(this.OkCloseMeButton_Click);
@@ -58,7 +58,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(718, 302);
+            this.ClientSize = new System.Drawing.Size(1307, 387);
             this.Controls.Add(this.OkCloseMeButton);
             this.Controls.Add(this.InfoAboutOverViewRichTextBox);
             this.Name = "InfoParkingLotColoursScreen";

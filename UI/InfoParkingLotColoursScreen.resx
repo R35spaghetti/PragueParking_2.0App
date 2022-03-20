@@ -57,4 +57,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="InfoAboutOverViewRichTextBox.Text" xml:space="preserve">
+    <value>Yellow: Cars 
+Red: Motorcycles
+Orange: Both cars and motorcycles
+Pink: Parking lot is full
+Gray: Empty parking lot
+
+You can also navigate with the keyboard, press enter to see what the parking lot contains.
+ </value>
+  </data>
 </root>

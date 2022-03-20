@@ -26,33 +26,33 @@ namespace UI
 
             if (!string.IsNullOrWhiteSpace(CarRentalPriceTextbox.Text))
             {
-                parkingGarageLimitations.SwitchMenuOptionsForLimitationValues(CarRentalPriceTextbox.Text, 1);
+                parkingGarageLimitations.EditOneValueInLimitationJson(CarRentalPriceTextbox.Text, 1);
             }
 
 
             if (!string.IsNullOrWhiteSpace(MCRentalPriceTextbox.Text))
             {
-                parkingGarageLimitations.SwitchMenuOptionsForLimitationValues(MCRentalPriceTextbox.Text, 2);
+                parkingGarageLimitations.EditOneValueInLimitationJson(MCRentalPriceTextbox.Text, 2);
             }
 
             if (!string.IsNullOrWhiteSpace(ParkingSpotTextBox.Text))
             {
-                parkingGarageLimitations.SwitchMenuOptionsForLimitationValues(ParkingSpotTextBox.Text, 3);
+                parkingGarageLimitations.EditOneValueInLimitationJson(ParkingSpotTextBox.Text, 3);
             }
 
             if (!string.IsNullOrWhiteSpace(CarSizeTextBox.Text))
             {
-                parkingGarageLimitations.SwitchMenuOptionsForLimitationValues(CarSizeTextBox.Text, 6);
+                parkingGarageLimitations.EditOneValueInLimitationJson(CarSizeTextBox.Text, 6);
             }
 
             if (!string.IsNullOrWhiteSpace(MCSizeTextBox.Text))
             {
-                parkingGarageLimitations.SwitchMenuOptionsForLimitationValues(MCSizeTextBox.Text, 7);
+                parkingGarageLimitations.EditOneValueInLimitationJson(MCSizeTextBox.Text, 7);
             }
 
             if (!string.IsNullOrWhiteSpace(ParkingSpotSizeTextBox.Text))
             {
-                parkingGarageLimitations.SwitchMenuOptionsForLimitationValues(ParkingSpotSizeTextBox.Text, 8);
+                parkingGarageLimitations.EditOneValueInLimitationJson(ParkingSpotSizeTextBox.Text, 8);
             }
 
 
