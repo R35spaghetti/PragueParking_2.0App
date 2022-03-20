@@ -1,4 +1,5 @@
 ﻿using GhostSheriffsDatabaseAccess;
+using System.Text.RegularExpressions;
 
 namespace Core.ParkingGarage
 {
@@ -263,7 +264,16 @@ namespace Core.ParkingGarage
 
             }
         }
+            public bool CheckIfNumberPlateIsCorrect(string numberPlate)
+            {
+                Regex Check = new(@"^[\p{L}0-9-.]*$");// All letters allowed, numbers, . and - is allowed too.
+                bool result = Check.IsMatch(numberPlate);
+
+                return result;
+
+            }
+        }
 
     }
-}
+
 

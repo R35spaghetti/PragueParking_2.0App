@@ -34,7 +34,6 @@ namespace UI
         private void AddVehicleToDbButton_Click(object sender, EventArgs e)
         {
 
-        
             int parkingSpot = int.Parse(ParkingSpotTextBox.Text);
             int currentParkingSpotSize = jsonValues.GetOneIntValueFromJsonFile(8);
             int amountOfParkingSpots = jsonValues.GetOneIntValueFromJsonFile(3);
@@ -48,8 +47,15 @@ namespace UI
 
 
             bool vehicleAlreadyExist = handleParkingGarage.SearchVehicle(NumberPlateTextBox.Text);
+            bool numberPlateFormatAllowed = handleParkingGarage.CheckIfNumberPlateIsCorrect(NumberPlateTextBox.Text);
 
-            if (vehicleAlreadyExist)
+            if(numberPlateFormatAllowed == false)
+            {
+                InfoRichTextBox.Text = "Number plate has incorrect format use only: letters, numbers, '.' and '-'";
+
+            }
+
+            else if (vehicleAlreadyExist)
             {
                 InfoRichTextBox.Text = "That number plate already exists in the parking lot!";
             }
@@ -65,12 +71,13 @@ namespace UI
 
 
             int spaceLeftInParkingSpot;
+
             if (parkingSpot > amountOfParkingSpots)
             {
                 InfoRichTextBox.Text = $"Incorrect value! Current max value of parking spots are {amountOfParkingSpots}";
             }
 
-            else if (VehicleTypeListBox.Text.Equals(("Car")) && vehicleAlreadyExist == false)
+            else if (VehicleTypeListBox.Text.Equals(("Car")) && vehicleAlreadyExist == false && numberPlateFormatAllowed == true)
             {
 
                 //Check how much space is left in the parking spot, again
@@ -85,7 +92,7 @@ namespace UI
 
             }
 
-            else if (VehicleTypeListBox.Text.Equals(("Motorcycle")) && vehicleAlreadyExist == false)
+            else if (VehicleTypeListBox.Text.Equals(("Motorcycle")) && vehicleAlreadyExist == false && numberPlateFormatAllowed == true)
             {
                 //Check how much space is left in the parking spot, again
                 allVehicleTypesInCurrentParkingSpot = handleParkingGarage.CountEachVehicleTypeInSelectedParkingSpot(parkingSpot);
