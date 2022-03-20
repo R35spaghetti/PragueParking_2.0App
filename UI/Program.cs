@@ -3,8 +3,7 @@ using Core;
 namespace UI
 {
     
-//TODO: Inte krascha när man skickar in data igen.
-//TODO: att användaren själv kan bestäma x- och y-axeln
+//TODO: att användaren själv kan bestämma x- och y-axeln
     internal static class Program
     {
         /// <summary>

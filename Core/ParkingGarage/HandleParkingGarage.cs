@@ -1,10 +1,4 @@
-﻿using System.Globalization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GhostSheriffsDatabaseAccess;
+﻿using GhostSheriffsDatabaseAccess;
 
 namespace Core.ParkingGarage
 {
@@ -61,18 +55,7 @@ namespace Core.ParkingGarage
                 .ToList();
             return vehicleSize[0];
         }
-        //TODO används inte
-        public string GetVehicleType(string numberPlate)
-        {
-            var vehicleType = context.Garage
-               .Where(condition => condition.NumberPlate == numberPlate)
-               .Select(select => select.VehicleType)
-               .ToList();
 
-
-
-            return vehicleType[0];
-        }
         #endregion
 
         #region ApplyAction

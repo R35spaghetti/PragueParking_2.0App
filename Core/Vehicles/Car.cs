@@ -1,11 +1,10 @@
-﻿using GhostSheriffsDatabaseAccess;
-
+﻿
 
 namespace Core.Vehicles
 {
     public class Car : Vehicle
     {
-        ParkingGarageLimitations ParkingGarageLimitations = new();
+       readonly ParkingGarageLimitations ParkingGarageLimitations = new();
 
         public Car(string regnr)
         {

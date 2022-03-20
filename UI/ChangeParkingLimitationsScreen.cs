@@ -26,33 +26,33 @@ namespace UI
 
             if (!string.IsNullOrWhiteSpace(CarRentalPriceTextbox.Text))
             {
-                parkingGarageLimitations.SwitchMenuValues(CarRentalPriceTextbox.Text, 1);
+                parkingGarageLimitations.SwitchMenuOptionsForLimitationValues(CarRentalPriceTextbox.Text, 1);
             }
 
 
             if (!string.IsNullOrWhiteSpace(MCRentalPriceTextbox.Text))
             {
-                parkingGarageLimitations.SwitchMenuValues(MCRentalPriceTextbox.Text, 2);
+                parkingGarageLimitations.SwitchMenuOptionsForLimitationValues(MCRentalPriceTextbox.Text, 2);
             }
 
             if (!string.IsNullOrWhiteSpace(ParkingSpotTextBox.Text))
             {
-                parkingGarageLimitations.SwitchMenuValues(ParkingSpotTextBox.Text, 3);
+                parkingGarageLimitations.SwitchMenuOptionsForLimitationValues(ParkingSpotTextBox.Text, 3);
             }
 
             if (!string.IsNullOrWhiteSpace(CarSizeTextBox.Text))
             {
-                parkingGarageLimitations.SwitchMenuValues(CarSizeTextBox.Text, 6);
+                parkingGarageLimitations.SwitchMenuOptionsForLimitationValues(CarSizeTextBox.Text, 6);
             }
 
             if (!string.IsNullOrWhiteSpace(MCSizeTextBox.Text))
             {
-                parkingGarageLimitations.SwitchMenuValues(MCSizeTextBox.Text, 7);
+                parkingGarageLimitations.SwitchMenuOptionsForLimitationValues(MCSizeTextBox.Text, 7);
             }
 
             if (!string.IsNullOrWhiteSpace(ParkingSpotSizeTextBox.Text))
             {
-                parkingGarageLimitations.SwitchMenuValues(ParkingSpotSizeTextBox.Text, 8);
+                parkingGarageLimitations.SwitchMenuOptionsForLimitationValues(ParkingSpotSizeTextBox.Text, 8);
             }
 
 

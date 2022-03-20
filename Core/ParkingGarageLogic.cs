@@ -7,28 +7,13 @@ namespace Core
 {
     public class ParkingGarageLogic
     {
-        readonly TestDataLogic createDb = new();
         readonly HandleParkingGarage Garage = new();
         readonly ParkingSpot parking = new();
 
-        //TODO ta bort mig
-        //public void CreateTheDB()
-        //{
-
-        //    VehicleContext vehicleContext = new();
-        //    createDb.EnsureCreatedDb();
-        //    var isDbEmpty = vehicleContext.Garage.Where(x => x.Id == 1);
-        //    if (!isDbEmpty.Any())
-        //    {
-        //        createDb.InitializeDb();
-        //    }
-        //}
 
 
 
-        //var input = int.Parse(Console.ReadLine());
 
-        //smidigare sätt att få placementForVehicle till int?
         public void ParkingGarageOptions(int choice, string NumberPlate, string placementForVehicle)
         {
             //Hämtar json-värdet på parkeringsplatsen
@@ -92,6 +77,7 @@ namespace Core
 
             }
         }
+
         public string ShowParkingLotInformation(int NumberFromButton)
         {
             string result = "";

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using PragueParking_2._0;
-using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 

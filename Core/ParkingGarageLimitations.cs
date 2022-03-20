@@ -1,5 +1,4 @@
 ﻿using GhostSheriffsDatabaseAccess;
-using System;
 
 namespace Core
 {
@@ -126,7 +125,7 @@ namespace Core
 
 
         
-        public void SwitchMenuValues(string value, int switchValue)
+        public void SwitchMenuOptionsForLimitationValues(string value, int switchValue)
 
         {
             
