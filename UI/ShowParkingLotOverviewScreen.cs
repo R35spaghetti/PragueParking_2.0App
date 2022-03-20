@@ -1,14 +1,6 @@
 ﻿using Core;
 using Core.ParkingGarage;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace UI
 {
@@ -170,6 +162,7 @@ namespace UI
              columns = (int)Math.Sqrt(totalButtons);
               rows = (totalButtons / columns);
 
+
             return (rows,columns);
         }
 
@@ -179,16 +172,7 @@ namespace UI
             infoParkingLot.Show(this);
         }
 
-        private void UpdateTableButton_Click(object sender, EventArgs e)
-        {
-            string rowValue = EditRowsTextBox.Text;
-            string columnValue = EditColumnsTextBox.Text;
 
-     
-            this.Hide();
-            this.Show();
-
-        }
     }
 }
 
